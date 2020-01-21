@@ -7,12 +7,14 @@ import { AppComponent } from './app.component';
 import { FlavorService } from './flavor.service';
 import { ProductListComponent } from './product-list/product-list.component';
 import { SingleProductComponent } from './single-product/single-product.component';
+import { MainPageComponent } from './main-page/main-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductListComponent,
-    SingleProductComponent
+    SingleProductComponent,
+    MainPageComponent
   ],
   imports: [
     BrowserModule,

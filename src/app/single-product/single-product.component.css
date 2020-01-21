@@ -4,6 +4,44 @@ img {
 	width: 263px;
 }
 
-h3{
+.name{
     text-align: center;
+    font-size: 27px;
+    font-family: 'Open Sans Condensed', sans-serif;
+    line-height: 1;
+    margin-bottom: 8px;
+}
+
+.ingredients {
+    width: 60%;
+    margin-left: 20%;
+    margin-bottom: 7px;
+    line-height: 1;
+    text-align: center;
+    font-size: 16px;
+    font-family: 'Gayathri', sans-serif;
+}
+
+.price{
+    font-family: 'Bangers', cursive;
+    font-size: 20px;
+    text-align: center;
+}
+
+.priceAndButton{
+    width: 70%;
+    margin-left: 15%;
+}
+
+.divBtnBuy{
+    text-align: center;
+}
+
+.btnBuy{
+    background-color: red;
+    color: white;
+    font-family: 'Bangers', cursive;
+    font-size: 17px;
+    border-style: none;
+    width: 80%;
 }

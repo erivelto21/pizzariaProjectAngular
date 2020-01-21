@@ -1,2 +1,13 @@
 <img class="rounded mx-auto d-block" src={{flavor.image}}/>
-<h3>{{flavor.name}}</h3>
+<p class="name">{{flavor.name}}</p>
+<div class="ingredients">
+    {{ingredients}}
+</div>
+<div class="row priceAndButton">
+    <div class="col-lg-6">
+        <p class="price">R${{flavor.price.toFixed(2)}}</p>
+    </div>
+    <div class="col-lg-6 divBtnBuy">
+        <button class="btn btnBuy">Pedir</button>
+    </div>
+</div>

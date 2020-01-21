@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Flavor } from '../interfaces/Flavor';
-import { FlavorService } from '../flavor.service';
 
 @Component({
   selector: 'app-product-list',
@@ -9,15 +8,11 @@ import { FlavorService } from '../flavor.service';
 })
 export class ProductListComponent implements OnInit {
 
-  public flavors: Flavor[];
+  @Input() flavors: Flavor[];
+  @Input() type: string;
 
-  constructor(private saborService: FlavorService) { }
+  constructor() {}
 
   ngOnInit() {
-    this.list();
-  }
-
-  list() {
-    this.saborService.flavorsList().subscribe((flavors: Flavor[]) => {this.flavors = flavors; } );
   }
 }
