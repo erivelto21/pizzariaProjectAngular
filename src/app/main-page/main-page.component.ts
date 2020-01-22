@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { FlavorService } from '../flavor.service';
 import { Flavor } from '../interfaces/Flavor';
 
@@ -9,6 +9,7 @@ import { Flavor } from '../interfaces/Flavor';
 })
 export class MainPageComponent implements OnInit {
 
+  class = '';
   private flavors: Flavor[];
   public savoryFlavors: Flavor[];
   public sweetFlavors: Flavor[];
@@ -22,6 +23,10 @@ export class MainPageComponent implements OnInit {
 
   ngOnInit() {
     this.list();
+  }
+
+  moveClass() {
+    this.class = this.class === '' ? '30%' : '';
   }
 
   private list() {

@@ -8,13 +8,15 @@ import { FlavorService } from './flavor.service';
 import { ProductListComponent } from './product-list/product-list.component';
 import { SingleProductComponent } from './single-product/single-product.component';
 import { MainPageComponent } from './main-page/main-page.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductListComponent,
     SingleProductComponent,
-    MainPageComponent
+    MainPageComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
