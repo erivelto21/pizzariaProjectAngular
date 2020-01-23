@@ -15,4 +15,20 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  h3TypeColor(): string {
+    switch (this.type) {
+      case 'Pizzas Salgadas':
+        return 'savory-type';
+        break;
+      case 'Pizzas Doces':
+        return 'sweet-type';
+        break;
+      case 'Pizzas Vegetarianas':
+        return 'vegetarian-type';
+        break;
+      default:
+        break;
+    }
+  }
 }

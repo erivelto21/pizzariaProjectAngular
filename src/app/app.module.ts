@@ -7,16 +7,22 @@ import { AppComponent } from './app.component';
 import { FlavorService } from './flavor.service';
 import { ProductListComponent } from './product-list/product-list.component';
 import { SingleProductComponent } from './single-product/single-product.component';
-import { MainPageComponent } from './main-page/main-page.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { HomePageComponent } from './home-page/home-page.component';
+import { FlavorsListsComponent } from './flavors-lists/flavors-lists.component';
+import { CarouselHomePageComponent } from './carousel-home-page/carousel-home-page.component';
+import { SideNavbarComponent } from './navbar/side-navbar/side-navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductListComponent,
     SingleProductComponent,
-    MainPageComponent,
-    NavbarComponent
+    NavbarComponent,
+    HomePageComponent,
+    FlavorsListsComponent,
+    CarouselHomePageComponent,
+    SideNavbarComponent,
   ],
   imports: [
     BrowserModule,

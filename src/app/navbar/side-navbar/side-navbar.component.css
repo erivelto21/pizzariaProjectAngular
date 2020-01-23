@@ -1,0 +1,57 @@
+.side-nav-bar {
+    left: 0;
+    padding-left: 5px;
+    top: 0;
+    position: fixed;
+    background-color: darkred;
+    height: 100%;   
+    width: 100px;
+    transition: left 0.5s;
+}
+
+.side-nav-bar-hidden{
+    left: -150px !important;
+}
+
+.side-nav-bar > ul > li > a{
+    color: white;
+}
+
+.side-nav-bar > ul > li {
+    margin-top: 10px;
+}
+
+@media only screen and (max-width: 992px) {
+   
+    .side-nav-bar {
+        width: 150px;
+    }
+}
+
+@media only screen and (max-width: 898px) {
+    .side-nav-bar {
+        width: 150px;
+    }
+}
+
+@media only screen and (max-width: 581px) {
+
+    .side-nav-bar {
+        width: 120px;
+    }
+
+    .side-nav-bar > ul > li > a {
+        font-size: 12px;
+    }
+}
+
+@media only screen and (max-width: 491px) {
+
+    .side-nav-bar {
+        width: 110px;
+    }
+
+    .side-nav-bar > ul > li > a {
+        font-size: 11px;
+    }
+}

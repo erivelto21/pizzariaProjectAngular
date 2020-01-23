@@ -8,17 +8,17 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 export class NavbarComponent implements OnInit {
 
   @Output() event = new EventEmitter();
-  class = '';
-  style = '-30%';
+  navSideIsHidden = true;
+  navIsMoved = false;
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  moveClass() {
-    this.class = this.class === '' ? '30%' : '';
-    this.style = this.style === '-30%' ? '' : '-30%';
+  sideNav() {
+    this.navSideIsHidden = !this.navSideIsHidden;
+    this.navIsMoved = !this.navIsMoved;
     this.event.emit();
   }
 }

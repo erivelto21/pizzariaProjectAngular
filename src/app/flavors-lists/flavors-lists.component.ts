@@ -1,15 +1,15 @@
-import { Component, OnInit, Output } from '@angular/core';
-import { FlavorService } from '../flavor.service';
+import { Component, OnInit } from '@angular/core';
 import { Flavor } from '../interfaces/Flavor';
+import { FlavorService } from '../flavor.service';
 
 @Component({
-  selector: 'app-main-page',
-  templateUrl: './main-page.component.html',
-  styleUrls: ['./main-page.component.css']
+  selector: 'app-flavors-lists',
+  templateUrl: './flavors-lists.component.html',
+  styleUrls: ['./flavors-lists.component.css']
 })
-export class MainPageComponent implements OnInit {
+export class FlavorsListsComponent implements OnInit {
 
-  class = '';
+  listsIsMoved = false;
   private flavors: Flavor[];
   public savoryFlavors: Flavor[];
   public sweetFlavors: Flavor[];
@@ -26,7 +26,7 @@ export class MainPageComponent implements OnInit {
   }
 
   moveClass() {
-    this.class = this.class === '' ? '30%' : '';
+    this.listsIsMoved = !this.listsIsMoved;
   }
 
   private list() {

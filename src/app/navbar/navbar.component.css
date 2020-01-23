@@ -1,5 +1,25 @@
-* {
-    padding: 0;  
+.navbar{
+    left: 0px;
+    padding: 10px 50px;
+    background-color: #b01010;
+    height: 80px;
+    transition: left 0.5s;
+}
+
+.navbar-move {
+    left: 100px;
+}
+
+.navbar-nav{
+    padding-left: 15px;
+}
+
+.navbar-nav > li > a {
+    color: white;
+}
+
+.button-toggler > button {
+    padding: 0;
 }
 
 #navbar-header{
@@ -15,101 +35,128 @@
 
 #navbar-header > a{
     font-family: 'Montserrat', sans-serif;
-    color: gray;
+    color: white;
     text-decoration: none;
+}
+
+#cart {
+    padding-left: 50px;
 }
 
 .shop-icon{
     font-size: 20px;
 }
 
-.navbar-nav{
-    padding-left: 15px;
-}
-
-.navbar{
-	padding: 10px 50px;
-}
-
 @media only screen and (max-width: 992px) {
     #navbar-header > a {
         padding-left: 10px;
     }
+
+    .navbar-move {
+        left: 150px;
+    }
 }
 
-@media only screen and (max-width: 768px) {
-    .navbar{
-        padding: 10px;
-    }
+@media only screen and (max-width: 898px) {
 
-    #navbar-header {
-        font-size: 20px;
+    .button-toggler > button > span{
+        height: 27px;
+        width: 35px;
     }
-    .navbar-toggler-icon{
-        width: 20px !important;
-        height: 20px !important;
-    }
+}
 
-    .navbar-toggler{
-        width: 40px !important;
-        height: 40px !important;
-        padding: 0px;
-    }
+@media only screen and (max-width: 622px) {
 
+    .button-toggler > button > span{
+        height: 23px;
+        width: 28px;
+    }
+    
+    #navbar-header{
+        text-align: center;
+        font-size: 22px;
+    }
+    
     #navbar-header > a > img {
-        width: 40px;
-        height: 40px;
+        width: 35px;
+        height: 35px;
     }
 
     #cart {
-        font-size: 19px;
+        font-size: 15px;
+    }
+    
+    .shop-icon{
+        font-size: 18px;
     }
 }
 
-@media only screen and (max-width: 513px) {
-    .navbar{
-        padding: 5px;
+@media only screen and (max-width: 581px) {
+
+    .navbar-move {
+        left: 120px;
     }
 
-    #navbar-header {
-        font-size: 15px;
+    .button-toggler > button > span{
+        height: 20px;
+        width: 25px;
     }
-    .navbar-toggler-icon{
-        margin-bottom: 10px;
-        width: 15px !important;
-        height: 20px !important;
+    
+    #navbar-header{
+        text-align: center;
+        font-size: 17px;
     }
-
-    .navbar-toggler{
-        width: 22px !important;
-        height: 22px !important;
-        font-size: 0px;
-        padding: 0px;
-    }
-
+    
     #navbar-header > a > img {
-        width: 17px;
-        height: 17px;
+        width: 29px;
+        height: 29px;
     }
 
     #cart {
         font-size: 12px;
     }
-
-    .side-nav > ul > li > a{
-        color: white;
-        font-size: 10px;
+    
+    .shop-icon{
+        font-size: 14px;
     }
 }
 
-.side-nav {
-    top: 0em;
-    position: fixed;
-    background-color: darkred;
-    height: 100vh;
-    width: 30%;
-}
+@media only screen and (max-width: 491px) {
 
-.side-nav > ul > li > a{
-    color: white;
+    .navbar {
+        padding-left: 15px;
+    }
+
+    .navbar-move {
+        left: 110px;
+    }
+
+    .button-toggler > button > span{
+        height: 17px;
+        width: 22px;
+    }
+    
+    #navbar-header{
+        text-align: center;
+        margin-left: 10%;
+        font-size: 15px;
+        position: fixed;
+    }
+    
+    #navbar-header > a > img {
+        width: 26px;
+        height: 26px;
+    }
+
+    #cart {
+        font-size: 11px;
+    }
+    
+    .shop-icon{
+        font-size: 10px;
+    }
+
+    .ml-auto {
+        margin-left: 0;
+    }
 }

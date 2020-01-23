@@ -1,11 +1,30 @@
+.type {
+     height: 60px;
+     padding-top: 11px;
+     margin-bottom: 37px;
+} 
+
+.savory-type {
+     background-color: #878500;
+}
+
+.sweet-type {
+     background-color: #D2691E;
+}
+
+.vegetarian-type {
+     background-color: #008719;
+}
+
+h3{
+     font-size: 35px;
+     font-family: 'Bangers', cursive;
+     margin-left: 3%;
+     color: white;
+}
+
 .product{
      margin-bottom: 10%;
      margin-left: 3%;
      width: 94%;
-}
-
-h3{
-     font-family: 'Bangers', cursive;
-     margin-bottom: 3%;
-     margin-left: 3%;
 }
