@@ -6,13 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./carousel-home-page.component.css']
 })
 export class CarouselHomePageComponent implements OnInit {
-  carouselIsMoved = false;
 
   ngOnInit() {
 
-  }
-
-  moveClass() {
-    this.carouselIsMoved = !this.carouselIsMoved;
   }
 }

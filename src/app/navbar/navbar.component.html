@@ -1,35 +1,50 @@
-<app-side-navbar (click) = 'navbar.sideNav()' [navSideIsHidden] = 'navSideIsHidden'></app-side-navbar>
-<nav #navbar [class.navbar-move] = "navIsMoved" class="navbar navbar-expand-lg navbar-light fixed-top">
+<nav class="navbar navbar-expand-lg navbar-light">
     <div class="button-toggler">
-        <button class="navbar-toggler" type="button" (click) = "sideNav()">
+        <button class="navbar-toggler" type="button" (click) = "togglerClick()">
             <span class="navbar-toggler-icon"></span>
         </button>
     </div>
-    <div id="navbar-header" class="">
-        <a class="" href="#"><img src="./assets/icon/pizzaIcon.png"> Pizzaria</a> 
+    
+    <div id="navbar-header">
+        <a href="#"><img src="./assets/icon/pizzaIcon.png"> Pizzaria</a> 
     </div>
 
-    <div class="collapse navbar-collapse" id="menu-navegacao">
+    <div class="collapse navbar-collapse">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="" ><i class="fas fa-user"></i>  Login</a>
+                <a class="nav-link" href="" > <i class="fas fa-user"></i>  Login</a>
             </li> 
             <li class="nav-item">
-                <a class="nav-link" href="" ><i class="fas fa-thumbs-up"></i> Ranking</a>
+                <a class="nav-link" href="" > <i class="fas fa-thumbs-up"></i> Ranking</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="" ><i class="fas fa-globe-americas"></i> Lojas</a>
+                <a class="nav-link" href="" > <i class="fas fa-globe-americas"></i> Lojas</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="" ><i class="fas fa-envelope"></i> Contato</a>
+                <a class="nav-link" href="" > <i class="fas fa-envelope"></i> Contato</a>
             </li>
         </ul>
     </div>
-    <div class="">
-        <ul id="cart" class="navbar-nav">
+
+    <div id="cart">
+        <ul class="navbar-nav">
             <li class="nav-item ml-auto">
                 <a class="nav-link" href="" ><i class="fas fa-shopping-cart"></i> Total: R$ 00.00</a>
             </li>
         </ul>
     </div>
+</nav>
+
+<nav class="navbar2">
+    <ul class="navbar-nav row">
+        <li class="nav-item savory-color col-lg-4 col-md-4 col-sm-4 col-4">
+            <a href="#savoryFlavors"><i class="fas fa-pizza-slice"></i> Pizzas Salgadas</a>
+        </li>
+        <li class="nav-item sweet-color col-lg-4 col-md-4 col-sm-4 col-4">
+            <a href="#sweetFlavors"><i class="fas fa-pizza-slice"></i>Pizzas Doces</a>
+        </li>
+        <li class="nav-item vegetarian-color col-lg-4 col-md-4 col-sm-4 col-4">
+            <a href="#vegetarianFlavors"><i class="fas fa-pizza-slice"></i> Pizzas Vegetarianas</a>
+        </li>
+    </ul>
 </nav>

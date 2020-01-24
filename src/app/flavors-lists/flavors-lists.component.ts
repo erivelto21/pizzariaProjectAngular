@@ -9,7 +9,6 @@ import { FlavorService } from '../flavor.service';
 })
 export class FlavorsListsComponent implements OnInit {
 
-  listsIsMoved = false;
   private flavors: Flavor[];
   public savoryFlavors: Flavor[];
   public sweetFlavors: Flavor[];
@@ -23,10 +22,6 @@ export class FlavorsListsComponent implements OnInit {
 
   ngOnInit() {
     this.list();
-  }
-
-  moveClass() {
-    this.listsIsMoved = !this.listsIsMoved;
   }
 
   private list() {

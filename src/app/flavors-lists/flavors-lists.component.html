@@ -1,5 +1,5 @@
-<div [class.lists-move] = "listsIsMoved" class="lists">
-    <app-product-list [flavors] = 'savoryFlavors' type = "Pizzas Salgadas"></app-product-list>
-    <app-product-list [flavors] = 'sweetFlavors' type = "Pizzas Doces"></app-product-list>
-    <app-product-list [flavors] = 'vegetarianFlavors' type = "Pizzas Vegetarianas"></app-product-list>
+<div id="flavors-lists">
+    <app-product-list id="savoryFlavors" [flavors] = 'savoryFlavors' type = "Pizzas Salgadas"></app-product-list>
+    <app-product-list id="sweetFlavors" [flavors] = 'sweetFlavors' type = "Pizzas Doces"></app-product-list>
+    <app-product-list id="vegetarianFlavors" [flavors] = 'vegetarianFlavors' type = "Pizzas Vegetarianas"></app-product-list>
 </div>

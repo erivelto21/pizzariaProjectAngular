@@ -11,7 +11,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { FlavorsListsComponent } from './flavors-lists/flavors-lists.component';
 import { CarouselHomePageComponent } from './carousel-home-page/carousel-home-page.component';
-import { SideNavbarComponent } from './navbar/side-navbar/side-navbar.component';
+import { SideNavbarComponent } from './side-navbar/side-navbar.component';
 
 @NgModule({
   declarations: [

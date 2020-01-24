@@ -1,13 +1,9 @@
 .navbar{
-    left: 0px;
     padding: 10px 50px;
     background-color: #b01010;
     height: 80px;
-    transition: left 0.5s;
-}
-
-.navbar-move {
-    left: 100px;
+    width: 100%;
+    flex-wrap: nowrap;
 }
 
 .navbar-nav{
@@ -25,12 +21,13 @@
 #navbar-header{
 	padding-left: 10px;
 	text-align: center;
-	font-size: 25px;
+	font-size: x-large;
 }
 
 #navbar-header > a > img {
     width: 40px;
     height: 40px;
+    float: left;
 }
 
 #navbar-header > a{
@@ -41,19 +38,56 @@
 
 #cart {
     padding-left: 50px;
+    font-size: large;
 }
 
-.shop-icon{
-    font-size: 20px;
+.navbar2{
+    top: 80px;
+    padding: 0;
+    height: 50px;
+}
+
+.navbar2 > .row {
+    flex-wrap: nowrap;
+}
+
+.navbar2 > ul {
+    flex-direction: row;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    height: 100%;
+}
+
+.navbar2 > ul > li {
+    display: table;
+    height: 100%;
+    padding: 0;
+}
+
+.navbar2 > ul > li > a{
+    color: black;
+    text-decoration: none;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.savory-color{
+    background-color: #878500;
+}
+
+.sweet-color{
+    background-color: #D2691E;
+}
+
+.vegetarian-color{
+    background-color: #008719;
 }
 
 @media only screen and (max-width: 992px) {
+
     #navbar-header > a {
         padding-left: 10px;
-    }
-
-    .navbar-move {
-        left: 150px;
     }
 }
 
@@ -65,98 +99,122 @@
     }
 }
 
-@media only screen and (max-width: 622px) {
-
-    .button-toggler > button > span{
-        height: 23px;
-        width: 28px;
-    }
-    
-    #navbar-header{
-        text-align: center;
-        font-size: 22px;
-    }
-    
-    #navbar-header > a > img {
-        width: 35px;
-        height: 35px;
-    }
-
-    #cart {
-        font-size: 15px;
-    }
-    
-    .shop-icon{
-        font-size: 18px;
+@media only screen and (max-width: 630px) {
+    .navbar{
+        padding-right: 30px;
+        padding-left: 30px;
     }
 }
 
-@media only screen and (max-width: 581px) {
-
-    .navbar-move {
-        left: 120px;
+@media only screen and (max-width: 580px) {
+    .navbar{
+        padding-right: 20px;
+        padding-left: 20px;
     }
 
-    .button-toggler > button > span{
-        height: 20px;
-        width: 25px;
-    }
-    
-    #navbar-header{
-        text-align: center;
-        font-size: 17px;
-    }
-    
-    #navbar-header > a > img {
-        width: 29px;
-        height: 29px;
-    }
-
-    #cart {
-        font-size: 12px;
-    }
-    
-    .shop-icon{
-        font-size: 14px;
+    #cart{
+        padding-left: 20px;
     }
 }
 
-@media only screen and (max-width: 491px) {
+@media only screen and (max-width: 520px) {
 
     .navbar {
         padding-left: 15px;
     }
 
-    .navbar-move {
-        left: 110px;
+    .button-toggler {
+        margin-left: 19px;
     }
 
-    .button-toggler > button > span{
-        height: 17px;
-        width: 22px;
+    #navbar-header > a {
+        padding: 0;
     }
     
-    #navbar-header{
-        text-align: center;
-        margin-left: 10%;
-        font-size: 15px;
-        position: fixed;
+    .ml-auto {
+        margin-left: 0;
+    }
+
+    .navbar2 > ul > li > a {
+        font-size: 14px;
+    }
+}
+
+@media only screen and (max-width: 456px){
+    
+    .button-toggler {
+        margin-left: 17px;
+    }
+
+    .navbar2 > ul > li > a {
+        font-size: 12px;
+    }
+}
+
+@media only screen and (max-width: 420px){
+    .navbar{
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+}
+
+@media only screen and (max-width: 402px){
+    
+    .navbar {
+        padding-right: 5px;
+    }
+
+    .button-toggler {
+        margin-left: 16px;
+    }
+}
+
+@media only screen and (max-width: 364px){
+    
+    .navbar {
+        padding-right: 10px;
+        height: 65px;
+    }
+
+    .navbar > #navbar-header > a {
+        font-size: 22px;
+    }
+
+    .navbar > #navbar-header > a > img {
+        height: 40px;
+        width: 40px;
     }
     
-    #navbar-header > a > img {
-        width: 26px;
-        height: 26px;
+    .button-toggler {
+        margin-left: 17px;
     }
 
     #cart {
-        font-size: 11px;
-    }
-    
-    .shop-icon{
         font-size: 10px;
     }
+    .navbar2 {
+        height: 35px;
+    }
 
-    .ml-auto {
-        margin-left: 0;
+    .navbar2 > ul > li:first-child {
+        padding-left: 20px;
+    }
+}
+
+@media only screen and (max-width: 281px){
+
+    .navbar2 > ul > li:first-child {
+        padding-left: 17px;
+    }
+}
+
+@media only screen and (max-width: 274px){
+
+    .navbar {
+        padding-left: 10px;
+    }
+    
+    .button-toggler {
+        margin-left: 10;
     }
 }

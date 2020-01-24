@@ -8,17 +8,13 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 export class NavbarComponent implements OnInit {
 
   @Output() event = new EventEmitter();
-  navSideIsHidden = true;
-  navIsMoved = false;
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  sideNav() {
-    this.navSideIsHidden = !this.navSideIsHidden;
-    this.navIsMoved = !this.navIsMoved;
+  togglerClick() {
     this.event.emit();
   }
 }
