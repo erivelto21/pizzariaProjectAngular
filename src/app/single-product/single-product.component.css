@@ -45,3 +45,11 @@ img {
     border-style: none;
     width: 80%;
 }
+
+@media only screen and (max-width: 290px) {
+
+    img{
+         width: 70%;
+         height: 150px;
+    }
+}

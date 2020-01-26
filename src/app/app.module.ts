@@ -12,6 +12,8 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { FlavorsListsComponent } from './flavors-lists/flavors-lists.component';
 import { CarouselHomePageComponent } from './carousel-home-page/carousel-home-page.component';
 import { SideNavbarComponent } from './side-navbar/side-navbar.component';
+import { ShoppingCartComponent } from './navbar/shopping-cart/shopping-cart.component';
+import { CartService } from './cart.service';
 
 @NgModule({
   declarations: [
@@ -23,13 +25,14 @@ import { SideNavbarComponent } from './side-navbar/side-navbar.component';
     FlavorsListsComponent,
     CarouselHomePageComponent,
     SideNavbarComponent,
+    ShoppingCartComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [FlavorService],
+  providers: [FlavorService, CartService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -28,8 +28,10 @@
 
     <div id="cart">
         <ul class="navbar-nav">
-            <li class="nav-item ml-auto">
-                <a class="nav-link" href="" ><i class="fas fa-shopping-cart"></i> Total: R$ 00.00</a>
+            <li class="nav-item ml-auto dropdown btn-group">
+                <a *ngIf="showTotalPrice" class="nav-link" href="#" role="button" id="dropdownCart" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ><i class="fas fa-shopping-cart"></i> Total: R$ {{priceTotal.toFixed(2)}}</a>
+                <a *ngIf="!showTotalPrice" class="nav-link" href="#" role="button" id="dropdownCart" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ><i class="fas fa-shopping-cart"></i> Total: R$ 00.00</a>
+                <app-shopping-cart></app-shopping-cart>
             </li>
         </ul>
     </div>

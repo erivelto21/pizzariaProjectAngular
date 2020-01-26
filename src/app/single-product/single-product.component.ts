@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Flavor } from '../interfaces/Flavor';
 import { Ingredient } from '../interfaces/Ingredient';
+import { CartService } from '../cart.service';
 
 @Component({
   selector: 'app-single-product',
@@ -11,7 +12,7 @@ export class SingleProductComponent implements OnInit {
   @Input() flavor: Flavor;
   public ingredients: string;
 
-  constructor() { }
+  constructor(private cartService: CartService) { }
 
   ngOnInit() {
     this.getingredients();
@@ -33,6 +34,9 @@ export class SingleProductComponent implements OnInit {
         ingredients[i].name += ', ';
       }
     }
+  }
 
+  buy() {
+      this.cartService.add(this.flavor);
   }
 }
