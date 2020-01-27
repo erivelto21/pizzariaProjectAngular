@@ -1,0 +1,74 @@
+.navbar{
+    padding: 0;
+    height: 50px;
+}
+
+.navbar > .row {
+    flex-wrap: nowrap;
+}
+
+.navbar > ul {
+    flex-direction: row;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+}
+
+.navbar > ul > li {
+    display: table;
+    height: 100%;
+    padding: 0;
+}
+
+.navbar > ul > li > a{
+    color: black;
+    text-decoration: none;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.savory-color{
+    background-color: #878500;
+}
+
+.sweet-color{
+    background-color: #D2691E;
+}
+
+.vegetarian-color{
+    background-color: #008719;
+}
+
+@media only screen and (max-width: 520px) {
+
+    .navbar > ul > li > a {
+        font-size: 14px;
+    }
+}
+
+@media only screen and (max-width: 456px){
+
+    .navbar > ul > li > a {
+        font-size: 12px;
+    }
+}
+
+@media only screen and (max-width: 380px){
+
+    .navbar {
+        height: 35px;
+    }
+
+    .navbar > ul > li:first-child {
+        padding-left: 20px;
+    }
+}
+
+@media only screen and (max-width: 281px){
+
+    .navbar > ul > li:first-child {
+        padding-left: 17px;
+    }
+}

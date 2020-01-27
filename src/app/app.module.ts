@@ -14,6 +14,11 @@ import { CarouselHomePageComponent } from './carousel-home-page/carousel-home-pa
 import { SideNavbarComponent } from './side-navbar/side-navbar.component';
 import { ShoppingCartComponent } from './navbar/shopping-cart/shopping-cart.component';
 import { CartService } from './cart.service';
+import { LoginComponent } from './login/login.component';
+import { RouterModule } from '@angular/router';
+import { NavPizzaTypesComponent } from './nav-pizza-types/nav-pizza-types.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AlertComponent } from './alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -26,11 +31,16 @@ import { CartService } from './cart.service';
     CarouselHomePageComponent,
     SideNavbarComponent,
     ShoppingCartComponent,
+    LoginComponent,
+    NavPizzaTypesComponent,
+    AlertComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule,
+    ReactiveFormsModule
   ],
   providers: [FlavorService, CartService],
   bootstrap: [AppComponent]

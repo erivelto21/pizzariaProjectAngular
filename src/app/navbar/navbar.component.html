@@ -11,9 +11,12 @@
 
     <div class="collapse navbar-collapse">
         <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" href="" > <i class="fas fa-user"></i>  Login</a>
+            <li *ngIf = "!userName" class="nav-item">
+                <a class="nav-link"  routerLink="/login" routerLinkActive="active"> <i class="fas fa-user"></i>  Login</a>
             </li> 
+            <li *ngIf = "userName" class="nav-item">
+                <a class="nav-link"> <i class="fas fa-user"></i> Bem vindo {{userName}}</a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link" href="" > <i class="fas fa-thumbs-up"></i> Ranking</a>
             </li>
@@ -22,6 +25,9 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="" > <i class="fas fa-envelope"></i> Contato</a>
+            </li>
+            <li *ngIf = "userName" class="nav-item">
+                <a (click) = 'logout()' href="" class="nav-link"> <i class="fas fa-times"></i> Sair</a>
             </li>
         </ul>
     </div>
@@ -35,18 +41,4 @@
             </li>
         </ul>
     </div>
-</nav>
-
-<nav class="navbar2">
-    <ul class="navbar-nav row">
-        <li class="nav-item savory-color col-lg-4 col-md-4 col-sm-4 col-4">
-            <a href="#savoryFlavors"><i class="fas fa-pizza-slice"></i> Pizzas Salgadas</a>
-        </li>
-        <li class="nav-item sweet-color col-lg-4 col-md-4 col-sm-4 col-4">
-            <a href="#sweetFlavors"><i class="fas fa-pizza-slice"></i>Pizzas Doces</a>
-        </li>
-        <li class="nav-item vegetarian-color col-lg-4 col-md-4 col-sm-4 col-4">
-            <a href="#vegetarianFlavors"><i class="fas fa-pizza-slice"></i> Pizzas Vegetarianas</a>
-        </li>
-    </ul>
 </nav>

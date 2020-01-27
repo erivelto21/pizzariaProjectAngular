@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, ChangeDetectorRef, AfterViewChecked } from '@angular/core';
 import { CartService } from '../cart.service';
 import { OrderedPizza } from '../interfaces/Ordered-pizza';
+import { AuthenticationService } from '../authentication.service';
 
 @Component({
   selector: 'app-navbar',
@@ -12,8 +13,9 @@ export class NavbarComponent implements OnInit, AfterViewChecked {
   @Output() event = new EventEmitter();
   priceTotal = 0;
   showTotalPrice = false;
+  userName: string;
 
-  constructor(private cartService: CartService, private cdRef: ChangeDetectorRef) { }
+  constructor(private cartService: CartService, private cdRef: ChangeDetectorRef, private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
     this.cartService.get().subscribe((_) => this.amoutTotal(_));
@@ -24,6 +26,10 @@ export class NavbarComponent implements OnInit, AfterViewChecked {
       this.showTotalPrice = true;
     } else {
       this.showTotalPrice = false;
+    }
+
+    if (localStorage.getItem('currentUser') !== null) {
+      this.userName = JSON.parse(localStorage.getItem('currentUser')).username;
     }
 
     this.cdRef.detectChanges();
@@ -42,6 +48,10 @@ export class NavbarComponent implements OnInit, AfterViewChecked {
         this.priceTotal += item.flavor.price;
       }
     }
+  }
+
+  logout() {
+    this.authenticationService.logout();
   }
 
   togglerClick() {
