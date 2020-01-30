@@ -7,6 +7,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
+  sideNavBarIsClose = true;
+
   constructor() { }
 
+  change() {
+    this.sideNavBarIsClose = !this.sideNavBarIsClose;
+  }
 }

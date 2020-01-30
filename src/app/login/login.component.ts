@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { AuthenticationService } from '../authentication.service';
-import { Router, NavigationEnd } from '@angular/router';
-import { AlertService } from '../alert.service';
+import { AuthenticationService } from '../services/authentication.service';
+import { Router } from '@angular/router';
+import { AlertService } from '../services/alert.service';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
   submitted = false;
-  returnUlr: string;
+  returnUlr = '';
   sideNavBarIsClose = true;
 
   constructor(
@@ -31,8 +31,6 @@ export class LoginComponent implements OnInit {
       email: ['', Validators.required],
       password: ['', Validators.required]
     });
-
-    this.returnUlr = this.router.config[this.router.config.length - 1].path;
   }
 
   onSubmit() {
@@ -49,7 +47,8 @@ export class LoginComponent implements OnInit {
       this.router.navigate([this.returnUlr]);
     },
     (error) => {
-      this.alertService.error('Dados incorretos');
+      this.submitted = false;
+      this.alertService.error(error.error, false);
     });
   }
 

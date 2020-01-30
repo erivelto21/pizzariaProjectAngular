@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Flavor } from '../interfaces/Flavor';
-import { Ingredient } from '../interfaces/Ingredient';
-import { CartService } from '../cart.service';
+import { Flavor } from '../interfaces/flavor';
+import { Ingredient } from '../interfaces/ingredient';
+import { CartService } from '../services/cart.service';
+import { AlertService } from '../services/alert.service';
 
 @Component({
   selector: 'app-single-product',
@@ -12,7 +13,7 @@ export class SingleProductComponent implements OnInit {
   @Input() flavor: Flavor;
   public ingredients: string;
 
-  constructor(private cartService: CartService) { }
+  constructor(private cartService: CartService, private alertService: AlertService) { }
 
   ngOnInit() {
     this.getingredients();
@@ -37,6 +38,7 @@ export class SingleProductComponent implements OnInit {
   }
 
   buy() {
-      this.cartService.add(this.flavor);
+    this.cartService.add(this.flavor);
+    this.alertService.addCart();
   }
 }

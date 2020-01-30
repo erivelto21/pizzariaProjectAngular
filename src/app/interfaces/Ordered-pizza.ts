@@ -1,4 +1,4 @@
-import { Flavor } from './Flavor';
+import { Flavor } from './flavor';
 
 export interface OrderedPizza {
     flavor: Flavor;

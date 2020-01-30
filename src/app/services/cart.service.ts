@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { Flavor } from './interfaces/Flavor';
-import { OrderedPizza } from './interfaces/Ordered-pizza';
+import { Flavor } from '../interfaces/flavor';
+import { OrderedPizza } from '../interfaces/ordered-pizza';
 
 @Injectable({
   providedIn: 'root'

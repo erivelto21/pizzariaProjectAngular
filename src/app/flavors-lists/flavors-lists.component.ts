@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Flavor } from '../interfaces/Flavor';
-import { FlavorService } from '../flavor.service';
+import { Flavor } from '../interfaces/flavor';
+import { FlavorService } from '../services/flavor.service';
 
 @Component({
   selector: 'app-flavors-lists',

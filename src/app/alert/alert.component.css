@@ -1,0 +1,14 @@
+.alert-add-cart{
+    background-color: #b01010;
+    color: white;
+}
+
+div > span {
+    position: absolute;
+    top: 0px;
+    right: 5px;
+}
+
+.hidden{
+    display: none;
+}

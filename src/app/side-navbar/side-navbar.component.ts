@@ -1,5 +1,5 @@
 import { Component, OnInit, AfterViewChecked, ChangeDetectorRef } from '@angular/core';
-import { AuthenticationService } from '../authentication.service';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-side-navbar',
@@ -15,7 +15,7 @@ export class SideNavbarComponent implements OnInit, AfterViewChecked {
 
   ngAfterViewChecked() {
     if (localStorage.getItem('currentUser') !== null) {
-      this.userName = JSON.parse(localStorage.getItem('currentUser')).username;
+      this.userName = JSON.parse(localStorage.getItem('currentUser')).firstName;
     }
 
     this.cdRef.detectChanges();

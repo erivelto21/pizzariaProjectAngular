@@ -1,21 +1,10 @@
-.side-navbar{
-    padding: 0;
-}
-
-.hidden {
-    display: none;
-}
-
-.login-container {
-    height: 90%;
-    background-color: #e3e1e1;
-}
-
 .row {
     margin-right: 0;
-    height: 100%;
+    margin-left: 0;
     flex-wrap: nowrap;
     flex-direction: row;
+    background-color: #e3e1e1;
+    height: 80%;
 }
 
 .row > div {
@@ -28,7 +17,6 @@
     display: flex;
     flex-wrap: nowrap;
     flex-direction: column;
-    justify-content: right;
 }
 
 .login > div {
@@ -51,76 +39,10 @@ button {
     text-align: center;
 }
 
-@media only screen and (max-width: 670px) {
-
-    .col-3 {
-        flex: 0 0 30%;
-        max-width: 30%;
-    }
-}
-
-@media only screen and (max-width: 420px) {
-
-    .col-3 {
-        flex: 0 0 40%;
-        max-width: 40%;
-    }
-}
-
-@media only screen and (max-width: 370px) {
-
-    .col-3 {
-        flex: 0 0 50%;
-        max-width: 50%;
-    }
-}
-
 @media only screen and (max-width: 337px) {
     
     .col-2 {
         flex: 0 0 15%;
         max-width: 15%;
-    }
-}
-
-@media only screen and (max-width: 320px) {
-
-    .col-3 {
-        flex: 0 0 60%;
-        max-width: 60%;
-    }
-}
-
-@media only screen and (max-width: 270px) {
-
-    .col-3 {
-        flex: 0 0 70%;
-        max-width: 70%;
-    }
-}
-
-@media only screen and (max-width: 261px) {
-    
-    .login {
-        margin-left: 30px;
-    }
-
-    .col-2 {
-        display: none;
-    }
-}
-
-@media only screen and (max-width: 249px) {
-    
-    .login-container {
-        min-width: 259px;
-    }
-}
-
-@media only screen and (max-width: 220px) {
-
-    .col-3 {
-        flex: 0 0 80%;
-        max-width: 80%;
     }
 }

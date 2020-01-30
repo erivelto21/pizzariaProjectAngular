@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, ChangeDetectorRef, AfterViewChecked } from '@angular/core';
-import { CartService } from '../cart.service';
-import { OrderedPizza } from '../interfaces/Ordered-pizza';
-import { AuthenticationService } from '../authentication.service';
+import { CartService } from '../services/cart.service';
+import { OrderedPizza } from '../interfaces/ordered-pizza';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-navbar',
@@ -29,7 +29,7 @@ export class NavbarComponent implements OnInit, AfterViewChecked {
     }
 
     if (localStorage.getItem('currentUser') !== null) {
-      this.userName = JSON.parse(localStorage.getItem('currentUser')).username;
+      this.userName = JSON.parse(localStorage.getItem('currentUser')).firstName;
     }
 
     this.cdRef.detectChanges();

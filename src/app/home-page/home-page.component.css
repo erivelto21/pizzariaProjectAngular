@@ -1,71 +1,50 @@
-.row{
-    margin-right: 0px;
-    flex-wrap: nowrap;
-    flex-direction: row;
+.alert {
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    text-align: center; 
+    width: 100%;
+    padding-left: 35%;
+    padding-right: 35%;
 }
 
-.side-navbar{
-    padding: 0;
-}
+@media only screen and (max-width: 879px){
 
-.hidden {
-    display: none;
-}
-
-#container{
-    padding: 0;
-}
-
-@media only screen and (max-width: 670px) {
-
-    .col-3 {
-        flex: 0 0 30%;
-        max-width: 30%;
+    .alert{
+        padding-left: 30%;
+        padding-right: 30%;
     }
 }
 
-@media only screen and (max-width: 420px) {
+@media only screen and (max-width: 879px){
 
-    .col-3 {
-        flex: 0 0 40%;
-        max-width: 40%;
+    .alert{
+        padding-left: 25%;
+        padding-right: 25%;
     }
 }
 
-@media only screen and (max-width: 370px) {
+@media only screen and (max-width: 481px){
 
-    .col-3 {
-        flex: 0 0 50%;
-        max-width: 50%;
+    .alert{
+        padding-left: 20%;
+        padding-right: 20%;
     }
 }
 
-@media only screen and (max-width: 320px) {
+@media only screen and (max-width: 386px){
 
-    .col-3 {
-        flex: 0 0 60%;
-        max-width: 60%;
+    .alert{
+        padding-left: 15%;
+        padding-right: 15%;
     }
 }
 
-@media only screen and (max-width: 270px) {
+@media only screen and (max-width: 297px){
 
-    .col-3 {
-        flex: 0 0 70%;
-        max-width: 70%;
-    }
-}
-
-@media only screen and (max-width: 220px) {
-
-    .col-3 {
-        flex: 0 0 80%;
-        max-width: 80%;
-    }
-}
-
-@media only screen and (max-width: 200px) {
-    .col-12 {
-        min-width: 80vh
+    .alert{
+        padding-left: 15%;
+        padding-right: 0;
+        min-width: 152px;
     }
 }
