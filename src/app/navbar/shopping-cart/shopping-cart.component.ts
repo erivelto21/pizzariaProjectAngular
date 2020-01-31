@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CartService } from 'src/app/services/cart.service';
 import { OrderedPizza } from 'src/app/interfaces/ordered-pizza';
 
@@ -7,7 +7,7 @@ import { OrderedPizza } from 'src/app/interfaces/ordered-pizza';
   templateUrl: './shopping-cart.component.html',
   styleUrls: ['./shopping-cart.component.css']
 })
-export class ShoppingCartComponent implements OnInit {
+export class ShoppingCartComponent implements OnInit, OnDestroy {
 
   items: OrderedPizza[] = [];
 
@@ -29,5 +29,9 @@ export class ShoppingCartComponent implements OnInit {
 
   removeItem(item: OrderedPizza) {
     this.cartService.remove(item);
+  }
+
+  ngOnDestroy() {
+    this.cartService.get().subscribe().unsubscribe();
   }
 }

@@ -23,6 +23,7 @@ import { UserRegisterComponent } from './user-register/user-register.component';
 import { AlertService } from './services/alert.service';
 import { UserService } from './services/user.service';
 import { AuthenticationService } from './services/authentication.service';
+import { AuthGuard } from './services/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,7 @@ import { AuthenticationService } from './services/authentication.service';
     RouterModule,
     ReactiveFormsModule
   ],
-  providers: [FlavorService, CartService, AlertService, UserService, AuthenticationService],
+  providers: [FlavorService, CartService, AlertService, UserService, AuthenticationService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

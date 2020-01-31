@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, ChangeDetectorRef, AfterViewChecked } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ChangeDetectorRef, AfterViewChecked, OnDestroy } from '@angular/core';
 import { CartService } from '../services/cart.service';
 import { OrderedPizza } from '../interfaces/ordered-pizza';
 import { AuthenticationService } from '../services/authentication.service';
@@ -8,7 +8,7 @@ import { AuthenticationService } from '../services/authentication.service';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent implements OnInit, AfterViewChecked {
+export class NavbarComponent implements OnInit, OnDestroy, AfterViewChecked {
 
   @Output() event = new EventEmitter();
   priceTotal = 0;
@@ -56,5 +56,9 @@ export class NavbarComponent implements OnInit, AfterViewChecked {
 
   togglerClick() {
     this.event.emit();
+  }
+
+  ngOnDestroy() {
+    this.cartService.get().subscribe().unsubscribe();
   }
 }

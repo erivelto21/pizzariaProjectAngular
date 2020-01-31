@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
+import { take } from 'rxjs/operators';
 import { User } from '../interfaces/user';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -23,9 +24,20 @@ export class AuthenticationService {
   }
 
   login(email, password) {
-    return this.http.post<User>(`api/pizzaria/user/`,  { email, password })
+    return this.http.post<User>(`api/pizzaria/login`,  { email, password }, {observe: 'response'}).pipe(take(1))
     .pipe( (userObservable) => {
-      userObservable.subscribe((user) => {
+      userObservable.subscribe((response) => {
+        let user: User;
+
+        user = {
+          id: response.body.id,
+          firstName: response.body.firstName,
+          lastName: response.body.lastName,
+          email: response.body.email,
+          password: response.body.password,
+          role: {id: response.body.role.id, name: response.body.role.name},
+          token: response.headers.get('Authorization').substring('Bearer'.length).trim()};
+
         localStorage.setItem('currentUser', JSON.stringify(user));
         this.currentUserSubject.next(user);
       });

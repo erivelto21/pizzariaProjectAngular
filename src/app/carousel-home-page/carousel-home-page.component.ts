@@ -7,7 +7,5 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CarouselHomePageComponent implements OnInit {
 
-  ngOnInit() {
-
-  }
+  ngOnInit() { }
 }

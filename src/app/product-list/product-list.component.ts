@@ -13,8 +13,7 @@ export class ProductListComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   h3TypeColor(): string {
     switch (this.type) {

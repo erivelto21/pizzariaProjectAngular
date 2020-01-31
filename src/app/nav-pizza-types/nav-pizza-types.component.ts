@@ -9,7 +9,6 @@ export class NavPizzaTypesComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
 }
