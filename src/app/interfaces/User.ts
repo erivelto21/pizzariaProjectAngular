@@ -1,4 +1,5 @@
 import { Role } from './role';
+import { Address } from 'cluster';
 
 export interface User {
 
@@ -9,4 +10,5 @@ export interface User {
     password: string;
     role: Role;
     token: string;
+    address?: Address;
 }
