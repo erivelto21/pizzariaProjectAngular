@@ -1,0 +1,36 @@
+.row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.list {
+    padding-top: 50px;
+}
+
+.list > table > thead > tr {
+    text-align: center;
+}
+
+.list > table > thead {
+    background-color: darkred;
+    color: white;
+}
+
+.list > table > tbody > tr {
+    text-align: center;
+}
+
+.list > table > tbody > tr > td > img {
+    width: 25px;
+    height: 25px;
+}
+
+.total-price {
+    width: 100%;
+    padding-right: 10%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    padding-left: 100px;
+}

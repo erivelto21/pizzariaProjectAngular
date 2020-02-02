@@ -1,0 +1,31 @@
+* {
+    font-family: 'Open Sans Condensed', sans-serif;
+}
+
+#main-row {
+    margin-left: 0;
+    flex-direction: column;
+}
+
+h3 {
+    text-align: center;
+    margin-top: 30px;
+}
+
+#main-row > .row {
+    height: 400px;
+}
+
+.input-cep {
+    width: 170px;
+}
+
+.readonly-select {
+    background: #eee;
+    pointer-events: none;
+    touch-action: none;
+}
+
+h3 {
+   color: darkred;
+}

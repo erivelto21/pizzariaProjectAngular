@@ -1,0 +1,46 @@
+<div id="main-row" class="row">
+    <h3>Endereço para a entrega</h3>
+    <div class="row">
+        <div class="col-md-1 col-sm-1 col-1"></div>
+        <form [formGroup]="addressForm" class="row col-md-10 col-sm-10 col-10">
+            <h4 class="col-md-12">Pesquise pelo cep</h4>
+            <div class="col-md-12">
+                <label>Cep</label>
+                <input type="text" (keyup) = "cep()" formControlName="cep" class="form-control input-cep"/>
+            </div>
+            
+            <h4 class="col-md-12">ou pelo endereço completo</h4>
+            
+            <div class="col-md-6 col-sm-6 col-6">
+                <label>Rua</label>
+                <input type="text" formControlName="street" class="form-control" [readonly]="readonly"/>
+            </div>
+            <div class="col-md-2 col-sm-2 col-2">
+                <label>Nº</label>
+                <input type="number" formControlName="number" class="form-control" [readonly]="readonly"/>
+            </div>
+            <div class="col-md-4 col-sm-4 col-4">
+                <label>Bairro</label>
+                <input type="text" formControlName="neighborhood" class="form-control" [readonly]="readonly"/>
+            </div>
+            <div class="col-md-4 col-sm-4 col-4">
+                <label>Complemento</label>
+                <input type="text" formControlName="complement" class="form-control" [readonly]="readonly"/>
+            </div>
+            <div class="col-md-4 col-sm-4 col-4">
+                <label>Cidade</label>
+                <select [class.readonly-select] = "readonly" class="form-control" formControlName="city">
+                    <option selected value="Fortaleza">Fortaleza</option>
+                </select>
+            </div>
+            <div class="col-md-4 col-sm-4 col-4">
+                <label>Estado</label>
+                <select [class.readonly-select] = "readonly" class="form-control" formControlName="state">
+                    <option value="CE" selected>CE</option>
+                </select>
+            </div>
+            <app-alert></app-alert>
+        </form>
+        <div class="col-md-1 col-sm-1 col-1"></div>
+    </div>
+</div>

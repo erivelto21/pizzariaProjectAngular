@@ -1,0 +1,38 @@
+<div *ngIf="items.length !== 0">
+    <div class="list row">
+        <div class="col-md-1"></div>
+        <table class="table table-hover col-md-10">
+            <thead class="thead-dark">
+                <tr>
+                    <td>#</td>
+                    <td>Sabor</td>
+                    <td>Preço Unitario</td>
+                    <td>Tipo</td>
+                    <td>Quantidade</td>
+                    <td>Preço total</td>
+                    <td>Remover</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of items">
+                    <td><img class="rounded mx-auto d-block" src={{item.flavor.image}}/></td>
+                    <td>{{item.flavor.name}}</td>
+                    <td>R$ {{item.flavor.price.toFixed(2)}}</td>
+                    <td>{{item.flavor.type}}</td>
+                    <td>{{item.quantidade}}</td>
+                    <td>R$ {{(item.flavor.price * item.quantidade).toFixed(2)}}</td>
+                    <td> <a (click) = "removeItem(item)" class="btn btn-remove-item">x</a></td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="col-md-1"></div>
+    </div>
+    <div class="total-price">
+        <h4>Total: R$ {{amoutTotal().toFixed(2)}}</h4>
+        <div style="border: 2px solid darkred; width: 100%;"></div>
+        
+    </div>
+</div>
+<div *ngIf="items.length === 0" class="empty-list">
+    <h6>Vazia</h6>
+</div>

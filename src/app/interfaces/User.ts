@@ -1,5 +1,5 @@
 import { Role } from './role';
-import { Address } from 'cluster';
+import { Address } from './address';
 
 export interface User {
 

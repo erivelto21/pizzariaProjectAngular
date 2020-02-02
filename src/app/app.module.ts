@@ -24,6 +24,9 @@ import { AlertService } from './services/alert.service';
 import { UserService } from './services/user.service';
 import { AuthenticationService } from './services/authentication.service';
 import { AuthGuard } from './services/auth-guard.service';
+import { CheckoutComponent } from './checkout/checkout.component';
+import { ItemsListComponent } from './checkout/items-list/items-list.component';
+import { AddressRegisterComponent } from './checkout/address-register/address-register.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +43,9 @@ import { AuthGuard } from './services/auth-guard.service';
     NavPizzaTypesComponent,
     AlertComponent,
     UserRegisterComponent,
+    CheckoutComponent,
+    ItemsListComponent,
+    AddressRegisterComponent,
   ],
   imports: [
     BrowserModule,
