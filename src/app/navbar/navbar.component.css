@@ -1,6 +1,6 @@
 .navbar{
     padding: 10px 50px;
-    background-color: #b01010;
+    background-color: darkred;
     height: 80px;
     width: 100%;
     flex-wrap: nowrap;
@@ -31,7 +31,7 @@
 }
 
 #navbar-header > a{
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Noto Serif', serif;
     color: white;
     text-decoration: none;
 }

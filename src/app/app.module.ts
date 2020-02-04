@@ -27,6 +27,7 @@ import { AuthGuard } from './services/auth-guard.service';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { ItemsListComponent } from './checkout/items-list/items-list.component';
 import { AddressRegisterComponent } from './checkout/address-register/address-register.component';
+import { TextMaskModule } from 'angular2-text-mask';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { AddressRegisterComponent } from './checkout/address-register/address-re
     AppRoutingModule,
     HttpClientModule,
     RouterModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TextMaskModule
   ],
   providers: [FlavorService, CartService, AlertService, UserService, AuthenticationService, AuthGuard],
   bootstrap: [AppComponent]

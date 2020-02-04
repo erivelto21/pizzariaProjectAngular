@@ -14,4 +14,8 @@ export class UserService {
   register(user) {
     return this.http.post(this.url, user).pipe(take(1));
   }
+
+  address(user) {
+    return this.http.put(this.url, user).pipe(take(1));
+  }
 }

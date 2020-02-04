@@ -1,45 +1,67 @@
 <div id="main-row" class="row">
     <h3>Endereço para a entrega</h3>
-    <div class="row">
+    <div class="row col-md-12">
         <div class="col-md-1 col-sm-1 col-1"></div>
-        <form [formGroup]="addressForm" class="row col-md-10 col-sm-10 col-10">
+        <form [formGroup]="addressForm" (ngSubmit)="onSubmit()" class="row col-md-10 col-sm-10 col-10">
             <h4 class="col-md-12">Pesquise pelo cep</h4>
-            <div class="col-md-12">
+            <div class="form-group col-md-12">
                 <label>Cep</label>
-                <input type="text" (keyup) = "cep()" formControlName="cep" class="form-control input-cep"/>
+                <input type="text" [textMask]="{mask: cepMask}" (keyup) = "cep()" formControlName="cep" class="form-control input-cep"/>
             </div>
             
             <h4 class="col-md-12">ou pelo endereço completo</h4>
             
-            <div class="col-md-6 col-sm-6 col-6">
+            <div class="form-group col-md-6 col-sm-5 col-6">
                 <label>Rua</label>
-                <input type="text" formControlName="street" class="form-control" [readonly]="readonly"/>
+                <input type="text" formControlName="street" class="form-control" [ngClass]="{ 'is-invalid': submitted && addressForm.controls.street.errors }" [readonly]="readonly"/>
+                <div *ngIf="submitted && addressForm.controls.street.errors" class="invalid-feedback">
+                    <div *ngIf="addressForm.controls.street.errors.required">Campo obrigatório</div>
+                </div>
             </div>
-            <div class="col-md-2 col-sm-2 col-2">
+            <div class="form-group col-md-2 col-sm-3 col-6">
                 <label>Nº</label>
-                <input type="number" formControlName="number" class="form-control" [readonly]="readonly"/>
+                <input type="number" formControlName="number" class="form-control" [ngClass]="{ 'is-invalid': submitted && addressForm.controls.number.errors }"/>
+                <div *ngIf="submitted && addressForm.controls.number.errors" class="invalid-feedback">
+                    <div *ngIf="addressForm.controls.number.errors.required">Campo obrigatório</div>
+                </div>
             </div>
-            <div class="col-md-4 col-sm-4 col-4">
+            <div class="form-group col-md-4 col-sm-4 col-6">
                 <label>Bairro</label>
-                <input type="text" formControlName="neighborhood" class="form-control" [readonly]="readonly"/>
+                <input type="text" formControlName="neighborhood" class="form-control" [ngClass]="{ 'is-invalid': submitted && addressForm.controls.neighborhood.errors }" [readonly]="readonly"/>
+                <div *ngIf="submitted && addressForm.controls.neighborhood.errors" class="invalid-feedback">
+                    <div *ngIf="addressForm.controls.neighborhood.errors.required">Campo obrigatório</div>
+                </div>
             </div>
-            <div class="col-md-4 col-sm-4 col-4">
+            <div class="form-group col-md-4 col-sm-4 col-6">
                 <label>Complemento</label>
                 <input type="text" formControlName="complement" class="form-control" [readonly]="readonly"/>
             </div>
-            <div class="col-md-4 col-sm-4 col-4">
+            <div class="form-group col-md-4 col-sm-4 col-6">
                 <label>Cidade</label>
-                <select [class.readonly-select] = "readonly" class="form-control" formControlName="city">
+                <select [class.readonly-select] = "readonly" class="form-control" formControlName="city" [ngClass]="{ 'is-invalid': submitted && addressForm.controls.city.errors }">
                     <option selected value="Fortaleza">Fortaleza</option>
                 </select>
+                <div *ngIf="submitted && addressForm.controls.city.errors" class="invalid-feedback">
+                    <div *ngIf="addressForm.controls.city.errors.required">Campo obrigatório</div>
+                    <div *ngIf="addressForm.controls.city.errors.location">Localização inválida</div>
+                </div>
             </div>
-            <div class="col-md-4 col-sm-4 col-4">
+            <div class="form-group col-md-4 col-sm-4 col-6">
                 <label>Estado</label>
-                <select [class.readonly-select] = "readonly" class="form-control" formControlName="state">
+                <select [class.readonly-select] = "readonly" class="form-control" formControlName="state" [ngClass]="{ 'is-invalid': submitted && addressForm.controls.state.errors }">
                     <option value="CE" selected>CE</option>
                 </select>
+                <div *ngIf="submitted && addressForm.controls.state.errors" class="invalid-feedback">
+                    <div *ngIf="addressForm.controls.state.errors.required">Campo obrigatório</div>
+                    <div *ngIf="addressForm.controls.state.errors.location">Localização inválida</div>
+                </div>
             </div>
-            <app-alert></app-alert>
+            <div class="form-group col-md-12">
+                <button class="btn">Cadastrar</button>
+            </div>
+            <div class="alert">
+                <app-alert></app-alert>
+            </div>
         </form>
         <div class="col-md-1 col-sm-1 col-1"></div>
     </div>

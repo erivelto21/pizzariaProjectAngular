@@ -10,6 +10,7 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 export class AuthenticationService {
 
   private currentUserSubject: BehaviorSubject<User>;
+  private url = 'api/pizzaria/login';
 
   constructor(private http: HttpClient) {
       this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
@@ -24,7 +25,7 @@ export class AuthenticationService {
   }
 
   login(email, password) {
-    return this.http.post<User>(`api/pizzaria/login`,  { email, password }, {observe: 'response'}).pipe(take(1))
+    return this.http.post<User>(this.url,  { email, password }, {observe: 'response'}).pipe(take(1))
     .pipe( (userObservable) => {
       userObservable.subscribe((response) => {
         let user: User;
@@ -35,6 +36,7 @@ export class AuthenticationService {
           lastName: response.body.lastName,
           email: response.body.email,
           password: response.body.password,
+          address: response.body.address,
           role: {id: response.body.role.id, name: response.body.role.name},
           token: response.headers.get('Authorization').substring('Bearer'.length).trim()};
 

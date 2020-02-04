@@ -1,5 +1,5 @@
 .row{
-    margin-right: 0px;
+    margin: 0;
     flex-wrap: nowrap;
     flex-direction: row;
     overflow-y: scroll;
