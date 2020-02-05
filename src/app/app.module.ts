@@ -28,6 +28,9 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { ItemsListComponent } from './checkout/items-list/items-list.component';
 import { AddressRegisterComponent } from './checkout/address-register/address-register.component';
 import { TextMaskModule } from 'angular2-text-mask';
+import { PaymentPageComponent } from './payment-page/payment-page.component';
+import { AddressDisplayComponent } from './payment-page/address-display/address-display.component';
+import { PaymentComponent } from './payment-page/payment/payment.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +50,9 @@ import { TextMaskModule } from 'angular2-text-mask';
     CheckoutComponent,
     ItemsListComponent,
     AddressRegisterComponent,
+    PaymentPageComponent,
+    AddressDisplayComponent,
+    PaymentComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,44 @@
+h2 {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.address-container {
+    text-align: center;
+    width: 80%;
+    padding: 0;
+    margin-left: 10%;
+    margin-top: 30px;
+    border: 2px solid darkred;
+    border-top: 0px;
+    border-radius: 15px;
+}
+
+.first-block, .second-block  {
+    padding-left: 0;
+    padding-right: 0;
+    width: 100%;
+    border-radius: 12px;
+}
+
+.second-block {
+    margin-top: 20px;
+}
+
+.col-4 {
+    padding: 0;
+}
+
+h6 {
+    padding-top: 3px;
+    border-radius: 12px;
+    background-color: darkred;
+    color: white;
+    font-size: 17px;
+    height: 40%;
+}

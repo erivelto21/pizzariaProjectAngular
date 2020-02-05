@@ -1,0 +1,57 @@
+<div class="row main-row">
+    <div class="row col-6">
+        <p class="col-6">Valor da compra: </p>
+        <p class="col-1"></p>
+        <p class="col-5">R$ {{amoutTotal().toFixed(2)}}</p>
+    </div>
+    <div class="row col-6 plus-sign">
+        <p class="col-6">Valor da entrega: </p>
+        <p class="col-1">+</p>
+        <p class="col-5">R$ 10.00</p>
+    </div>
+    <div class="row col-6">
+        <p class="col-6">Total a pagar: </p>
+        <p class="col-1"></p>
+        <p class="col-5">R$ {{(amoutTotal() + 10).toFixed(2)}}</p>
+    </div>
+
+    <h3>Formas de pagamento:</h3>
+
+    <div class="row col-6">
+        <div class="col-3 payment-way">
+            <img src="./assets/icon/mastercard.png">
+            <input type="radio" checked="checked" name="radio" (click) = "creditCardSelect()">
+        </div>
+        <div class="col-3 payment-way">
+            <img src="./assets/icon/visa.png">
+            <input type="radio" name="radio" (click) = "creditCardSelect()">
+        </div>
+        <div class="col-3 payment-way">
+            <img src="./assets/icon/boleto.png">
+            <input type="radio" name="radio" (click) = "notCreditCardSelect()">
+        </div>
+        <div class="col-3 payment-way">
+            <img src="./assets/icon/paypal.png">
+            <input type="radio" name="radio" (click) = "notCreditCardSelect()">
+        </div>
+    </div>
+
+    <div class="row col-6">
+        <div class="col-12">
+            <label>Nome do titular</label>
+            <input type="text" class="form-control" [readonly]="readonly"/>
+        </div>
+        <div class="col-12">
+            <label>Numero do cartão</label>
+            <input type="text" class="form-control" [readonly]="readonly"/>
+        </div>
+        <div class="col-6">
+            <label>Data de validade</label>
+            <input type="text" class="form-control" [readonly]="readonly"/>
+        </div>
+        <div class="col-6">
+            <label>Codigo de seguraça</label>
+            <input type="number" class="form-control" [readonly]="readonly"/>
+        </div>
+    </div>
+</div>

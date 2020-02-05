@@ -1,0 +1,30 @@
+.main-row {
+    margin-top: 50px;
+    flex-direction: column;
+    align-items: center;   
+}
+
+.row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.main-row > .col-6 {
+    text-align: center;
+}
+
+h3 {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.payment-way {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+img {
+    width: 60px;
+    height: 60px;
+}
