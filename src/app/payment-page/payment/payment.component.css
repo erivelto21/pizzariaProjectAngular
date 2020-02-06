@@ -1,7 +1,16 @@
 .main-row {
     margin-top: 50px;
     flex-direction: column;
-    align-items: center;   
+    align-items: center;
+    text-align: center;   
+}
+
+.main-row > .col-12 > p:first-child {
+    text-align: right;
+}
+
+.main-row > .col-12 > p:last-child {
+    text-align: left;
 }
 
 .row {
@@ -17,6 +26,20 @@ h3 {
     margin-top: 30px;
     margin-bottom: 30px;
 }
+
+h3 {
+    font-family: 'Open Sans Condensed', sans-serif;
+    color: darkred;
+}
+
+.payment-way-main, .card-data {
+    min-width: 400px;
+}
+
+.payment-way-main {
+    justify-content: center;
+}
+
 .payment-way {
     display: flex;
     flex-direction: column;
@@ -27,4 +50,11 @@ h3 {
 img {
     width: 60px;
     height: 60px;
+}
+
+@media only screen and (max-width: 389px){
+
+    p {
+        font-size: 14px;
+    }
 }

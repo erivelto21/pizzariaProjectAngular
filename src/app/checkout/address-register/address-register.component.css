@@ -17,8 +17,12 @@ h4 {
     font-family: 'Open Sans Condensed', sans-serif;
 }
 
-.input-cep {
-    width: 170px;
+.h4-extras{
+    text-align: center;
+}
+
+.input-cep, .input-phone {
+    width: 40%;
 }
 
 .readonly-select {
@@ -46,4 +50,46 @@ input[type=number] {
     flex-direction: row;
     justify-content: center;
     width: 100%;
+}
+
+@media only screen and (max-width: 900px) {
+    
+    .input-cep, .input-phone {
+        width: 60%;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    
+    .input-cep, .input-phone {
+        width: 70%;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    
+    .input-cep, .input-phone {
+        width: 80%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    
+    .input-cep, .input-phone {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 488px) {
+    
+    h4 {
+        font-size: 22px;
+    }
+}
+
+@media only screen and (max-width: 459px) {
+    
+    h4 {
+        font-size: 24px;
+    }
 }

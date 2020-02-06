@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CepService } from 'src/app/services/cep.service';
 import { CepAux } from 'src/app/interfaces/cep-aux';
@@ -6,8 +6,8 @@ import { UserService } from 'src/app/services/user.service';
 import { AlertService } from 'src/app/services/alert.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { User } from 'src/app/interfaces/user';
-import { Address } from 'src/app/interfaces/address';
 import { locationValidator } from 'src/app/util/locationValidator';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-address-register',
@@ -20,10 +20,12 @@ export class AddressRegisterComponent implements OnInit {
   addressForm: FormGroup;
   readonly = false;
   cepMask = [/\d/, /\d/, /\d/, /\d/ , /\d/, '-', /\d/, /\d/, /\d/];
+  phoneMask = ['(', /[1-9]/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
   private user: User;
 
   constructor(private formBuilder: FormBuilder,
               private userService: UserService,
+              private router: Router,
               private cepService: CepService,
               private alertService: AlertService) { }
 
@@ -44,6 +46,7 @@ export class AddressRegisterComponent implements OnInit {
       city: ['Fortaleza', Validators.required],
       state: ['CE', Validators.required],
       cep: [''],
+      phone: ['', Validators.required],
     });
   }
 
@@ -57,6 +60,7 @@ export class AddressRegisterComponent implements OnInit {
       city: [this.user.address.city, Validators.required],
       state: [this.user.address.state, Validators.required],
       cep: [this.user.address.cep],
+      phone: [this.user.phone, Validators.required],
     },
       {validator: [locationValidator('city', 'state')]}
     );
@@ -98,13 +102,23 @@ export class AddressRegisterComponent implements OnInit {
     if (this.addressForm.invalid) {
       return;
     }
+    const phone = 'phone';
+    this.user.phone = this.addressForm.controls[phone].value;
 
+    delete this.addressForm.value.phone;
     this.user.address = this.addressForm.value;
+
+    const cart: [] = JSON.parse(localStorage.getItem('cart'));
+
+    if (cart.length === 0) {
+      this.alertService.error('carrinho vazio', false);
+      return;
+    }
 
     this.userService.address(this.user).subscribe(
       data => {
-        console.log(data);
         localStorage.setItem('currentUser', JSON.stringify(this.user));
+        this.router.navigate(['/payment']);
       },
       (error: HttpErrorResponse) => {
         this.submitted = false;

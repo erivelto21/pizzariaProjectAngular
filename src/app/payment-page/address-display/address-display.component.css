@@ -1,11 +1,14 @@
 h2 {
     margin-top: 20px;
     text-align: center;
+    font-family: 'Open Sans Condensed', sans-serif;
+    color: darkred;
 }
 
 .row {
     margin-left: 0;
     margin-right: 0;
+    min-width: 310px;
 }
 
 .address-container {
@@ -41,4 +44,34 @@ h6 {
     color: white;
     font-size: 17px;
     height: 40%;
+}
+
+.row-phone {
+    flex-direction: column; 
+    text-align: center; 
+    width: 80%; 
+    margin-top: 10px; 
+    margin-left: 10%;
+}
+
+@media only screen and (max-width: 524px) {
+
+    h6 {
+        font-size: 15px;
+    }
+
+    p {
+        font-size: 14px;
+    }
+}
+
+@media only screen and (max-width: 459px) {
+
+    h6 {
+        font-size: 14px;
+    }
+
+    p {
+        font-size: 13px;
+    }
 }

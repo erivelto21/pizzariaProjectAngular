@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderedPizza } from 'src/app/interfaces/ordered-pizza';
+import { AlertService } from 'src/app/services/alert.service';
 
 @Component({
   selector: 'app-payment',
@@ -10,9 +11,9 @@ export class PaymentComponent implements OnInit {
 
   readonly = false;
   cart: OrderedPizza[];
-  purchase = this.amoutTotal;
+  deliveryFee = 10.00;
 
-  constructor() { }
+  constructor(private alertService: AlertService) { }
 
   ngOnInit() {
     this.cart = JSON.parse(localStorage.getItem('cart'));
@@ -26,7 +27,7 @@ export class PaymentComponent implements OnInit {
     this.readonly = true;
   }
 
-  private amoutTotal() {
+  public amoutTotal() {
 
     if (this.cart === undefined) {
       return;
@@ -41,5 +42,14 @@ export class PaymentComponent implements OnInit {
     }
 
     return priceTotal;
+  }
+
+  onSubmit() {
+    const cart: [] = JSON.parse(localStorage.getItem('cart'));
+
+    if (cart.length === 0) {
+      this.alertService.error('carrinho vazio', false);
+      return;
+    }
   }
 }

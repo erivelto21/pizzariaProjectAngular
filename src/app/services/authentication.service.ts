@@ -38,6 +38,7 @@ export class AuthenticationService {
           password: response.body.password,
           address: response.body.address,
           role: {id: response.body.role.id, name: response.body.role.name},
+          phone: response.body.phone,
           token: response.headers.get('Authorization').substring('Bearer'.length).trim()};
 
         localStorage.setItem('currentUser', JSON.stringify(user));

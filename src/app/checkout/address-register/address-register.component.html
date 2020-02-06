@@ -3,42 +3,49 @@
     <div class="row col-md-12">
         <div class="col-md-1 col-sm-1 col-1"></div>
         <form [formGroup]="addressForm" (ngSubmit)="onSubmit()" class="row col-md-10 col-sm-10 col-10">
-            <h4 class="col-md-12">Pesquise pelo cep</h4>
-            <div class="form-group col-md-12">
-                <label>Cep</label>
-                <input type="text" [textMask]="{mask: cepMask}" (keyup) = "cep()" formControlName="cep" class="form-control input-cep"/>
+            <div class="form-group col-md-6 col-sm-6 col-6">
+                <h4>Pesquise pelo cep</h4>
+                <label for="cep">Cep</label>
+                <input type="text" name="cep" [textMask]="{mask: cepMask}" (keyup) = "cep()" formControlName="cep" class="form-control input-cep"/>
             </div>
-            
+            <div class="form-group col-md-6 col-sm-6 col-6">
+                <h4 class="h4-extras">Informações Extras</h4>
+                <label for="phone">Telefone</label>
+                <input type="text" name="phone" [textMask]="{mask: phoneMask}" formControlName="phone" class="form-control input-phone" [ngClass]="{ 'is-invalid': submitted && addressForm.controls.phone.errors }"/>
+                <div *ngIf="submitted && addressForm.controls.phone.errors" class="invalid-feedback">
+                    <div *ngIf="addressForm.controls.phone.errors.required">Campo obrigatório</div>
+                </div>
+            </div>
             <h4 class="col-md-12">ou pelo endereço completo</h4>
             
             <div class="form-group col-md-6 col-sm-5 col-6">
-                <label>Rua</label>
-                <input type="text" formControlName="street" class="form-control" [ngClass]="{ 'is-invalid': submitted && addressForm.controls.street.errors }" [readonly]="readonly"/>
+                <label for="street">Rua</label>
+                <input type="text" name="street" formControlName="street" class="form-control" [ngClass]="{ 'is-invalid': submitted && addressForm.controls.street.errors }" [readonly]="readonly"/>
                 <div *ngIf="submitted && addressForm.controls.street.errors" class="invalid-feedback">
                     <div *ngIf="addressForm.controls.street.errors.required">Campo obrigatório</div>
                 </div>
             </div>
             <div class="form-group col-md-2 col-sm-3 col-6">
-                <label>Nº</label>
-                <input type="number" formControlName="number" class="form-control" [ngClass]="{ 'is-invalid': submitted && addressForm.controls.number.errors }"/>
+                <label for="number">Nº</label>
+                <input type="number" name="number" formControlName="number" class="form-control" [ngClass]="{ 'is-invalid': submitted && addressForm.controls.number.errors }"/>
                 <div *ngIf="submitted && addressForm.controls.number.errors" class="invalid-feedback">
                     <div *ngIf="addressForm.controls.number.errors.required">Campo obrigatório</div>
                 </div>
             </div>
             <div class="form-group col-md-4 col-sm-4 col-6">
-                <label>Bairro</label>
-                <input type="text" formControlName="neighborhood" class="form-control" [ngClass]="{ 'is-invalid': submitted && addressForm.controls.neighborhood.errors }" [readonly]="readonly"/>
+                <label for="neighborhood">Bairro</label>
+                <input type="text" name="neighborhood" formControlName="neighborhood" class="form-control" [ngClass]="{ 'is-invalid': submitted && addressForm.controls.neighborhood.errors }" [readonly]="readonly"/>
                 <div *ngIf="submitted && addressForm.controls.neighborhood.errors" class="invalid-feedback">
                     <div *ngIf="addressForm.controls.neighborhood.errors.required">Campo obrigatório</div>
                 </div>
             </div>
             <div class="form-group col-md-4 col-sm-4 col-6">
-                <label>Complemento</label>
-                <input type="text" formControlName="complement" class="form-control" [readonly]="readonly"/>
+                <label for="complement">Complemento</label>
+                <input type="text" name="complement" formControlName="complement" class="form-control" [readonly]="readonly"/>
             </div>
             <div class="form-group col-md-4 col-sm-4 col-6">
-                <label>Cidade</label>
-                <select [class.readonly-select] = "readonly" class="form-control" formControlName="city" [ngClass]="{ 'is-invalid': submitted && addressForm.controls.city.errors }">
+                <label for="city">Cidade</label>
+                <select [class.readonly-select] = "readonly" name="city" class="form-control" formControlName="city" [ngClass]="{ 'is-invalid': submitted && addressForm.controls.city.errors }">
                     <option selected value="Fortaleza">Fortaleza</option>
                 </select>
                 <div *ngIf="submitted && addressForm.controls.city.errors" class="invalid-feedback">
@@ -47,8 +54,8 @@
                 </div>
             </div>
             <div class="form-group col-md-4 col-sm-4 col-6">
-                <label>Estado</label>
-                <select [class.readonly-select] = "readonly" class="form-control" formControlName="state" [ngClass]="{ 'is-invalid': submitted && addressForm.controls.state.errors }">
+                <label for="state">Estado</label>
+                <select [class.readonly-select] = "readonly" name="state" class="form-control" formControlName="state" [ngClass]="{ 'is-invalid': submitted && addressForm.controls.state.errors }">
                     <option value="CE" selected>CE</option>
                 </select>
                 <div *ngIf="submitted && addressForm.controls.state.errors" class="invalid-feedback">
@@ -57,7 +64,7 @@
                 </div>
             </div>
             <div class="form-group col-md-12">
-                <button class="btn">Cadastrar</button>
+                <button class="btn">Pagar</button>
             </div>
             <div class="alert">
                 <app-alert></app-alert>
