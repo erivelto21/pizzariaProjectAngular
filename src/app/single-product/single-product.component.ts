@@ -40,5 +40,9 @@ export class SingleProductComponent implements OnInit {
   buy() {
     this.cartService.add(this.flavor);
     this.alertService.addCart();
+
+    setTimeout(() => {
+      this.alertService.clear();
+    }, 1000);
   }
 }
