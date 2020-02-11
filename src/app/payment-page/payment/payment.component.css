@@ -1,5 +1,6 @@
 .main-row {
     margin-top: 50px;
+    margin-bottom: 50px;
     flex-direction: column;
     align-items: center;
     text-align: center;   
@@ -32,10 +33,6 @@ h3 {
     color: darkred;
 }
 
-.payment-way-main, .card-data {
-    min-width: 400px;
-}
-
 .payment-way-main {
     justify-content: center;
 }
@@ -50,6 +47,38 @@ h3 {
 img {
     width: 60px;
     height: 60px;
+}
+
+.card-data {
+    min-width: 400px;
+    justify-content: center;
+}
+
+h4 {
+    margin-top: 50px;
+    margin-bottom: 30px;
+    font-family: 'Open Sans Condensed', sans-serif;
+    color: darkred;
+}
+
+form {
+    justify-content: center;
+}
+
+.btn-div {
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.btn-div > button {
+    float: left;
+}
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 @media only screen and (max-width: 389px){

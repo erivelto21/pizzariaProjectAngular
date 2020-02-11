@@ -31,6 +31,7 @@ import { TextMaskModule } from 'angular2-text-mask';
 import { PaymentPageComponent } from './payment-page/payment-page.component';
 import { AddressDisplayComponent } from './payment-page/address-display/address-display.component';
 import { PaymentComponent } from './payment-page/payment/payment.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { PaymentComponent } from './payment-page/payment/payment.component';
     PaymentPageComponent,
     AddressDisplayComponent,
     PaymentComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

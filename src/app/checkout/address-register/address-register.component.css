@@ -1,6 +1,10 @@
-#main-row {
+section {
     margin: 0;
     flex-direction: column;
+}
+
+section > article {
+    justify-content: center;
 }
 
 h3 {
@@ -9,7 +13,7 @@ h3 {
     font-family: 'Open Sans Condensed', sans-serif;
 }
 
-#main-row > .row {
+section > .row {
     height: 400px;
 }
 

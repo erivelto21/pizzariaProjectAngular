@@ -1,10 +1,12 @@
-<div class="type" [ngClass] = "h3TypeColor()">
-    <h3>{{type}}</h3>
-</div>
-<div class="row">
-    <div class="col-lg-4 col-md-6 col-sm-12 col-12 pizzas" *ngFor="let flavor of flavors">
-        <div class="product">
-            <app-single-product [flavor] = 'flavor'></app-single-product>
-        </div>
-    </div>
-</div>
+<section>
+    <article class="type" [ngClass] = "h3TypeColor()">
+        <h3>{{type}}</h3>
+    </article>
+    <article class="row">
+        <article class="col-lg-4 col-md-6 col-sm-12 col-12 pizzas" *ngFor="let flavor of flavors">
+            <div class="product">
+                <app-single-product [flavor] = 'flavor'></app-single-product>
+            </div>
+        </article>
+    </article>
+</section>

@@ -4,6 +4,7 @@
     padding-top: 3%;
     flex-wrap: nowrap;
     flex-direction: row;
+    justify-content: center;
 }
 
 h2 {
@@ -12,11 +13,6 @@ h2 {
 
 form > .row {
     flex-direction: row;
-}
-
-form > .div{
-    flex-direction: row;
-    flex-wrap: nowrap;
 }
 
 .row > form {

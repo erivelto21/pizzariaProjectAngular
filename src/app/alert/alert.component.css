@@ -3,7 +3,7 @@
     color: white;
 }
 
-div > span {
+aside > span {
     position: absolute;
     top: 0px;
     right: 5px;

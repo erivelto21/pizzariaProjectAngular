@@ -1,13 +1,15 @@
-<img class="rounded mx-auto d-block" src={{flavor.image}}/>
-<p class="name">{{flavor.name}}</p>
-<div class="ingredients">
-    {{ingredients}}
-</div>
-<div class="row priceAndButton">
-    <div class="col-lg-6">
-        <p class="price">R${{flavor.price.toFixed(2)}}</p>
-    </div>
-    <div class="col-lg-6 divBtnBuy">
-        <button class="btn btnBuy" (click) = "buy()">Pedir</button>
-    </div>
-</div>
+<section>
+    <img class="rounded mx-auto d-block" src={{flavor.image}}/>
+    <p class="name">{{flavor.name}}</p>
+    <p class="ingredients">
+        {{ingredients}}
+    </p>
+    <section class="row priceAndButton">
+        <article class="col-lg-6">
+            <p class="price">R${{flavor.price.toFixed(2)}}</p>
+        </article>
+        <article class="col-lg-6 divBtnBuy">
+            <button class="btn btnBuy" (click) = "buy()">Pedir</button>
+        </article>
+    </section>
+</section>

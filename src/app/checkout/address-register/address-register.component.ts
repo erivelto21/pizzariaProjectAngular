@@ -1,4 +1,4 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CepService } from 'src/app/services/cep.service';
 import { CepAux } from 'src/app/interfaces/cep-aux';

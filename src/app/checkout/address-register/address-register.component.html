@@ -1,7 +1,7 @@
-<div id="main-row" class="row">
+<section class="row">
     <h3>Endereço para a entrega</h3>
-    <div class="row col-md-12">
-        <div class="col-md-1 col-sm-1 col-1"></div>
+    <article class="row col-md-12">
+
         <form [formGroup]="addressForm" (ngSubmit)="onSubmit()" class="row col-md-10 col-sm-10 col-10">
             <div class="form-group col-md-6 col-sm-6 col-6">
                 <h4>Pesquise pelo cep</h4>
@@ -17,7 +17,6 @@
                 </div>
             </div>
             <h4 class="col-md-12">ou pelo endereço completo</h4>
-            
             <div class="form-group col-md-6 col-sm-5 col-6">
                 <label for="street">Rua</label>
                 <input type="text" name="street" formControlName="street" class="form-control" [ngClass]="{ 'is-invalid': submitted && addressForm.controls.street.errors }" [readonly]="readonly"/>
@@ -63,13 +62,12 @@
                     <div *ngIf="addressForm.controls.state.errors.location">Localização inválida</div>
                 </div>
             </div>
-            <div class="form-group col-md-12">
-                <button class="btn">Pagar</button>
-            </div>
-            <div class="alert">
+            <article class="form-group col-md-12">
+                <button class="btn">Finalizar pedido</button>
+            </article>
+            <article class="alert">
                 <app-alert></app-alert>
-            </div>
+            </article>
         </form>
-        <div class="col-md-1 col-sm-1 col-1"></div>
-    </div>
-</div>
+    </article>
+</section>

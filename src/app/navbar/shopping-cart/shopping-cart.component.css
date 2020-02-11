@@ -34,11 +34,11 @@
     color: #b01010;
 }
 
-.dropdown-menu > div > ul {
+.dropdown-menu > section > ul {
     padding-left: 10px;
 }
 
-.dropdown-menu > div > ul > li {
+.dropdown-menu > section > ul > li {
     list-style-type: none;
 }
 
@@ -47,7 +47,7 @@
     color: #b01010 !important;
 }
 
-.dropdown-menu > div > ul > div {
+.dropdown-menu > section > ul > div {
     border-bottom: 2px #b01010 solid;
     width: 98%;
 }

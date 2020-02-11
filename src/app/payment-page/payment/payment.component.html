@@ -1,57 +1,78 @@
-<div class="row main-row">
-    <div class="row col-12">
+<section class="row main-row">
+    <article class="row col-12">
         <p class="col-6">Valor da compra: </p>
         <p class="col-1"></p>
         <p class="col-4" style="text-align: left">R$ {{amoutTotal().toFixed(2)}}</p>
-    </div>
-    <div class="row col-12 plus-sign">
+    </article>
+    <article class="row col-12 plus-sign">
         <p class="col-6">Taxa de entrega: </p>
         <p class="col-1">+</p>
         <p class="col-4">R$ {{deliveryFee.toFixed(2)}}</p>
-    </div>
-    <div class="row col-12">
+    </article>
+    <article class="row col-12">
         <p class="col-6">Total a pagar: </p>
         <p class="col-1"></p>
         <p class="col-4">R$ {{(amoutTotal() + 10).toFixed(2)}}</p>
-    </div>
+    </article>
 
-    <h3>Formas de pagamento:</h3>
+    <form [formGroup]="paymentForm" (ngSubmit)="onSubmit()" class="row col-12">
+        <h3 class="col-12">Formas de pagamento:</h3>
 
-    <div class="row col-12 payment-way-main">
-        <div class="col-3 payment-way">
-            <img src="./assets/icon/mastercard.png" class="rounded mx-auto d-block">
-            <input type="radio" checked="checked" name="radio" (click) = "creditCardSelect()">
-        </div>
-        <div class="col-3 payment-way">
-            <img src="./assets/icon/visa.png" class="rounded mx-auto d-block">
-            <input type="radio" name="radio" (click) = "creditCardSelect()">
-        </div>
-        <div class="col-3 payment-way">
-            <img src="./assets/icon/boleto.png" class="rounded mx-auto d-block">
-            <input type="radio" name="radio" (click) = "notCreditCardSelect()">
-        </div>
-        <div class="col-3 payment-way">
-            <img src="./assets/icon/paypal.png" class="rounded mx-auto d-block">
-            <input type="radio" name="radio" (click) = "notCreditCardSelect()">
-        </div>
-    </div>
+        <article class="row col-12 payment-way-main">
+            <div class="col-3 payment-way">
+                <img src="./assets/icon/mastercard.png" class="rounded mx-auto d-block">
+                <input type="radio" checked="checked" name="paymentWay" formControlName="paymentWay" value="mastercard" (click) = "creditCardSelect()">
+            </div>
+            <div class="col-3 payment-way">
+                <img src="./assets/icon/visa.png" class="rounded mx-auto d-block">
+                <input type="radio" name="paymentWay" formControlName="paymentWay" value="visa" (click) = "creditCardSelect()">
+            </div>
+            <div class="col-3 payment-way">
+                <img src="./assets/icon/boleto.png" class="rounded mx-auto d-block">
+                <input type="radio" name="paymentWay" formControlName="paymentWay" value="billet-payment" (click) = "notCreditCardSelect()">
+            </div>
+            <div class="col-3 payment-way">
+                <img src="./assets/icon/paypal.png" class="rounded mx-auto d-block">
+                <input type="radio" name="paymentWay" formControlName="paymentWay" value="paypal" (click) = "notCreditCardSelect()">
+            </div>
+        </article>
 
-    <div class="row col-6 card-data">
-        <div class="col-12">
-            <label for="ownerName">Nome do titular</label>
-            <input type="text" name="ownerName" class="form-control" [readonly]="readonly"/>
-        </div>
-        <div class="col-12">
-            <label for="cardNumber">Numero do cartão</label>
-            <input type="text" name="cardNumber" class="form-control" [readonly]="readonly"/>
-        </div>
-        <div class="col-6">
-            <label for="expirationDate">Data de validade</label>
-            <input type="text" name="expirationDate" class="form-control" [readonly]="readonly"/>
-        </div>
-        <div class="col-6">
-            <label for="securityCode">Codigo de seguraça</label>
-            <input type="number" name="securityCode" class="form-control" [readonly]="readonly"/>
-        </div>
-    </div>
-</div>
+        <article class="row col-6 card-data">
+            <h4>Informações do cartao: </h4>
+            <div class="form-group col-12">
+                <label for="ownerName">Nome do titular</label>
+                <input type="text" name="cardName" formControlName="cardName" class="form-control" [readonly]="readonly" [ngClass]="{ 'is-invalid': submitted && paymentForm.controls.cardName.errors }"/>
+                <div *ngIf="submitted && paymentForm.controls.cardName.errors" class="invalid-feedback">
+                    <div *ngIf="paymentForm.controls.cardName.errors.required">Campo obrigatório</div>
+                </div>
+            </div>
+            <div class="form-group col-12">
+                <label for="cardNumber">Numero do cartão</label>
+                <input type="text" [textMask]="{mask: cardNumberMask}" name="cardNumber" formControlName="cardNumber" class="form-control" [readonly]="readonly" [ngClass]="{ 'is-invalid': submitted && paymentForm.controls.cardNumber.errors }"/>
+                <div *ngIf="submitted && paymentForm.controls.cardNumber.errors" class="invalid-feedback">
+                    <div *ngIf="paymentForm.controls.cardNumber.errors.required">Campo obrigatório</div>
+                </div>
+            </div>
+            <div class="form-group col-6">
+                <label for="expirationDate">Data de validade</label>
+                <input type="text" [textMask]="{mask:expirationDateMask}" name="expirationDate" formControlName="expirationDate" class="form-control" [readonly]="readonly" [ngClass]="{ 'is-invalid': submitted && paymentForm.controls.expirationDate.errors }"/>
+                <div *ngIf="submitted && paymentForm.controls.expirationDate.errors" class="invalid-feedback">
+                    <div *ngIf="paymentForm.controls.expirationDate.errors.required">Campo obrigatório</div>
+                </div>
+            </div>
+            <div class="form-group col-6">
+                <label for="securityCode">Codigo de seguraça</label>
+                <input type="text" [textMask]="{mask:securityCodeMask}" name="securityCode" formControlName="securityCode" class="form-control" [readonly]="readonly" [ngClass]="{ 'is-invalid': submitted && paymentForm.controls.securityCode.errors }"/>
+                <div *ngIf="submitted && paymentForm.controls.securityCode.errors" class="invalid-feedback">
+                    <div *ngIf="paymentForm.controls.securityCode.errors.required">Campo obrigatório</div>
+                </div>
+            </div>
+            <article class="col-12 btn-div">
+                <button class="btn">Pagar</button>
+            </article>
+            <article class="col-12">
+                <app-alert></app-alert>
+            </article>
+        </article>
+    </form>
+</section>

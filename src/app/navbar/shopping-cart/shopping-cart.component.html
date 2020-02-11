@@ -1,18 +1,18 @@
-<div class="dropdown-menu dropdown-menu-right">
+<section class="dropdown-menu dropdown-menu-right">
     <span class="dropdown-menu-arrow"></span>
     <h5>Lista de Pedidos: </h5>
 
-    <div *ngIf="items.length !== 0">
+    <section *ngIf="items.length !== 0">
         <ul *ngFor = "let item of items">
         <li> <a (click) = "removeItem(item)" class="btn btn-remove-item">x</a> {{item.quantidade}}x Pizza de {{item.flavor.name}}</li>
             <li> Valor: R${{item.flavor.price.toFixed(2)}}</li>
             <div></div>
         </ul>
-        <div class="button-dropdown-menu">
+        <article class="button-dropdown-menu">
             <a routerLink="/checkout" routerLinkActive="active" class="btn">Fechar pedido</a>
-        </div>
-    </div>
-    <div *ngIf="items.length === 0" class="empty-list">
+        </article>
+    </section>
+    <section *ngIf="items.length === 0" class="empty-list">
         <h6>Vazia</h6>
-    </div>
-</div>
+    </section>
+</section>

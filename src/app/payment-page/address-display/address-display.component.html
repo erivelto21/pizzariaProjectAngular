@@ -1,36 +1,38 @@
-<h2>Endereço de entrega</h2>
-<div class="row address-container">
-    <div class="first-block row col-12">
-        <div class="col-4">
-            <h6>Rua</h6>
-            <p>{{user.address.street}}</p>
+<section>
+    <h2>Endereço de entrega</h2>
+    <article class="row address-container">
+        <div class="first-block row col-12">
+            <div class="col-4">
+                <h6>Rua</h6>
+                <p>{{user.address.street}}</p>
+            </div>
+            <div class="col-4">
+                <h6>Nº</h6>
+                <p>{{user.address.number}}</p>
+            </div>
+            <div class="col-4">
+                <h6>Complemento</h6>
+                <p>{{user.address.complement}}</p>
+            </div>
         </div>
-        <div class="col-4">
-            <h6>Nº</h6>
-            <p>{{user.address.number}}</p>
+        <div class="second-block row col-12">
+            <div class="col-4 neighborhood ">
+                <h6>Bairro</h6>
+                <p>{{user.address.neighborhood}}</p>
+            </div>
+            <div class="col-4">
+                <h6>Cidade</h6>
+                <p>{{user.address.city}}</p>
+            </div>
+            <div class="col-4">
+                <h6>Estado</h6>
+                <p>{{user.address.state}}</p>
+            </div>
         </div>
-        <div class="col-4">
-            <h6>Complemento</h6>
-            <p>{{user.address.complement}}</p>
-        </div>
-    </div>
-    <div class="second-block row col-12">
-        <div class="col-4 neighborhood ">
-            <h6>Bairro</h6>
-            <p>{{user.address.neighborhood}}</p>
-        </div>
-        <div class="col-4">
-            <h6>Cidade</h6>
-            <p>{{user.address.city}}</p>
-        </div>
-        <div class="col-4">
-            <h6>Estado</h6>
-            <p>{{user.address.state}}</p>
-        </div>
-    </div>
-</div>
+    </article>
 
-<div class="row row-phone">
-    <h6 class="col-12">Telefone</h6>
-    <p class="col-12">{{user.phone}}</p>
-</div>
+    <article class="row row-phone">
+        <h6 class="col-12">Telefone</h6>
+        <p class="col-12">{{user.phone}}</p>
+    </article>
+</section>

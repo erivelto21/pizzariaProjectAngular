@@ -5,6 +5,7 @@
 
 .list {
     padding-top: 50px;
+    justify-content: center;
 }
 
 .list > table > thead > tr {
@@ -32,10 +33,10 @@
     flex-wrap: wrap;
 }
 
-.total-price > h4 {
+.total-price {
+    justify-content: center;
     text-align: center;
 }
-
 .total-price > .line {
     border: 2px solid darkred;
 }

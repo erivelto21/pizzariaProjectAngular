@@ -1,15 +1,15 @@
 <nav class="navbar navbar-expand-lg navbar-light">
-    <div class="button-toggler">
+    <article class="button-toggler">
         <button class="navbar-toggler" type="button" (click) = "togglerClick()">
             <span class="navbar-toggler-icon"></span>
         </button>
-    </div>
+    </article>
     
-    <div id="navbar-header">
+    <header id="navbar-header">
         <a routerLink="" routerLinkActive="active"><img src="./assets/icon/pizzaIcon.png"> Pizzaria</a> 
-    </div>
+    </header>
 
-    <div class="collapse navbar-collapse">
+    <article class="collapse navbar-collapse">
         <ul class="navbar-nav">
             <li *ngIf = "!userName" class="nav-item">
                 <a class="nav-link"  routerLink="/login" routerLinkActive="active"> <i class="fas fa-user"></i>  Login</a>
@@ -30,9 +30,9 @@
                 <a (click) = 'logout()' href="" class="nav-link"> <i class="fas fa-times"></i> Sair</a>
             </li>
         </ul>
-    </div>
+    </article>
 
-    <div id="cart">
+    <article id="cart">
         <ul class="navbar-nav">
             <li class="nav-item ml-auto dropdown btn-group">
                 <a *ngIf="showTotalPrice" class="nav-link" href="#" role="button" id="dropdownCart" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ><i class="fas fa-shopping-cart"></i> Total: R$ {{priceTotal.toFixed(2)}}</a>
@@ -40,5 +40,5 @@
                 <app-shopping-cart></app-shopping-cart>
             </li>
         </ul>
-    </div>
+    </article>
 </nav>

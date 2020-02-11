@@ -1,7 +1,10 @@
-<div class="row">
+<section class="row">
     <app-side-navbar class="side-navbar col-lg-3 col-md-3 col-sm-3 col-3" [class.hidden] = "sideNavBarIsClose"></app-side-navbar>
-    <div id="container" class="col-md-12 col-sm-12 col-12">
-        <app-navbar (event) = "change()"></app-navbar>
+    <section id="container" class="col-md-12 col-sm-12 col-12">
+        <header>
+            <app-navbar (event) = "change()"></app-navbar>
+        </header>
         <router-outlet></router-outlet>
-    </div>
-</div>
+        <app-footer></app-footer>
+    </section>
+</section>

@@ -1,5 +1,4 @@
 import { Component, OnInit, OnDestroy, AfterViewChecked, ChangeDetectorRef } from '@angular/core';
-import { Subscription } from 'rxjs';
 import { AlertService } from '../services/alert.service';
 import { Message } from '../interfaces/message';
 
