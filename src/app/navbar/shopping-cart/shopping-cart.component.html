@@ -4,7 +4,7 @@
 
     <section *ngIf="items.length !== 0">
         <ul *ngFor = "let item of items">
-        <li> <a (click) = "removeItem(item)" class="btn btn-remove-item">x</a> {{item.quantidade}}x Pizza de {{item.flavor.name}}</li>
+        <li> <a (click) = "removeItem(item)" class="btn btn-remove-item">x</a> {{item.amount}}x Pizza de {{item.flavor.name}}</li>
             <li> Valor: R${{item.flavor.price.toFixed(2)}}</li>
             <div></div>
         </ul>

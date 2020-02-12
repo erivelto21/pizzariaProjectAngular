@@ -26,7 +26,7 @@ export class ItemsListComponent implements OnInit, OnDestroy {
     let total = 0;
 
     for (const item of this.items) {
-      total += item.quantidade;
+      total += item.amount;
     }
 
     return total;
@@ -36,7 +36,7 @@ export class ItemsListComponent implements OnInit, OnDestroy {
     let total = 0;
 
     for (const item of this.items) {
-      total += (item.flavor.price * item.quantidade);
+      total += (item.flavor.price * item.amount);
     }
 
     return total;

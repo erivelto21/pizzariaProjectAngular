@@ -37,10 +37,10 @@ export class CartService {
     const aux = cart.findIndex((i: OrderedPizza) => item.name === i.flavor.name );
 
     if (aux === -1) {
-      const orderedPizza: OrderedPizza = {flavor : item, quantidade : 1};
+      const orderedPizza: OrderedPizza = {flavor : item, amount : 1};
       cart.push(orderedPizza);
     } else {
-      cart[aux].quantidade++;
+      cart[aux].amount++;
     }
   }
 

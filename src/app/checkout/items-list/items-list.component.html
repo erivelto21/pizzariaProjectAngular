@@ -18,8 +18,8 @@
                     <td>{{item.flavor.name}}</td>
                     <td>R$ {{item.flavor.price.toFixed(2)}}</td>
                     <td>{{item.flavor.type}}</td>
-                    <td>{{item.quantidade}}</td>
-                    <td>R$ {{(item.flavor.price * item.quantidade).toFixed(2)}}</td>
+                    <td>{{item.amount}}</td>
+                    <td>R$ {{(item.flavor.price * item.amount).toFixed(2)}}</td>
                     <td> <a (click) = "removeItem(item)" class="btn btn-remove-item">x</a></td>
                 </tr>
             </tbody>

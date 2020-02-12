@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { take } from 'rxjs/operators';
 
 @Injectable({
@@ -7,7 +7,7 @@ import { take } from 'rxjs/operators';
 })
 export class UserService {
 
-  private url = 'api/pizzaria/user/';
+  private url = 'api/pizzaria/user';
 
   constructor(private http: HttpClient) { }
 
@@ -16,6 +16,6 @@ export class UserService {
   }
 
   address(user) {
-    return this.http.put(this.url, user).pipe(take(1));
+    return this.http.put(this.url, user, { headers: new HttpHeaders().set('Authorization', user.token), }).pipe(take(1));
   }
 }

@@ -32,6 +32,7 @@ import { PaymentPageComponent } from './payment-page/payment-page.component';
 import { AddressDisplayComponent } from './payment-page/address-display/address-display.component';
 import { PaymentComponent } from './payment-page/payment/payment.component';
 import { FooterComponent } from './footer/footer.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { FooterComponent } from './footer/footer.component';
     AddressDisplayComponent,
     PaymentComponent,
     FooterComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,

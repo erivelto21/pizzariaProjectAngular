@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthenticationService } from '../services/authentication.service';
 import { Router } from '@angular/router';
 import { AlertService } from '../services/alert.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -46,9 +47,14 @@ export class LoginComponent implements OnInit {
     .subscribe((data) => {
       this.router.navigate([this.returnUlr]);
     },
-    (error) => {
+    (error: HttpErrorResponse) => {
       this.submitted = false;
-      this.alertService.error(error.error, false);
+
+      if (error.status === 401) {
+        this.alertService.error('Email ou senha inválido', false);
+      } else {
+        this.alertService.error(error.message, false);
+      }
     });
   }
 

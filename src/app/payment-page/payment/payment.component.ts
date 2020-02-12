@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { OrderedPizza } from 'src/app/interfaces/ordered-pizza';
 import { AlertService } from 'src/app/services/alert.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { PaymentService } from 'src/app/services/payment.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { CustomizedTransactionResponse } from 'src/app/interfaces/customized-transaction-response';
 
 @Component({
   selector: 'app-payment',
@@ -19,8 +22,11 @@ export class PaymentComponent implements OnInit {
   expirationDateMask = [/\d/, /\d/, '/', /\d/, /\d/];
   securityCodeMask = [/\d/, /\d/, /\d/];
 
+  private firstTransaction = true;
+
   constructor(private formBuilder: FormBuilder,
-              private alertService: AlertService) { }
+              private alertService: AlertService,
+              private paymentService: PaymentService) { }
 
   ngOnInit() {
     this.cart = JSON.parse(localStorage.getItem('cart'));
@@ -76,7 +82,7 @@ export class PaymentComponent implements OnInit {
     let priceTotal = 0;
 
     for (const item of this.cart) {
-      for (let i = 0; i < item.quantidade; i++) {
+      for (let i = 0; i < item.amount; i++) {
         priceTotal += item.flavor.price;
       }
     }
@@ -102,5 +108,30 @@ export class PaymentComponent implements OnInit {
     if (!this.paymentForm.valid) {
       return;
     }
+
+    if (!this.firstTransaction) {
+      return;
+    }
+
+    this.firstTransaction = false;
+
+    const card = {cardNumber: '4111111111111111',
+      cardCvv: '123',
+      cardExpirationDate: '0922',
+      cardHolderName: 'Morpheus Fishburne'};
+
+    this.paymentService.payment(card).subscribe(
+      (data: CustomizedTransactionResponse) => {
+        if (data.statusValue === 'paid') {
+          this.alertService.success(data.message, false);
+        } else {
+          this.alertService.error(data.message, false);
+        }
+      },
+      (error: HttpErrorResponse) => {
+        this.submitted = false;
+        this.alertService.error(error.message, false);
+      }
+    );
   }
 }

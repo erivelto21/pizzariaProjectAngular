@@ -11,6 +11,13 @@ export class AuthGuard implements CanActivate {
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
         const currentUser = this.authenticationService.getCurrentUserValue();
 
+        console.log(route.routeConfig.path);
+
+        if (route.routeConfig.path === '') {
+            this.router.navigate(['home']);
+            return false;
+        }
+
         if (currentUser && route.routeConfig.path === 'register') {
             this.router.navigate(['']);
             return false;
@@ -23,6 +30,11 @@ export class AuthGuard implements CanActivate {
 
         if (this.cartLength() === 0 && route.routeConfig.path === 'checkout') {
             this.router.navigate(['']);
+            return false;
+        }
+
+        if (!currentUser && route.routeConfig.path === 'payment') {
+            this.router.navigate(['login']);
             return false;
         }
 

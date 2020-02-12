@@ -44,7 +44,7 @@ export class NavbarComponent implements OnInit, OnDestroy, AfterViewChecked {
     this.priceTotal = 0;
 
     for (const item of list) {
-      for (let i = 0; i < item.quantidade; i++) {
+      for (let i = 0; i < item.amount; i++) {
         this.priceTotal += item.flavor.price;
       }
     }
