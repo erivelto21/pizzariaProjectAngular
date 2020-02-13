@@ -1,0 +1,32 @@
+<section class="row">
+    <article class="col-12 alert">
+        <app-alert></app-alert>
+    </article>
+    <h1 class="col-12">Lista de pedidos</h1>
+    <table class="table table-hover col-10">
+        <thead>
+            <tr>
+                <td>Status da transação</td>
+                <td>Forma de pagamento</td>
+                <td>Sabores</td>
+                <td>Quantidade</td>
+                <td style="width: 20%;">Valor total pago</td>
+                <td>Detalhes</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let order of orders">
+                <td style="color: green;" *ngIf="order.transactionStatus === 'paid'">Pago</td>
+                <td style="color: red;" *ngIf="order.transactionStatus === 'refused'">Recusada</td>
+                <td>{{order.paymentWay}}</td>
+                <td>{{getPizzas(order.pizzas)}}</td>
+                <td>{{getAmount(order.pizzas)}}</td>
+                <td>R$ {{order.total.toFixed(2)}}</td>
+                <td><button type="button" class="btn btn-link" data-toggle="modal" [attr.data-target]="'#Modal' + order.id">
+                    + Mais detalhes
+                </button></td>
+                <app-details-modal [pizzas]="order.pizzas" [idOrder]="order.id"></app-details-modal>
+            </tr>
+        </tbody>
+    </table>
+</section>

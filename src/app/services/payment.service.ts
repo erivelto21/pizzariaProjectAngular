@@ -13,13 +13,13 @@ export class PaymentService {
 
   constructor(private http: HttpClient, private authenticationService: AuthenticationService) { }
 
-  payment(creditCard) {
+  payment(creditCard, paymentWay) {
     const cart: [] = JSON.parse(localStorage.getItem('cart'));
     const user = this.authenticationService.getCurrentUserValue();
 
     return this.http
     .post(this.url,
-      {user, cart, creditCard},
+      {user, paymentWay, cart, creditCard},
       {headers: new HttpHeaders().set('Authorization', user.token)} ).pipe(take(1));
   }
 }

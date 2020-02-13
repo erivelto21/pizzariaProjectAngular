@@ -7,6 +7,7 @@ import { AuthGuard } from './services/auth-guard.service';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { PaymentPageComponent } from './payment-page/payment-page.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { OrderListComponent } from './order-list/order-list.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent, canActivate: [AuthGuard]},
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'register', component: UserRegisterComponent, canActivate: [AuthGuard]},
   { path: 'checkout', component: CheckoutComponent, canActivate: [AuthGuard]},
   { path: 'payment', component: PaymentPageComponent, canActivate: [AuthGuard]},
+  { path: 'orders', component: OrderListComponent, canActivate: [AuthGuard]},
   { path: '**', component: NotFoundComponent, canActivate: [AuthGuard]},
 ];
 

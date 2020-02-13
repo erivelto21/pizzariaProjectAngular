@@ -33,6 +33,8 @@ import { AddressDisplayComponent } from './payment-page/address-display/address-
 import { PaymentComponent } from './payment-page/payment/payment.component';
 import { FooterComponent } from './footer/footer.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { OrderListComponent } from './order-list/order-list.component';
+import { DetailsModalComponent } from './order-list/details-modal/details-modal.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +59,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
     PaymentComponent,
     FooterComponent,
     NotFoundComponent,
+    OrderListComponent,
+    DetailsModalComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,33 @@
+.row {
+    flex-direction: row;
+    justify-content: center;
+    padding-top: 50px;
+    text-align: center;
+}
+
+.alert {
+    width: 70%;
+}
+
+h1 {
+    margin-bottom: 40px;
+    font-family: 'Open Sans Condensed', sans-serif;
+    color: darkred;
+}
+
+.row > table > thead {
+    background-color: darkred;
+    color: white;
+}
+
+button {
+    color: darkred;
+}
+
+@media only screen and (max-width: 687px) {
+    
+    .row > table {
+        display: block;
+        overflow-x: scroll;
+    } 
+}

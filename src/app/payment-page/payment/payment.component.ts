@@ -5,6 +5,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { PaymentService } from 'src/app/services/payment.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { CustomizedTransactionResponse } from 'src/app/interfaces/customized-transaction-response';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-payment',
@@ -26,17 +27,18 @@ export class PaymentComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
               private alertService: AlertService,
-              private paymentService: PaymentService) { }
+              private paymentService: PaymentService,
+              private router: Router) { }
 
   ngOnInit() {
     this.cart = JSON.parse(localStorage.getItem('cart'));
 
     this.paymentForm = this.formBuilder.group({
       paymentWay: ['', [Validators.required]],
-      cardName: [''],
-      cardNumber: [''],
-      expirationDate: [''],
-      securityCode: ['']
+      cardName: ['Morpheus Fishburne'],
+      cardNumber: ['4111111111111111'],
+      expirationDate: ['0922'],
+      securityCode: ['123']
     });
   }
 
@@ -115,21 +117,40 @@ export class PaymentComponent implements OnInit {
 
     this.firstTransaction = false;
 
-    const card = {cardNumber: '4111111111111111',
-      cardCvv: '123',
-      cardExpirationDate: '0922',
-      cardHolderName: 'Morpheus Fishburne'};
+    let numberValue: string = '' + this.paymentForm.controls.cardNumber.value;
+    numberValue = numberValue.replace(/\s/g, '').toLowerCase();
 
-    this.paymentService.payment(card).subscribe(
+    let expirationDateValue: string = '' + this.paymentForm.controls.expirationDate.value;
+    expirationDateValue = expirationDateValue.replace('/', '');
+
+    const card = {
+      cardNumber: numberValue,
+      cardCvv: this.paymentForm.controls.securityCode.value,
+      cardExpirationDate: expirationDateValue,
+      cardHolderName: this.paymentForm.controls.cardName.value
+    };
+
+    const paymentWayValue = this.paymentForm.controls.paymentWay.value;
+    let paymentWay = 'Cartão de crédito';
+
+    if (paymentWayValue === 'mastercard' || paymentWayValue === 'visa') {
+      paymentWay = 'Cartão de crédito';
+    }
+
+    this.paymentService.payment(card, paymentWay).subscribe(
       (data: CustomizedTransactionResponse) => {
         if (data.statusValue === 'paid') {
-          this.alertService.success(data.message, false);
+          this.alertService.success(data.message, true);
         } else {
-          this.alertService.error(data.message, false);
+          this.firstTransaction = true;
+          this.alertService.error(data.message, true);
         }
+
+        this.router.navigate(['/orders']);
       },
       (error: HttpErrorResponse) => {
         this.submitted = false;
+        this.firstTransaction = true;
         this.alertService.error(error.message, false);
       }
     );

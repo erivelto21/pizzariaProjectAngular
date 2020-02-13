@@ -1,0 +1,17 @@
+.modal-title {
+    font-family: 'Open Sans Condensed', sans-serif;
+    color: darkred;
+}
+
+table > thead {
+    background-color: darkred;
+    color: white;
+}
+
+@media only screen and (max-width: 345px) {
+    
+    table {
+        display: block;
+        overflow-x: scroll;
+    }
+}
