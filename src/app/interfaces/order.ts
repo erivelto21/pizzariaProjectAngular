@@ -1,4 +1,3 @@
-import { logging } from 'protractor';
 import { User } from './user';
 import { OrderedPizza } from './ordered-pizza';
 
@@ -7,6 +6,7 @@ export interface Order {
     transactionId: string;
     transactionStatus: string;
     total: number;
+    date: string;
     paymentWay: string;
     user: User;
     pizzas: OrderedPizza[];
