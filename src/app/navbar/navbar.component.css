@@ -103,6 +103,10 @@
         margin-left: 17px;
     }
 
+    #navbar-header {
+        padding-left: 0;
+    }
+
     .navbar2 > ul > li > a {
         font-size: 12px;
     }
