@@ -157,6 +157,8 @@ export class PaymentComponent implements OnInit {
       (data: CustomizedTransactionResponse) => {
         if (data.statusValue === 'paid') {
           this.alertService.success(data.message, true);
+
+          this.cartService.newCart();
         } else {
           this.firstTransaction = true;
           this.alertService.error(data.message, true);

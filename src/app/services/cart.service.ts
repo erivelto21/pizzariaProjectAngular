@@ -14,15 +14,19 @@ export class CartService {
 
   get(): Observable<OrderedPizza[]> {
     if (localStorage.getItem('cart') == null) {
-      const cart = [];
-      localStorage.setItem('cart', JSON.stringify(cart));
-      this.cartSubject.next(cart);
+      this.newCart();
     } else {
       const cart = JSON.parse(localStorage.getItem('cart'));
       this.cartSubject.next(cart);
     }
 
     return this.cartSubject.asObservable();
+  }
+
+  newCart() {
+    const cart = [];
+    localStorage.setItem('cart', JSON.stringify(cart));
+    this.cartSubject.next(cart);
   }
 
   add(item: Flavor) {
