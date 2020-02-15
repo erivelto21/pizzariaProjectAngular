@@ -17,9 +17,18 @@ export class PaymentService {
     const cart: [] = JSON.parse(localStorage.getItem('cart'));
     const user = this.authenticationService.getCurrentUserValue();
 
+    if (paymentWay === 'Cartão de crédito') {
+      return this.creditCardPayment(user, cart, 'Cartão de crédito', creditCard);
+    }
+
+    if (paymentWay === 'paypal') { }
+  }
+
+  private creditCardPayment(user, cart, paymentWay, creditCard) {
     return this.http
-    .post(this.url,
-      {user, paymentWay, cart, creditCard},
-      {headers: new HttpHeaders().set('Authorization', user.token)} ).pipe(take(1));
+    .post(
+      this.url, {user, paymentWay, cart, creditCard},
+      {headers: new HttpHeaders().set('Authorization', user.token)} )
+      .pipe(take(1));
   }
 }

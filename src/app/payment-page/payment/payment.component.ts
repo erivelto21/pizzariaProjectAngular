@@ -6,6 +6,7 @@ import { PaymentService } from 'src/app/services/payment.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { CustomizedTransactionResponse } from 'src/app/interfaces/customized-transaction-response';
 import { Router } from '@angular/router';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-payment',
@@ -28,6 +29,7 @@ export class PaymentComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private alertService: AlertService,
               private paymentService: PaymentService,
+              private cartService: CartService,
               private router: Router) { }
 
   ngOnInit() {
@@ -92,6 +94,23 @@ export class PaymentComponent implements OnInit {
     return priceTotal;
   }
 
+  private cardBuilder() {
+    let numberValue: string = '' + this.paymentForm.controls.cardNumber.value;
+    numberValue = numberValue.replace(/\s/g, '').toLowerCase();
+
+    let expirationDateValue: string = '' + this.paymentForm.controls.expirationDate.value;
+    expirationDateValue = expirationDateValue.replace('/', '');
+
+    const card = {
+      cardNumber: numberValue,
+      cardCvv: this.paymentForm.controls.securityCode.value,
+      cardExpirationDate: expirationDateValue,
+      cardHolderName: this.paymentForm.controls.cardName.value
+    };
+
+    return card;
+  }
+
   onSubmit() {
     this.submitted = true;
 
@@ -117,24 +136,21 @@ export class PaymentComponent implements OnInit {
 
     this.firstTransaction = false;
 
-    let numberValue: string = '' + this.paymentForm.controls.cardNumber.value;
-    numberValue = numberValue.replace(/\s/g, '').toLowerCase();
-
-    let expirationDateValue: string = '' + this.paymentForm.controls.expirationDate.value;
-    expirationDateValue = expirationDateValue.replace('/', '');
-
-    const card = {
-      cardNumber: numberValue,
-      cardCvv: this.paymentForm.controls.securityCode.value,
-      cardExpirationDate: expirationDateValue,
-      cardHolderName: this.paymentForm.controls.cardName.value
-    };
-
     const paymentWayValue = this.paymentForm.controls.paymentWay.value;
-    let paymentWay = 'Cartão de crédito';
+    let paymentWay = '';
 
-    if (paymentWayValue === 'mastercard' || paymentWayValue === 'visa') {
+    let card = null;
+
+    if (paymentWayValue === 'mastercard' || paymentWayValue === 'visa' || paymentWayValue === 'elo') {
       paymentWay = 'Cartão de crédito';
+      card = this.cardBuilder();
+    }
+
+    if (paymentWayValue === 'paypal') {
+      this.alertService.error('Selecione outra forma de pagamento, paypal ainda não disponível', false);
+      this.submitted = false;
+      this.firstTransaction = true;
+      return;
     }
 
     this.paymentService.payment(card, paymentWay).subscribe(
