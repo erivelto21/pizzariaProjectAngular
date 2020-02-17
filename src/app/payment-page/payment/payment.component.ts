@@ -111,6 +111,11 @@ export class PaymentComponent implements OnInit {
     return card;
   }
 
+  private cancelPayment() {
+    this.submitted = false;
+    this.firstTransaction = true;
+  }
+
   onSubmit() {
     this.submitted = true;
 
@@ -141,15 +146,30 @@ export class PaymentComponent implements OnInit {
 
     let card = null;
 
-    if (paymentWayValue === 'mastercard' || paymentWayValue === 'visa' || paymentWayValue === 'elo') {
-      paymentWay = 'Cartão de crédito';
+    const paymentWayAction = {
+      mastercard() {
+        paymentWay = 'Cartão de crédito';
+      },
+      visa() {
+        paymentWay = 'Cartão de crédito';
+      },
+      elo() {
+        paymentWay = 'Cartão de crédito';
+      },
+      paypal() {
+        paymentWay = 'paypal';
+      }
+    };
+
+    const action = paymentWayAction[paymentWayValue];
+    action();
+
+    if (paymentWay === 'Cartão de crédito') {
       card = this.cardBuilder();
     }
-
-    if (paymentWayValue === 'paypal') {
+    if (paymentWay === 'paypal') {
       this.alertService.error('Selecione outra forma de pagamento, paypal ainda não disponível', false);
-      this.submitted = false;
-      this.firstTransaction = true;
+      this.cancelPayment();
       return;
     }
 
@@ -167,8 +187,7 @@ export class PaymentComponent implements OnInit {
         this.router.navigate(['/orders']);
       },
       (error: HttpErrorResponse) => {
-        this.submitted = false;
-        this.firstTransaction = true;
+        this.cancelPayment();
         this.alertService.error(error.message, false);
       }
     );
