@@ -28,7 +28,7 @@ button {
     color: darkred;
 }
 
-@media only screen and (max-width: 687px) {
+@media only screen and (max-width: 831px) {
     
     .row > table {
         display: block;
