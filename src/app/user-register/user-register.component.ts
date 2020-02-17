@@ -59,7 +59,7 @@ export class UserRegisterComponent implements OnInit {
       },
       (error: HttpErrorResponse) => {
         this.submitted = false;
-        this.alertService.error(error.error, false);
+        this.alertService.error(error.error.message, false);
       }
     );
   }

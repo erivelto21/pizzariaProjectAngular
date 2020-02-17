@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { OrderService } from '../services/order.service';
 import { Order } from '../interfaces/order';
 import { OrderedPizza } from '../interfaces/ordered-pizza';
+import { AlertService } from '../services/alert.service';
 
 @Component({
   selector: 'app-order-list',
@@ -14,7 +15,7 @@ export class OrderListComponent implements OnInit {
   pizzas: string;
 
 
-  constructor(private orderService: OrderService) { }
+  constructor(private orderService: OrderService, private alertService: AlertService) { }
 
   ngOnInit() {
     this.orderService.getByUser().subscribe(
@@ -22,7 +23,7 @@ export class OrderListComponent implements OnInit {
         this.orders = data.slice(0).reverse();
       },
       error => {
-        console.log(error);
+        this.alertService.error(error.error.message, false);
       }
     );
   }

@@ -188,7 +188,7 @@ export class PaymentComponent implements OnInit {
       },
       (error: HttpErrorResponse) => {
         this.cancelPayment();
-        this.alertService.error(error.message, false);
+        this.alertService.error(error.error.message, false);
       }
     );
   }

@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
       if (error.status === 401) {
         this.alertService.error('Email ou senha inválido', false);
       } else {
-        this.alertService.error(error.message, false);
+        this.alertService.error(error.error.message, false);
       }
     });
   }
