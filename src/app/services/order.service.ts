@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { AuthenticationService } from './authentication.service';
 import { Order } from '../interfaces/order';
 
 @Injectable({
@@ -10,7 +9,7 @@ export class OrderService {
 
   private url = 'api/pizzaria/order';
 
-  constructor(private http: HttpClient, private authenticationService: AuthenticationService) { }
+  constructor(private http: HttpClient) { }
 
   getByUser() {
     const user = JSON.parse(localStorage.getItem('currentUser'));
