@@ -15,7 +15,7 @@ export class PaymentService {
 
   payment(creditCard, paymentWay) {
     const cart: [] = JSON.parse(localStorage.getItem('cart'));
-    const user = this.authenticationService.getCurrentUserValue();
+    const user = JSON.parse(localStorage.getItem('currentUser'));
 
     if (paymentWay === 'Cartão de crédito') {
       return this.creditCardPayment(user, cart, 'Cartão de crédito', creditCard);

@@ -13,7 +13,7 @@ export class OrderService {
   constructor(private http: HttpClient, private authenticationService: AuthenticationService) { }
 
   getByUser() {
-    const user = this.authenticationService.getCurrentUserValue();
+    const user = JSON.parse(localStorage.getItem('currentUser'));
 
     return this.http.get<Order[]>(this.url + '/user/' + user.id,
     {headers: new HttpHeaders()

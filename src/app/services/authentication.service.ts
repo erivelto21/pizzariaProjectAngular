@@ -12,17 +12,7 @@ export class AuthenticationService {
   private currentUserSubject: BehaviorSubject<User>;
   private url = 'api/pizzaria/login';
 
-  constructor(private http: HttpClient) {
-      this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
-  }
-
-  getCurrentUserValue(): User {
-      return this.currentUserSubject.value;
-  }
-
-  getUserSubject() {
-    return this.currentUserSubject;
-  }
+  constructor(private http: HttpClient) {}
 
   login(email, password) {
     return this.http.post<User>(this.url,  { email, password }, {observe: 'response'}).pipe(take(1))
@@ -42,7 +32,6 @@ export class AuthenticationService {
           token: response.headers.get('Authorization').substring('Bearer'.length).trim()};
 
         localStorage.setItem('currentUser', JSON.stringify(user));
-        this.currentUserSubject.next(user);
       });
       return userObservable;
     });
@@ -50,6 +39,5 @@ export class AuthenticationService {
 
   logout() {
       localStorage.removeItem('currentUser');
-      this.currentUserSubject.next(null);
   }
 }

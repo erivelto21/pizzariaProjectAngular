@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
     private alertService: AlertService,
     private router: Router,
     private authenticationService: AuthenticationService) {
-    if (this.authenticationService.getCurrentUserValue()) {
+    if (JSON.parse(localStorage.getItem('currentUser'))) {
       this.router.navigate(['/']);
     }
   }

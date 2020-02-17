@@ -32,7 +32,7 @@ export class AddressRegisterComponent implements OnInit {
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('currentUser'));
 
-    if (this.user.address !== undefined ) {
+    if (this.user.address !== null ) {
       this.setAddress();
       return;
     }
@@ -115,9 +115,10 @@ export class AddressRegisterComponent implements OnInit {
       return;
     }
 
+    localStorage.setItem('currentUser', JSON.stringify(this.user));
+
     this.userService.address(this.user).subscribe(
       data => {
-        localStorage.setItem('currentUser', JSON.stringify(this.user));
         this.router.navigate(['/payment']);
       },
       (error: HttpErrorResponse) => {
