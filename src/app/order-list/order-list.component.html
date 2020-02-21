@@ -20,8 +20,8 @@
                 <td style="color: green;" *ngIf="order.transactionStatus === 'paid'">Pago</td>
                 <td style="color: red;" *ngIf="order.transactionStatus === 'refused'">Recusada</td>
                 <td>{{order.paymentWay}}</td>
-                <td>{{order.date | date: 'd/MM/yy': 'pt-BR'}}</td>
-                <td>{{order.date | date: 'h:mm:ss a': 'pt-BR'}}</td>
+                <td>{{order.date | date: 'd/MM/yy': '+00'}}</td>
+                <td>{{order.date | date: 'h:mm:ss a': '+00'}}</td>
                 <td>{{getAmount(order.pizzas)}}</td>
                 <td>{{'R$ ' + order.total.toFixed(2)}}</td>
                 <td><button type="button" class="btn btn-link" data-toggle="modal" [attr.data-target]="'#Modal' + order.id">
