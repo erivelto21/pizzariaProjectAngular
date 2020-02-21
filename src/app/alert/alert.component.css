@@ -3,6 +3,10 @@
     color: white;
 }
 
+aside {
+    text-align: center;
+}
+
 aside > span {
     position: absolute;
     top: 0px;
