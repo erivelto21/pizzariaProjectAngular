@@ -8,7 +8,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class FlavorService {
-  private url = 'api/pizzaria/flavor';
+  private url = 'api/flavor';
 
   constructor(private http: HttpClient) { }
 

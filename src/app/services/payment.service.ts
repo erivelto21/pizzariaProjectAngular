@@ -7,7 +7,7 @@ import { take } from 'rxjs/operators';
 })
 export class PaymentService {
 
-  private url = 'api/pizzaria/payment/creditCard';
+  private url = 'api/payment/creditcard';
 
   constructor(private http: HttpClient) { }
 

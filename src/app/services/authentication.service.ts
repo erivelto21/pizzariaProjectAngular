@@ -2,15 +2,14 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { User } from '../interfaces/user';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
 
-  private currentUserSubject: BehaviorSubject<User>;
-  private url = 'api/pizzaria/login';
+  private url = 'api/login';
 
   constructor(private http: HttpClient) {}
 

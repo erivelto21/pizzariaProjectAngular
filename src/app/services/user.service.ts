@@ -7,7 +7,7 @@ import { take } from 'rxjs/operators';
 })
 export class UserService {
 
-  private url = 'api/pizzaria/user';
+  private url = 'api/user';
 
   constructor(private http: HttpClient) { }
 
@@ -15,7 +15,11 @@ export class UserService {
     return this.http.post(this.url, user).pipe(take(1));
   }
 
+  phone(user) {
+    return this.http.put(this.url + '/phone', user, { headers: new HttpHeaders().set('Authorization', user.token), }).pipe(take(1));
+  }
+
   address(user) {
-    return this.http.put(this.url, user, { headers: new HttpHeaders().set('Authorization', user.token), }).pipe(take(1));
+    return this.http.put(this.url + '/address', user, { headers: new HttpHeaders().set('Authorization', user.token), }).pipe(take(1));
   }
 }
