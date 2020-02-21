@@ -119,6 +119,16 @@ export class AddressRegisterComponent implements OnInit {
 
     this.userService.address(this.user).subscribe(
       data => {
+
+      },
+      (error: HttpErrorResponse) => {
+        this.submitted = false;
+        this.alertService.error(error.error.message, false);
+      }
+    );
+
+    this.userService.phone(this.user).subscribe(
+      data => {
         this.router.navigate(['/payment']);
       },
       (error: HttpErrorResponse) => {
