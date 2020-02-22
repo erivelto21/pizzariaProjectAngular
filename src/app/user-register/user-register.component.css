@@ -9,6 +9,7 @@
 
 h2 {
     margin-bottom: 25px;
+    text-align: center;
 }
 
 form > .row {
@@ -17,6 +18,10 @@ form > .row {
 
 .row > form {
     width: 100%;
+}
+
+.btns {
+    padding-left: 15px;
 }
 
 .btn, .form-group > a {
