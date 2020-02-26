@@ -14,12 +14,12 @@
             </thead>
             <tbody>
                 <tr *ngFor="let item of items">
-                    <td><img class="rounded mx-auto d-block" src={{item.flavor.image}}/></td>
-                    <td>{{item.flavor.name}}</td>
-                    <td>R$ {{item.flavor.price.toFixed(2)}}</td>
-                    <td>{{item.flavor.type}}</td>
+                    <td><img (click) = "goEdit(item)" class="rounded mx-auto d-block" src={{item.customFlavor.flavor.image}}/></td>
+                    <td>{{item.customFlavor.flavor.name}}</td>
+                    <td>R$ {{item.customFlavor.flavor.price.toFixed(2)}}</td>
+                    <td>{{item.customFlavor.flavor.type}}</td>
                     <td>{{item.amount}}</td>
-                    <td>R$ {{(item.flavor.price * item.amount).toFixed(2)}}</td>
+                    <td>R$ {{total(item).toFixed(2)}}</td>
                     <td> <a (click) = "removeItem(item)" class="btn btn-remove-item">x</a></td>
                 </tr>
             </tbody>

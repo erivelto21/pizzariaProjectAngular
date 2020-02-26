@@ -1,6 +1,6 @@
-import { Flavor } from './flavor';
+import { CustomFlavor } from './custom-flavor';
 
 export interface OrderedPizza {
-    flavor: Flavor;
+    customFlavor: CustomFlavor;
     amount: number;
 }

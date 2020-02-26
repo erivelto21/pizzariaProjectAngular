@@ -35,6 +35,7 @@ import { FooterComponent } from './footer/footer.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { OrderListComponent } from './order-list/order-list.component';
 import { DetailsModalComponent } from './order-list/details-modal/details-modal.component';
+import { EditPizzaComponent } from './edit-pizza/edit-pizza.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { DetailsModalComponent } from './order-list/details-modal/details-modal.
     NotFoundComponent,
     OrderListComponent,
     DetailsModalComponent,
+    EditPizzaComponent,
   ],
   imports: [
     BrowserModule,

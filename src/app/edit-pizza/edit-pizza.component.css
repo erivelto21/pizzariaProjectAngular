@@ -1,0 +1,54 @@
+article:first-of-type {
+    margin-top: 50px;
+}
+
+h2 {
+    margin-bottom: 30px;
+}
+
+.panel {
+    justify-content: center;
+}
+
+.panel > article {
+    margin: 0;
+    padding: 0;
+    text-align: left;
+}
+
+.panel > article > h4{
+    text-align: center;
+    border-bottom: 1px solid darkred; 
+    line-height: 0.1em;
+    margin: 10px 0 20px;
+}
+
+.panel > article > h4 span {
+    background:#fff; 
+    padding:0 10px; 
+}
+
+.panel > article > h6{
+    padding-left: 20px;
+    min-width: 140px;
+}
+
+h3 {
+    margin-top: 40px;
+    margin-bottom: 30px;
+}
+
+.row {
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+}
+
+img {
+    height: 100%;
+    width: 40%;
+}
+
+button {
+    margin-bottom: 50px;
+}

@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Flavor } from '../interfaces/flavor';
 import { Ingredient } from '../interfaces/ingredient';
-import { CartService } from '../services/cart.service';
-import { AlertService } from '../services/alert.service';
+import { Router } from '@angular/router';
+import { EditPizzaService } from '../services/edit-pizza.service';
 
 @Component({
   selector: 'app-single-product',
@@ -13,7 +13,7 @@ export class SingleProductComponent implements OnInit {
   @Input() flavor: Flavor;
   public ingredients: string;
 
-  constructor(private cartService: CartService, private alertService: AlertService) { }
+  constructor(private router: Router, private editPizzaService: EditPizzaService) { }
 
   ngOnInit() {
     this.getingredients();
@@ -22,7 +22,6 @@ export class SingleProductComponent implements OnInit {
   private getingredients() {
     this.ingredients = '';
     this.putCommaAndDot(this.flavor.ingredients);
-    this.flavor.ingredients.forEach( (ingredient: Ingredient) => this.ingredients += ingredient.name);
   }
 
   private putCommaAndDot(ingredients: Ingredient[]) {
@@ -30,19 +29,15 @@ export class SingleProductComponent implements OnInit {
 
     for (let i = 0; i < ingredients.length; i++) {
       if (i === pointIndex) {
-        ingredients[i].name += '.';
+        this.ingredients += ingredients[i].name + '.';
       } else {
-        ingredients[i].name += ', ';
+        this.ingredients += ingredients[i].name + ', ';
       }
     }
   }
 
   buy() {
-    this.cartService.add(this.flavor);
-    this.alertService.addCart();
-
-    setTimeout(() => {
-      this.alertService.clear();
-    }, 1000);
+    this.editPizzaService.setFlavor(this.flavor);
+    this.router.navigate(['/edit']);
   }
 }

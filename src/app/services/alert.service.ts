@@ -33,7 +33,8 @@ export class AlertService {
     this.subject.next(this.message);
   }
 
-  addCart() {
+  addCart(keepAfterRouteChange) {
+    this.keepAfterRouteChange = keepAfterRouteChange;
     this.message = { type: 'add-cart', text: 'Adicionado ao carrinho', cssClass: 'alert alert-add-cart'};
     this.subject.next(this.message);
   }

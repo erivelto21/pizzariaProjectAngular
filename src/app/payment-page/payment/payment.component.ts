@@ -86,9 +86,7 @@ export class PaymentComponent implements OnInit {
     let priceTotal = 0;
 
     for (const item of this.cart) {
-      for (let i = 0; i < item.amount; i++) {
-        priceTotal += item.flavor.price;
-      }
+      priceTotal += (item.customFlavor.flavor.price * item.amount) + item.customFlavor.additionalsValue;
     }
 
     return priceTotal;

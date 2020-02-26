@@ -18,4 +18,13 @@ export class FlavorService {
       .set('Content-Type', 'application/json')})
       .pipe(take(1));
   }
+
+  calculateAdditionals(flavor: Flavor) {
+    let total = 0;
+    for (const i of flavor.ingredients) {
+      total += (i.amount - 1) * 1;
+    }
+
+    return total;
+  }
 }
