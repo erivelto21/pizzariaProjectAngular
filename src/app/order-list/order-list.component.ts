@@ -11,7 +11,7 @@ import { AlertService } from '../services/alert.service';
 })
 export class OrderListComponent implements OnInit {
 
-  orders: Order[];
+  orders: Order[] = [];
   pizzas: string;
 
 
