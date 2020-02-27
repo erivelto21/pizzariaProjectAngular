@@ -48,7 +48,11 @@ export class AuthGuard implements CanActivate {
 
         const flavor = this.editPizzaService.getValueFlavor();
 
-        
+        if ((this.editPizzaService.getValueFlavor() === null && this.editPizzaService.getValueOrderedPizza() === null)
+        && route.routeConfig.path === 'edit') {
+            this.router.navigate(['']);
+            return false;
+        }
 
         return true;
     }
