@@ -1,27 +1,5 @@
-# PizzariaFront
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.18.
-
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+<h1>PizzariaProjectAngular</h1>
+<p>PizzariaProjectAngular is angular project of an e-commerce project with only credit card as method of payment with study purpose that sells pizza, being made with the following technologies:</p>
+<p>-Angular 2+.</p>
+<p>-Bootstrap.</p>
+<p>this repository together with pizzariaProject repository from the back end and front end of the project. Any criticism or idea feel free to say</p>
