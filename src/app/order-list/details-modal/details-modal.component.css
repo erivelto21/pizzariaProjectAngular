@@ -9,8 +9,7 @@ table > thead {
 }
 
 .btn {
-    background-color: darkred;
-    color: white;
+    color: darkred;
 }
 
 @media only screen and (max-width: 345px) {
