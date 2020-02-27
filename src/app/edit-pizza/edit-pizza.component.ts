@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 import { FlavorService } from '../services/flavor.service';
 import { Flavor } from '../interfaces/flavor';
 import { CustomFlavor } from '../classes/custom-flavor';
-import { ThrowStmt } from '@angular/compiler';
+import { CustomIngredient } from '../classes/custom-ingredient';
 
 @Component({
   selector: 'app-edit-pizza',
@@ -73,12 +73,28 @@ export class EditPizzaComponent implements OnInit {
 
     customFlavor.id = 0;
     customFlavor.image = flavor.image;
-    customFlavor.ingredients = flavor.ingredients;
+    customFlavor.ingredients = this.ingredientsBuild(flavor.ingredients);
     customFlavor.name = flavor.name;
     customFlavor.price = flavor.price;
     customFlavor.type = flavor.type;
     customFlavor.additionalsValue = this.flavorService.calculateAdditionals(flavor.ingredients);
 
     return customFlavor;
+  }
+
+  private ingredientsBuild(ingredients: CustomIngredient[]) {
+    const ingredients1: CustomIngredient[] = [];
+
+    for (const i of ingredients) {
+      ingredients1.push(this.customIngredientBuild(i));
+    }
+
+    return ingredients1;
+  }
+
+  private customIngredientBuild(ingredient: CustomIngredient): CustomIngredient {
+    ingredient.id = 0;
+
+    return ingredient;
   }
 }
