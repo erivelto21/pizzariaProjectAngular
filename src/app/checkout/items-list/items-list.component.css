@@ -49,6 +49,12 @@
     border: 2px solid darkred;
 }
 
+p {
+    text-align: center;
+    color: darkred;
+    font-size: 14px;
+}
+
 @media only screen and (max-width: 687px) {
     
     .list > table {
