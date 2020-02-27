@@ -59,7 +59,6 @@ export class EditPizzaComponent implements OnInit {
     this.customFlavor.additionalsValue = this.flavorService.calculateAdditionals(this.customFlavor.ingredients);
 
     this.cartService.add(this.customFlavor);
-    this.alertService.addCart(true);
 
     this.router.navigate(['/home']);
 

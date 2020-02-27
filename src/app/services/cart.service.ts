@@ -6,6 +6,7 @@ import { EditPizzaService } from './edit-pizza.service';
 import { FlavorService } from './flavor.service';
 import { CustomFlavor } from '../classes/custom-flavor';
 import { Ingredient } from '../interfaces/ingredient';
+import { AlertService } from './alert.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,8 @@ export class CartService {
   private cartSubject = new Subject<OrderedPizza[]>();
 
   constructor(private editPizzaService: EditPizzaService,
-              private flavorService: FlavorService) { }
+              private flavorService: FlavorService,
+              private alertService: AlertService) { }
 
   get(): Observable<OrderedPizza[]> {
     if (localStorage.getItem('cart') === null) {
@@ -51,6 +53,7 @@ export class CartService {
 
     this.checkOccurrence(customFlavor, cart);
     this.updateCart(cart);
+    this.alertService.addCart(true);
   }
 
   private anyEqual(cart: OrderedPizza[], customFlavor: CustomFlavor): boolean {
@@ -83,6 +86,8 @@ export class CartService {
 
     this.editPizzaService.clearOrderedPizza();
 
+    this.alertService.editCartItem(true);
+
     this.updateCart(cart);
   }
 
@@ -101,7 +106,7 @@ export class CartService {
       }
     }
 
-    const orderedPizza1: OrderedPizza = {customFlavor : customFlavor1, amount : 1};
+    const orderedPizza1: OrderedPizza = {id: 0, customFlavor : customFlavor1, amount : 1};
 
     cart.push(orderedPizza1);
     this.updateCart(cart);

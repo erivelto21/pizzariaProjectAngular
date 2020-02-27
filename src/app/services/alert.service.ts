@@ -39,6 +39,12 @@ export class AlertService {
     this.subject.next(this.message);
   }
 
+  editCartItem(keepAfterRouteChange) {
+    this.keepAfterRouteChange = keepAfterRouteChange;
+    this.message = { type: 'add-cart', text: 'Alteração feita com sucesso', cssClass: 'alert alert-add-cart'};
+    this.subject.next(this.message);
+  }
+
   error(message: string, keepAfterRouteChange) {
     this.keepAfterRouteChange = keepAfterRouteChange;
     this.message = { type: 'error', text: message, cssClass: 'alert alert-danger'};
