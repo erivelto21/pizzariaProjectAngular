@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { OrderService } from '../services/order.service';
 import { Order } from '../interfaces/order';
 import { OrderedPizza } from '../interfaces/ordered-pizza';
@@ -9,7 +9,7 @@ import { AlertService } from '../services/alert.service';
   templateUrl: './order-list.component.html',
   styleUrls: ['./order-list.component.css']
 })
-export class OrderListComponent implements OnInit {
+export class OrderListComponent implements OnInit, OnDestroy {
 
   orders: Order[] = [];
   pizzas: string;
@@ -57,5 +57,9 @@ export class OrderListComponent implements OnInit {
         pizzas[i].customFlavor.name += ', ';
       }
     }
+  }
+
+  ngOnDestroy() {
+    this.orderService.getByUser().subscribe().unsubscribe();
   }
 }
