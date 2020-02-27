@@ -45,6 +45,7 @@ export class CartService {
     if (this.editPizzaService.getValueOrderedPizza() !== null &&
     this.anyEqual(cart, this.editPizzaService.getValueOrderedPizza().customFlavor)) {
       this.remove(this.editPizzaService.getValueOrderedPizza());
+      this.editPizzaService.clearOrderedPizza();
       cart = JSON.parse(localStorage.getItem('cart'));
     }
 
