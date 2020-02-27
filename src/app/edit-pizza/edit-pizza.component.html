@@ -2,7 +2,7 @@
     <h2 class="col-12">Pizza de {{customFlavor.name}}</h2>
     <div class="col-10 panel row">
         <img class="rounded mx-auto col-8 d-block" src={{customFlavor.image}}/>
-        <article class="col-4 inf">
+        <article class="col-4">
             <h4><span>Informações</span></h4>
             <h6>Preço: R$ {{customFlavor.price.toFixed(2)}}</h6>
             <h6>Tipo: {{customFlavor.type}}.</h6>
@@ -11,6 +11,7 @@
         </article>
     </div>
     <h3 class="col-12">Adicionais</h3>
+    <p id="info" class="col-10">1x - Quantidade padrão do ingrediente, 2x - Duas vezes mais ingrediente, 3x - Três vezes mais ingrediente (Obs: Para 2x ou 3x será cobrado um adicional)</p>
     <table class="table col-10">
         <thead class="table-dark">
             <tr class="row">
