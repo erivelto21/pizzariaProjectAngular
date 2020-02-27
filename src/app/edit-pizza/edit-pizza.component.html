@@ -1,13 +1,13 @@
 <article class="row">
-    <h2 class="col-12">Pizza de {{flavor.name}}</h2>
+    <h2 class="col-12">Pizza de {{customFlavor.name}}</h2>
     <div class="col-10 panel row">
-        <img class="rounded mx-auto col-8 d-block" src={{flavor.image}}/>
-        <article class="col-4">
+        <img class="rounded mx-auto col-8 d-block" src={{customFlavor.image}}/>
+        <article class="col-4 inf">
             <h4><span>Informações</span></h4>
-            <h6>Preço: R$ {{flavor.price.toFixed(2)}}</h6>
-            <h6>Tipo: {{flavor.type}}.</h6>
+            <h6>Preço: R$ {{customFlavor.price.toFixed(2)}}</h6>
+            <h6>Tipo: {{customFlavor.type}}.</h6>
             <h6>Valor em adicionais: R$ {{Additionals().toFixed(2)}}</h6>
-            <h6>Total: R$ {{(flavor.price + Additionals()).toFixed(2)}}</h6>
+            <h6>Total: R$ {{(customFlavor.price + Additionals()).toFixed(2)}}</h6>
         </article>
     </div>
     <h3 class="col-12">Adicionais</h3>
@@ -19,7 +19,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr class="row" *ngFor="let i of flavor.ingredients">
+            <tr class="row" *ngFor="let i of customFlavor.ingredients">
                 <td class="col-4">{{i.name}}</td>
                 <td class="row col-8">
                     <div class="col-4">
@@ -39,5 +39,5 @@
         </tbody>
     </table>
 
-    <button class="btn btn-dark col-4" (click) = "addCart()">Adicionar ao carrinho</button>
+    <button class="btn btn-dark col-sm-4 col-8" (click) = "addCart()">Adicionar ao carrinho</button>
 </article>

@@ -1,7 +1,13 @@
+import { CustomIngredient } from './custom-ingredient';
 import { Flavor } from './flavor';
 
-export interface CustomFlavor {
+export class CustomFlavor implements Flavor {
 
-    flavor: Flavor;
+    id: number;
+    name: string;
+    ingredients: CustomIngredient[];
+    price: number;
+    image: string;
+    type: string;
     additionalsValue: number;
 }

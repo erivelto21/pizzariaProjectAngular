@@ -4,8 +4,8 @@
 
     <section *ngIf="items.length !== 0">
         <ul *ngFor = "let item of items">
-        <li> <a (click) = "removeItem(item)" class="btn btn-remove-item">x</a> {{item.amount}}x Pizza de {{item.customFlavor.flavor.name}}</li>
-            <li> Valor por item: R${{(item.customFlavor.flavor.price + item.customFlavor.additionalsValue).toFixed(2)}}</li>
+        <li> <a (click) = "removeItem(item)" class="btn btn-remove-item">x</a> {{item.amount}}x Pizza de {{item.customFlavor.name}}</li>
+            <li> Valor por item: R${{getTotalValue(item).toFixed(2)}}</li>
             <div></div>
         </ul>
         <article class="button-dropdown-menu">

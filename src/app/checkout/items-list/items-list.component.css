@@ -26,6 +26,14 @@
     height: 25px;
 }
 
+.notBreakOriginalPrice {
+    min-width: 134px;
+}
+
+.notBreakTotalPrice {
+    min-width: 106px;
+}
+
 .total-price {
     width: 100%;
     display: flex;

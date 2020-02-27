@@ -4,6 +4,8 @@ import { OrderedPizza } from 'src/app/interfaces/ordered-pizza';
 import { Router } from '@angular/router';
 import { EditPizzaService } from 'src/app/services/edit-pizza.service';
 import { Flavor } from 'src/app/interfaces/flavor';
+import { CustomFlavorService } from 'src/app/services/custom-flavor.service';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-items-list',
@@ -17,7 +19,8 @@ export class ItemsListComponent implements OnInit, OnDestroy {
   constructor(
     private cartService: CartService,
     private router: Router,
-    private editPizzaService: EditPizzaService) { }
+    private editPizzaService: EditPizzaService,
+    private customFlavorService: CustomFlavorService) { }
 
   ngOnInit() {
     this.cartService.get().subscribe((_: OrderedPizza[]) => this.items = _ );
@@ -38,11 +41,15 @@ export class ItemsListComponent implements OnInit, OnDestroy {
     return total;
   }
 
+  totalEachItem(orderedPizza: OrderedPizza) {
+    return this.customFlavorService.totalValue(orderedPizza.customFlavor) * orderedPizza.amount;
+  }
+
   amoutTotal() {
     let total = 0;
 
     for (const item of this.items) {
-      total += (item.customFlavor.flavor.price * item.amount) + item.customFlavor.additionalsValue;
+      total += this.customFlavorService.totalValue(item.customFlavor) * item.amount;
     }
 
     return total;
@@ -51,10 +58,6 @@ export class ItemsListComponent implements OnInit, OnDestroy {
   goEdit(orderedPizza: OrderedPizza) {
     this.editPizzaService.setOrderedPizza(orderedPizza);
     this.router.navigate(['/edit']);
-  }
-
-  total(orderedPizza: OrderedPizza) {
-    return (orderedPizza.customFlavor.flavor.price * orderedPizza.amount) + orderedPizza.customFlavor.additionalsValue;
   }
 
   removeItem(item: OrderedPizza) {

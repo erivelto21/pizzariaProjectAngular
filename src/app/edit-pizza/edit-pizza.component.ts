@@ -6,6 +6,8 @@ import { Ingredient } from '../interfaces/ingredient';
 import { Router } from '@angular/router';
 import { FlavorService } from '../services/flavor.service';
 import { Flavor } from '../interfaces/flavor';
+import { CustomFlavor } from '../interfaces/custom-flavor';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-edit-pizza',
@@ -13,7 +15,7 @@ import { Flavor } from '../interfaces/flavor';
   styleUrls: ['./edit-pizza.component.css']
 })
 export class EditPizzaComponent implements OnInit {
-  flavor: Flavor;
+  customFlavor: CustomFlavor;
   show = false;
 
   constructor(private editPizzaService: EditPizzaService,
@@ -26,16 +28,15 @@ export class EditPizzaComponent implements OnInit {
     window.scrollTo(0, 0);
 
     if (this.editPizzaService.getValueFlavor() !== null) {
-      this.flavor = this.editPizzaService.getValueFlavor();
-      this.flavor.id = 0;
+      this.customFlavor = this.customerFlavorBuild(this.editPizzaService.getValueFlavor());
       this.editPizzaService.clearFlavor();
     } else if (this.editPizzaService.getValueOrderedPizza !== null) {
-      this.flavor = JSON.parse(JSON.stringify(this.editPizzaService.getValueOrderedPizza().customFlavor.flavor));
+      this.customFlavor = JSON.parse(JSON.stringify(this.editPizzaService.getValueOrderedPizza().customFlavor));
     }
   }
 
   Additionals() {
-    return this.flavorService.calculateAdditionals(this.flavor);
+    return this.flavorService.calculateAdditionals(this.customFlavor.ingredients);
   }
 
   checked(ingredient: Ingredient, value: number) {
@@ -55,7 +56,9 @@ export class EditPizzaComponent implements OnInit {
   }
 
   addCart() {
-    this.cartService.add(this.flavor);
+    this.customFlavor.additionalsValue = this.flavorService.calculateAdditionals(this.customFlavor.ingredients);
+
+    this.cartService.add(this.customFlavor);
     this.alertService.addCart(true);
 
     this.router.navigate(['/home']);
@@ -63,5 +66,19 @@ export class EditPizzaComponent implements OnInit {
     setTimeout(() => {
       this.alertService.clear();
     }, 1000);
+  }
+
+  private customerFlavorBuild(flavor: Flavor): CustomFlavor {
+    const customFlavor: CustomFlavor = new CustomFlavor();
+
+    customFlavor.id = 0;
+    customFlavor.image = flavor.image;
+    customFlavor.ingredients = flavor.ingredients;
+    customFlavor.name = flavor.name;
+    customFlavor.price = flavor.price;
+    customFlavor.type = flavor.type;
+    customFlavor.additionalsValue = this.flavorService.calculateAdditionals(flavor.ingredients);
+
+    return customFlavor;
   }
 }

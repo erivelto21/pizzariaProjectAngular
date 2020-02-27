@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { Flavor } from '../interfaces/flavor';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Ingredient } from '../interfaces/ingredient';
 
 @Injectable({
   providedIn: 'root'
@@ -19,9 +20,9 @@ export class FlavorService {
       .pipe(take(1));
   }
 
-  calculateAdditionals(flavor: Flavor) {
+  calculateAdditionals(ingredients: Ingredient[]) {
     let total = 0;
-    for (const i of flavor.ingredients) {
+    for (const i of ingredients) {
       total += (i.amount - 1) * 1;
     }
 

@@ -42,7 +42,7 @@ export class OrderListComponent implements OnInit {
 
     this.putCommaAndDot(aux);
 
-    aux.forEach( (pizza: OrderedPizza) => line += pizza.customFlavor.flavor.name);
+    aux.forEach( (pizza: OrderedPizza) => line += pizza.customFlavor.name);
 
     return line;
   }
@@ -52,9 +52,9 @@ export class OrderListComponent implements OnInit {
 
     for (let i = 0; i < pizzas.length; i++) {
       if (i === pointIndex) {
-        pizzas[i].customFlavor.flavor.name += '.';
+        pizzas[i].customFlavor.name += '.';
       } else {
-        pizzas[i].customFlavor.flavor.name += ', ';
+        pizzas[i].customFlavor.name += ', ';
       }
     }
   }

@@ -8,32 +8,37 @@ import { OrderedPizza } from '../interfaces/ordered-pizza';
 })
 export class EditPizzaService {
 
-  private cartSubjectOrderedPizza = new BehaviorSubject <OrderedPizza>(null);
-  private cartSubjectFlavor = new BehaviorSubject <Flavor>(null);
+  private cartOrderedPizza = new BehaviorSubject <OrderedPizza>(null);
+  private cartFlavor = new BehaviorSubject <Flavor>(null);
 
   constructor() { }
 
   getValueFlavor() {
-    return this.cartSubjectFlavor.getValue();
+    return this.cartFlavor.getValue();
   }
 
   setFlavor(flavor: Flavor) {
-    this.cartSubjectFlavor.next(flavor);
+    this.cartFlavor.next(flavor);
   }
 
   clearFlavor() {
-    this.cartSubjectFlavor.next(null);
+    this.cartFlavor.next(null);
   }
 
   getValueOrderedPizza() {
-    return this.cartSubjectOrderedPizza.getValue();
+    return this.cartOrderedPizza.getValue();
   }
 
   setOrderedPizza(orderedPizza: OrderedPizza) {
-    this.cartSubjectOrderedPizza.next(orderedPizza);
+    this.cartOrderedPizza.next(orderedPizza);
   }
 
   clearOrderedPizza() {
-    this.cartSubjectOrderedPizza.next(null);
+    this.cartOrderedPizza.next(null);
+  }
+
+  clearAll() {
+    this.cartFlavor.next(null);
+    this.cartOrderedPizza.next(null);
   }
 }
