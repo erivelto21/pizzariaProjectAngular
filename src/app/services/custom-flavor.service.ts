@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CustomFlavor } from '../interfaces/custom-flavor';
+import { CustomFlavor } from '../classes/custom-flavor';
 
 @Injectable({
   providedIn: 'root'

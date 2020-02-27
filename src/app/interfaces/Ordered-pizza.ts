@@ -1,4 +1,4 @@
-import { CustomFlavor } from './custom-flavor';
+import { CustomFlavor } from '../classes/custom-flavor';
 
 export interface OrderedPizza {
     customFlavor: CustomFlavor;

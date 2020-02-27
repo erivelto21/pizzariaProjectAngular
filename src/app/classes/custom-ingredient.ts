@@ -1,4 +1,4 @@
-import { Ingredient } from './ingredient';
+import { Ingredient } from '../interfaces/ingredient';
 
 export class CustomIngredient implements Ingredient {
 

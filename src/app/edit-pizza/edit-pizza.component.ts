@@ -6,7 +6,7 @@ import { Ingredient } from '../interfaces/ingredient';
 import { Router } from '@angular/router';
 import { FlavorService } from '../services/flavor.service';
 import { Flavor } from '../interfaces/flavor';
-import { CustomFlavor } from '../interfaces/custom-flavor';
+import { CustomFlavor } from '../classes/custom-flavor';
 import { ThrowStmt } from '@angular/compiler';
 
 @Component({

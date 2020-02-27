@@ -1,5 +1,5 @@
 import { CustomIngredient } from './custom-ingredient';
-import { Flavor } from './flavor';
+import { Flavor } from '../interfaces/flavor';
 
 export class CustomFlavor implements Flavor {
 
