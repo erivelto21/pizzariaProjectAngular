@@ -1,4 +1,4 @@
-<section class="row">
+<section class="row" *ngIf="orders.length > 0">
     <article id="alert" class="col-6">
         <app-alert></app-alert>
     </article>
@@ -32,3 +32,4 @@
         </tbody>
     </table>
 </section>
+<h2 *ngIf="orders.length === 0">Lista vazia</h2>
