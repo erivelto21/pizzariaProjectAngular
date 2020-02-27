@@ -1,4 +1,4 @@
-<div class="modal fade" id="Modal{{idOrder}}" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="ModalPizza{{idOrder}}" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-header">
@@ -15,13 +15,19 @@
                             <td>Sabor</td>
                             <td>Quantidade</td>
                             <td>Preço unitario</td>
+                            <td>Adicionais</td>
                         </tr>
                     </thead>
                     <tbody>
                         <tr *ngFor="let pizza of pizzas">
-                            <td>{{pizza.flavor.name}}</td>
+                            <td>{{pizza.customFlavor.name}}</td>
                             <td>{{pizza.amount}}</td>
-                            <td>R$ {{pizza.flavor.price.toFixed(2)}}</td>
+                            <td>R$ {{pizza.customFlavor.price.toFixed(2)}}</td>
+                            <td><button type="button" class="btn btn-link" data-toggle="modal" [attr.data-target]="'#ModalIngredients' + pizza.customFlavor.id">
+                                + Mais detalhes
+                            </button></td>
+
+                            <app-ingredients-details-modal  [ingredients] = "pizza.customFlavor.ingredients" [idCustomFlavor] = "pizza.customFlavor.id"></app-ingredients-details-modal>
                         </tr>
                     </tbody>
                 </table>
