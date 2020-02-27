@@ -36,7 +36,6 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { OrderListComponent } from './order-list/order-list.component';
 import { DetailsModalComponent } from './order-list/details-modal/details-modal.component';
 import { EditPizzaComponent } from './edit-pizza/edit-pizza.component';
-import { IngredientsDetailsModalComponent } from './order-list/details-modal/ingredients-details-modal/ingredients-details-modal.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +63,6 @@ import { IngredientsDetailsModalComponent } from './order-list/details-modal/ing
     OrderListComponent,
     DetailsModalComponent,
     EditPizzaComponent,
-    IngredientsDetailsModalComponent,
   ],
   imports: [
     BrowserModule,

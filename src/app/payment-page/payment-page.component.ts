@@ -10,5 +10,4 @@ export class PaymentPageComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {}
-
 }

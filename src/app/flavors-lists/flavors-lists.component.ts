@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Flavor } from '../interfaces/flavor';
 import { FlavorService } from '../services/flavor.service';
 

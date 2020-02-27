@@ -3,9 +3,7 @@ import { CartService } from 'src/app/services/cart.service';
 import { OrderedPizza } from 'src/app/interfaces/ordered-pizza';
 import { Router } from '@angular/router';
 import { EditPizzaService } from 'src/app/services/edit-pizza.service';
-import { Flavor } from 'src/app/interfaces/flavor';
 import { CustomFlavorService } from 'src/app/services/custom-flavor.service';
-import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-items-list',

@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { Flavor } from '../interfaces/flavor';
 import { OrderedPizza } from '../interfaces/ordered-pizza';
 import { EditPizzaService } from './edit-pizza.service';
 import { FlavorService } from './flavor.service';
 import { CustomFlavor } from '../classes/custom-flavor';
-import { Ingredient } from '../interfaces/ingredient';
 import { AlertService } from './alert.service';
 
 @Injectable({

@@ -3,16 +3,25 @@
     color: darkred;
 }
 
+table {
+    min-width: 190px;
+}
+
 table > thead {
     background-color: darkred;
     color: white;
+    width: 100%;
+}
+
+.price {
+    min-width: 110px;
 }
 
 .btn {
     color: darkred;
 }
 
-@media only screen and (max-width: 345px) {
+@media only screen and (max-width: 991px) {
     
     table {
         display: block;
