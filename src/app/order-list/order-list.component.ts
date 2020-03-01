@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { OrderService } from '../services/order.service';
 import { Order } from '../interfaces/order';
-import { OrderedPizza } from '../interfaces/ordered-pizza';
+import { Pizza } from '../interfaces/pizza';
 import { AlertService } from '../services/alert.service';
 
 @Component({
@@ -28,26 +28,26 @@ export class OrderListComponent implements OnInit, OnDestroy {
     );
   }
 
-  public getAmount(pizzas: OrderedPizza[]): number {
+  public getAmount(pizzas: Pizza[]): number {
     let amount = 0;
 
-    pizzas.forEach( (pizza: OrderedPizza) => amount += pizza.amount);
+    pizzas.forEach( (pizza: Pizza) => amount += pizza.amount);
 
     return amount;
   }
 
-  public getPizzas(pizzas: OrderedPizza[]): string {
+  public getPizzas(pizzas: Pizza[]): string {
     let line = '';
-    const aux: OrderedPizza[] = JSON.parse(JSON.stringify(pizzas));
+    const aux: Pizza[] = JSON.parse(JSON.stringify(pizzas));
 
     this.putCommaAndDot(aux);
 
-    aux.forEach( (pizza: OrderedPizza) => line += pizza.customFlavor.name);
+    aux.forEach( (pizza: Pizza) => line += pizza.customFlavor.name);
 
     return line;
   }
 
-  private putCommaAndDot(pizzas: OrderedPizza[]) {
+  private putCommaAndDot(pizzas: Pizza[]) {
     const pointIndex = pizzas.length - 1;
 
     for (let i = 0; i < pizzas.length; i++) {

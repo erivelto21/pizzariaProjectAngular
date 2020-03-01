@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { OrderedPizza } from 'src/app/interfaces/ordered-pizza';
+import { Pizza } from 'src/app/interfaces/pizza';
 import { AlertService } from 'src/app/services/alert.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { PaymentService } from 'src/app/services/payment.service';
@@ -19,7 +19,7 @@ export class PaymentComponent implements OnInit {
   readonly = false;
   submitted = false;
   paymentForm: FormGroup;
-  cart: OrderedPizza[];
+  cart: Pizza[];
   deliveryFee = 10.00;
   cardNumberMask = [/\d/, /\d/, /\d/, /\d/, ' ', /\d/, /\d/, /\d/, /\d/, ' ', /\d/, /\d/, /\d/, /\d/, ' ', /\d/, /\d/, /\d/, /\d/];
   expirationDateMask = [/\d/, /\d/, '/', /\d/, /\d/];

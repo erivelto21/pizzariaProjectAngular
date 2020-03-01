@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { OrderedPizza } from '../interfaces/ordered-pizza';
+import { Pizza } from '../interfaces/pizza';
 import { EditPizzaService } from './edit-pizza.service';
 import { FlavorService } from './flavor.service';
 import { CustomFlavor } from '../classes/custom-flavor';
@@ -11,13 +11,13 @@ import { AlertService } from './alert.service';
 })
 export class CartService {
 
-  private cartSubject = new Subject<OrderedPizza[]>();
+  private cartSubject = new Subject<Pizza[]>();
 
   constructor(private editPizzaService: EditPizzaService,
               private flavorService: FlavorService,
               private alertService: AlertService) { }
 
-  get(): Observable<OrderedPizza[]> {
+  get(): Observable<Pizza[]> {
     if (localStorage.getItem('cart') === null) {
       this.newCart();
     } else {
@@ -29,13 +29,13 @@ export class CartService {
   }
 
   newCart() {
-    const cart: OrderedPizza[] = [];
+    const cart: Pizza[] = [];
     localStorage.setItem('cart', JSON.stringify(cart));
     this.cartSubject.next(cart);
   }
 
   add(customFlavor: CustomFlavor) {
-    let cart: OrderedPizza[] = JSON.parse(localStorage.getItem('cart'));
+    let cart: Pizza[] = JSON.parse(localStorage.getItem('cart'));
 
     if (this.editPizzaService.getValueOrderedPizza() !== null && !this.anyEqual(cart, customFlavor)) {
       this.findCartItemForUpdate(cart, customFlavor);
@@ -54,7 +54,7 @@ export class CartService {
     this.alertService.addCart(true);
   }
 
-  private anyEqual(cart: OrderedPizza[], customFlavor: CustomFlavor): boolean {
+  private anyEqual(cart: Pizza[], customFlavor: CustomFlavor): boolean {
     for (const i of cart) {
       if (!this.isDifferent(customFlavor, i)) {
         return true;
@@ -64,7 +64,7 @@ export class CartService {
     return false;
   }
 
-  private findCartItemForUpdate(cart: OrderedPizza[], customFlavor: CustomFlavor) {
+  private findCartItemForUpdate(cart: Pizza[], customFlavor: CustomFlavor) {
     const orderedPizza = this.editPizzaService.getValueOrderedPizza();
 
     // tslint:disable-next-line: prefer-for-of
@@ -78,7 +78,7 @@ export class CartService {
     }
   }
 
-  private updateCartItem(cart: OrderedPizza[], position: number, customFlavor: CustomFlavor) {
+  private updateCartItem(cart: Pizza[], position: number, customFlavor: CustomFlavor) {
     cart[position].customFlavor = customFlavor;
     cart[position].customFlavor.additionalsValue = this.flavorService.calculateAdditionals(customFlavor.ingredients);
 
@@ -89,13 +89,13 @@ export class CartService {
     this.updateCart(cart);
   }
 
-  private updateCart(cart: OrderedPizza[]) {
+  private updateCart(cart: Pizza[]) {
     this.cartSubject.next(cart);
     localStorage.setItem('cart', JSON.stringify(cart));
   }
 
-  private checkOccurrence(customFlavor1: CustomFlavor, cart: OrderedPizza[]) {
-    const aux = cart.findIndex((i: OrderedPizza) => customFlavor1.name === i.customFlavor.name );
+  private checkOccurrence(customFlavor1: CustomFlavor, cart: Pizza[]) {
+    const aux = cart.findIndex((i: Pizza) => customFlavor1.name === i.customFlavor.name );
 
     for (const orderedPizza of cart) {
       if (!this.isDifferent(customFlavor1, orderedPizza)) {
@@ -104,13 +104,13 @@ export class CartService {
       }
     }
 
-    const orderedPizza1: OrderedPizza = {id: 0, customFlavor : customFlavor1, amount : 1};
+    const orderedPizza1: Pizza = {id: 0, customFlavor : customFlavor1, amount : 1};
 
     cart.push(orderedPizza1);
     this.updateCart(cart);
   }
 
-  private isDifferent(customFlavor: CustomFlavor, item2: OrderedPizza): boolean {
+  private isDifferent(customFlavor: CustomFlavor, item2: Pizza): boolean {
     const amountOfIngredients = item2.customFlavor.ingredients.length;
     let amountOfIngredientsEqual = 0;
 
@@ -130,9 +130,9 @@ export class CartService {
     return true;
   }
 
-  remove(item: OrderedPizza) {
+  remove(item: Pizza) {
     const cart: [] = JSON.parse(localStorage.getItem('cart'));
-    const aux = cart.findIndex((i: OrderedPizza) => !this.isDifferent(item.customFlavor, i));
+    const aux = cart.findIndex((i: Pizza) => !this.isDifferent(item.customFlavor, i));
     cart.splice(aux, 1);
     this.updateCart(cart);
   }

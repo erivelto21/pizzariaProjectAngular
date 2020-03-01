@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, ChangeDetectorRef, AfterViewChecked, OnDestroy } from '@angular/core';
 import { CartService } from '../services/cart.service';
-import { OrderedPizza } from '../interfaces/ordered-pizza';
+import { Pizza } from '../interfaces/pizza';
 import { AuthenticationService } from '../services/authentication.service';
 import { CustomFlavorService } from '../services/custom-flavor.service';
 
@@ -39,7 +39,7 @@ export class NavbarComponent implements OnInit, OnDestroy, AfterViewChecked {
     this.cdRef.detectChanges();
   }
 
-  private amoutTotal(list: OrderedPizza[]) {
+  private amoutTotal(list: Pizza[]) {
 
     if (list === undefined) {
       return;

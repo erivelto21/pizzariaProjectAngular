@@ -1,6 +1,6 @@
 import { CustomFlavor } from '../classes/custom-flavor';
 
-export interface OrderedPizza {
+export interface Pizza {
 
     id: number;
     customFlavor: CustomFlavor;

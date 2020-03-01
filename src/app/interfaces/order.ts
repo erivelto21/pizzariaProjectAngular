@@ -1,5 +1,5 @@
 import { User } from './user';
-import { OrderedPizza } from './ordered-pizza';
+import { Pizza } from './pizza';
 
 export interface Order {
     id: number;
@@ -9,5 +9,5 @@ export interface Order {
     date: string;
     paymentWay: string;
     user: User;
-    pizzas: OrderedPizza[];
+    pizzas: Pizza[];
 }

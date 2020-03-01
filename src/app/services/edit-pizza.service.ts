@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Flavor } from '../interfaces/flavor';
 import { BehaviorSubject } from 'rxjs';
-import { OrderedPizza } from '../interfaces/ordered-pizza';
+import { Pizza } from '../interfaces/pizza';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EditPizzaService {
 
-  private cartOrderedPizza = new BehaviorSubject <OrderedPizza>(null);
+  private cartOrderedPizza = new BehaviorSubject <Pizza>(null);
   private cartFlavor = new BehaviorSubject <Flavor>(null);
 
   constructor() { }
@@ -29,7 +29,7 @@ export class EditPizzaService {
     return this.cartOrderedPizza.getValue();
   }
 
-  setOrderedPizza(orderedPizza: OrderedPizza) {
+  setOrderedPizza(orderedPizza: Pizza) {
     this.cartOrderedPizza.next(orderedPizza);
   }
 
