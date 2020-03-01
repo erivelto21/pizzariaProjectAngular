@@ -59,6 +59,15 @@ button {
     margin-bottom: 50px;
 }
 
+.selects {
+    margin-right: 0;
+}
+
+.selects > div > select {
+    width: 100%;
+    margin-bottom: 5px;
+}
+
 @media only screen and (max-width: 649px){
 
     h2 {
@@ -102,6 +111,13 @@ button {
     }
 }
 
+@media only screen and (max-width: 576px){
+    
+    .selects > div > select {
+        width: 80%;
+        margin-bottom: 5px;
+    }
+}
 
 @media only screen and (max-width: 555px){
 

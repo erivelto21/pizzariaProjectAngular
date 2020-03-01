@@ -10,6 +10,41 @@
             <h6>Total: R$ {{(customFlavor.price + Additionals()).toFixed(2)}}</h6>
         </article>
     </div>
+
+    <h3 class="col-12">Selecione</h3>
+    <div class="col-12 row selects">
+        <div class="col-sm-4 col-12">
+            <h6>Tamanho</h6>
+            <select>
+                <option value="Pequena">Pequena</option>
+                <option value="Média" selected>Média</option>
+                <option value="Grande">Grande</option>
+                <option value="Extra Grande">Extra Grande</option>
+            </select>
+        </div>
+
+        <div class="col-sm-4 col-12">
+            <h6>Tipo de massa</h6>
+            <select>
+                <option value="Tradicional" selected>Tradicional</option>
+                <option value="Integral">Integral</option>
+                <option value="Siciliana">Siciliana</option>
+                <option value="Nova-Iorquina">Nova-Iorquina</option>
+                <option value="Nova-Iorquina">Nova-Iorquina</option>
+            </select>
+        </div>
+
+        <div class="col-sm-4 col-12">
+            <h6>Recheio da borda</h6>
+            <select>
+                <option value="Sem recheio" selected>Sem recheio</option>
+                <option value="Catupiry">Catupiry</option>
+                <option value="Cheddar">Cheddar</option>
+                <option value="Chocolate ao Leite">Chocolate ao Leite</option>
+            </select>
+        </div>
+    </div>
+
     <h3 class="col-12">Adicionais</h3>
     <p id="info" class="col-10">1x - Quantidade padrão do ingrediente, 2x - Duas vezes mais ingrediente, 3x - Três vezes mais ingrediente (Obs: Para 2x ou 3x será cobrado um adicional)</p>
     <table class="table col-10">
