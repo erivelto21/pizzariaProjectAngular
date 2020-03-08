@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { CartService } from '../services/cart.service';
 import { AlertService } from '../services/alert.service';
 import { EditPizzaService } from '../services/edit-pizza.service';
@@ -8,6 +8,10 @@ import { FlavorService } from '../services/flavor.service';
 import { Flavor } from '../interfaces/flavor';
 import { CustomFlavor } from '../classes/custom-flavor';
 import { CustomIngredient } from '../classes/custom-ingredient';
+import { Pizza } from '../interfaces/pizza';
+import { Dough } from '../enums/dough.enum';
+import { Size } from '../enums/size.enum';
+import { PizzaEdge } from '../enums/pizza-edge.enum';
 
 @Component({
   selector: 'app-edit-pizza',
@@ -15,8 +19,11 @@ import { CustomIngredient } from '../classes/custom-ingredient';
   styleUrls: ['./edit-pizza.component.css']
 })
 export class EditPizzaComponent implements OnInit {
-  customFlavor: CustomFlavor;
   show = false;
+  pizza: Pizza;
+  sizes: string[] = [];
+  doughs: string[] = [];
+  pizzaEdges: string[] = [];
 
   constructor(private editPizzaService: EditPizzaService,
               private cartService: CartService,
@@ -28,15 +35,19 @@ export class EditPizzaComponent implements OnInit {
     window.scrollTo(0, 0);
 
     if (this.editPizzaService.getValueFlavor() !== null) {
-      this.customFlavor = this.customerFlavorBuild(this.editPizzaService.getValueFlavor());
+      this.pizzaBuild();
       this.editPizzaService.clearFlavor();
     } else if (this.editPizzaService.getValueOrderedPizza !== null) {
-      this.customFlavor = JSON.parse(JSON.stringify(this.editPizzaService.getValueOrderedPizza().customFlavor));
+      this.pizza = JSON.parse(JSON.stringify(this.editPizzaService.getValueOrderedPizza()));
     }
+
+    this.sizes = Object.values(Size);
+    this.doughs = Object.values(Dough);
+    this.pizzaEdges = Object.values(PizzaEdge);
   }
 
   Additionals() {
-    return this.flavorService.calculateAdditionals(this.customFlavor.ingredients);
+    return this.flavorService.calculateAdditionals(this.pizza.customFlavor.ingredients);
   }
 
   checked(ingredient: Ingredient, value: number) {
@@ -56,15 +67,37 @@ export class EditPizzaComponent implements OnInit {
   }
 
   addCart() {
-    this.customFlavor.additionalsValue = this.flavorService.calculateAdditionals(this.customFlavor.ingredients);
+    this.pizza.customFlavor.additionalsValue = this.flavorService.calculateAdditionals(this.pizza.customFlavor.ingredients);
 
-    this.cartService.add(this.customFlavor);
+    if (this.editPizzaService.getValueOrderedPizza() !== null) {
+      this.cartService.updateItem(this.pizza);
+    } else {
+      this.cartService.add(this.pizza);
+    }
 
     this.router.navigate(['/home']);
 
     setTimeout(() => {
       this.alertService.clear();
     }, 1000);
+  }
+
+  isSelectedSize(value) {
+    return value === this.pizza.size;
+  }
+
+  isSelectedDough(value) {
+    return value === this.pizza.dough;
+  }
+
+  isSelectedPizzaEdge(value) {
+    return value === this.pizza.pizzaEdge;
+  }
+
+  private pizzaBuild() {
+    this.pizza = {id: 0, customFlavor: this.customerFlavorBuild(this.editPizzaService.getValueFlavor()),
+      dough: Dough.TRADICIONAL, size: Size.MEDIA,
+      pizzaEdge: PizzaEdge.SEMRECHEIO, amount: 1};
   }
 
   private customerFlavorBuild(flavor: Flavor): CustomFlavor {

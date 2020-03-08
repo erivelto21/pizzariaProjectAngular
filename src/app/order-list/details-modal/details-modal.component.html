@@ -13,6 +13,9 @@
                     <thead>
                         <tr>
                             <td>Sabor</td>
+                            <td>Tamanho</td>
+                            <td>Borda recheada</td>
+                            <td>Massa</td>
                             <td>Quantidade</td>
                             <td class="price">Preço original</td>
                             <td>Valor de adicionais</td>
@@ -22,6 +25,9 @@
                     <tbody>
                         <tr *ngFor="let pizza of pizzas">
                             <td>{{pizza.customFlavor.name}}</td>
+                            <td>{{pizza.size}}</td>
+                            <td>{{pizza.pizzaEdge}}</td>
+                            <td>{{pizza.dough}}</td>
                             <td>{{pizza.amount}}</td>
                             <td>R$ {{pizza.customFlavor.price.toFixed(2)}}</td>
                             <td>R$ {{pizza.customFlavor.additionalsValue.toFixed(2)}}</td>

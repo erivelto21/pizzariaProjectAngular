@@ -1,13 +1,13 @@
 <article class="row">
-    <h2 class="col-12">Pizza de {{customFlavor.name}}</h2>
+    <h2 class="col-12">Pizza de {{pizza.customFlavor.name}}</h2>
     <div class="col-10 panel row">
-        <img class="rounded mx-auto col-8 d-block" src={{customFlavor.image}}/>
+        <img class="rounded mx-auto col-8 d-block" src={{pizza.customFlavor.image}}/>
         <article class="col-4">
             <h4><span>Informações</span></h4>
-            <h6>Preço: R$ {{customFlavor.price.toFixed(2)}}</h6>
-            <h6>Tipo: {{customFlavor.type}}.</h6>
+            <h6>Preço: R$ {{pizza.customFlavor.price.toFixed(2)}}</h6>
+            <h6>Tipo: {{pizza.customFlavor.type}}.</h6>
             <h6>Valor em adicionais: R$ {{Additionals().toFixed(2)}}</h6>
-            <h6>Total: R$ {{(customFlavor.price + Additionals()).toFixed(2)}}</h6>
+            <h6>Total: R$ {{(pizza.customFlavor.price + Additionals()).toFixed(2)}}</h6>
         </article>
     </div>
 
@@ -15,32 +15,22 @@
     <div class="col-12 row selects">
         <div class="col-sm-4 col-12">
             <h6>Tamanho</h6>
-            <select>
-                <option value="Pequena">Pequena</option>
-                <option value="Média" selected>Média</option>
-                <option value="Grande">Grande</option>
-                <option value="Extra Grande">Extra Grande</option>
+            <select #size (change) = "this.pizza.size = size.value">
+                <option *ngFor="let size of sizes" [selected] = "isSelectedSize(size)" [value]="size">{{size}}</option>
             </select>
         </div>
 
         <div class="col-sm-4 col-12">
             <h6>Tipo de massa</h6>
-            <select>
-                <option value="Tradicional" selected>Tradicional</option>
-                <option value="Integral">Integral</option>
-                <option value="Siciliana">Siciliana</option>
-                <option value="Nova-Iorquina">Nova-Iorquina</option>
-                <option value="Nova-Iorquina">Nova-Iorquina</option>
+            <select #dough (change) = "pizza.dough = dough.value">
+                <option *ngFor="let dough of doughs" [selected] = "isSelectedDough(dough)" [value]="dough">{{dough}}</option>
             </select>
         </div>
 
         <div class="col-sm-4 col-12">
             <h6>Recheio da borda</h6>
-            <select>
-                <option value="Sem recheio" selected>Sem recheio</option>
-                <option value="Catupiry">Catupiry</option>
-                <option value="Cheddar">Cheddar</option>
-                <option value="Chocolate ao Leite">Chocolate ao Leite</option>
+            <select #pizzaEdge (change) = "pizza.pizzaEdge = pizzaEdge.value">
+                <option *ngFor="let pizzaEdge of pizzaEdges" [selected] = "isSelectedPizzaEdge(pizzaEdge)" [value]="pizzaEdge">{{pizzaEdge}}</option>
             </select>
         </div>
     </div>
@@ -55,7 +45,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr class="row" *ngFor="let i of customFlavor.ingredients">
+            <tr class="row" *ngFor="let i of pizza.customFlavor.ingredients">
                 <td class="col-4">{{i.name}}</td>
                 <td class="row col-8">
                     <div class="col-4">

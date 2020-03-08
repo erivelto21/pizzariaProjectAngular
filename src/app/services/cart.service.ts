@@ -3,7 +3,6 @@ import { Observable, Subject } from 'rxjs';
 import { Pizza } from '../interfaces/pizza';
 import { EditPizzaService } from './edit-pizza.service';
 import { FlavorService } from './flavor.service';
-import { CustomFlavor } from '../classes/custom-flavor';
 import { AlertService } from './alert.service';
 
 @Injectable({
@@ -34,53 +33,45 @@ export class CartService {
     this.cartSubject.next(cart);
   }
 
-  add(customFlavor: CustomFlavor) {
-    let cart: Pizza[] = JSON.parse(localStorage.getItem('cart'));
+  add(pizza: Pizza) {
+    const cart: Pizza[] = JSON.parse(localStorage.getItem('cart'));
 
-    if (this.editPizzaService.getValueOrderedPizza() !== null && !this.anyEqual(cart, customFlavor)) {
-      this.findCartItemForUpdate(cart, customFlavor);
+    const aux = cart.findIndex((i: Pizza) => pizza.customFlavor.name === i.customFlavor.name );
+
+    if (aux === -1) {
+      cart.push(pizza);
+      this.updateCart(cart);
+      this.alertService.addCart(true);
       return;
     }
 
-    if (this.editPizzaService.getValueOrderedPizza() !== null &&
-    this.anyEqual(cart, this.editPizzaService.getValueOrderedPizza().customFlavor)) {
-      this.remove(this.editPizzaService.getValueOrderedPizza());
-      this.editPizzaService.clearOrderedPizza();
-      cart = JSON.parse(localStorage.getItem('cart'));
-    }
-
-    this.checkOccurrence(customFlavor, cart);
+    this.checkOccurrence(pizza, cart);
     this.updateCart(cart);
     this.alertService.addCart(true);
   }
 
-  private anyEqual(cart: Pizza[], customFlavor: CustomFlavor): boolean {
-    for (const i of cart) {
-      if (!this.isDifferent(customFlavor, i)) {
-        return true;
-      }
-    }
-
-    return false;
+  updateItem(pizza: Pizza) {
+    const cart: Pizza[] = JSON.parse(localStorage.getItem('cart'));
+    this.findCartItemForUpdate(cart, pizza);
   }
 
-  private findCartItemForUpdate(cart: Pizza[], customFlavor: CustomFlavor) {
+  private findCartItemForUpdate(cart: Pizza[], pizza: Pizza) {
     const orderedPizza = this.editPizzaService.getValueOrderedPizza();
 
     // tslint:disable-next-line: prefer-for-of
     for (let i = 0; i < cart.length; i ++) {
-      if (!this.isDifferent(orderedPizza.customFlavor, cart[i])) {
+      if (!this.isDifferent(orderedPizza, cart[i])) {
 
-        this.updateCartItem(cart, i, customFlavor);
+        this.updateCartItem(cart, i, pizza);
 
         return;
       }
     }
   }
 
-  private updateCartItem(cart: Pizza[], position: number, customFlavor: CustomFlavor) {
-    cart[position].customFlavor = customFlavor;
-    cart[position].customFlavor.additionalsValue = this.flavorService.calculateAdditionals(customFlavor.ingredients);
+  private updateCartItem(cart: Pizza[], position: number, pizza: Pizza) {
+    cart[position] = pizza;
+    cart[position].customFlavor.additionalsValue = this.flavorService.calculateAdditionals(pizza.customFlavor.ingredients);
 
     this.editPizzaService.clearOrderedPizza();
 
@@ -94,27 +85,23 @@ export class CartService {
     localStorage.setItem('cart', JSON.stringify(cart));
   }
 
-  private checkOccurrence(customFlavor1: CustomFlavor, cart: Pizza[]) {
-    const aux = cart.findIndex((i: Pizza) => customFlavor1.name === i.customFlavor.name );
-
+  private checkOccurrence(pizza: Pizza, cart: Pizza[]) {
     for (const orderedPizza of cart) {
-      if (!this.isDifferent(customFlavor1, orderedPizza)) {
+      if (!this.isDifferent(pizza, orderedPizza)) {
         orderedPizza.amount++;
         return;
       }
     }
 
-    const orderedPizza1: Pizza = {id: 0, customFlavor : customFlavor1, amount : 1};
-
-    cart.push(orderedPizza1);
+    cart.push(pizza);
     this.updateCart(cart);
   }
 
-  private isDifferent(customFlavor: CustomFlavor, item2: Pizza): boolean {
+  private isDifferent(pizza: Pizza, item2: Pizza): boolean {
     const amountOfIngredients = item2.customFlavor.ingredients.length;
     let amountOfIngredientsEqual = 0;
 
-    for (const i of customFlavor.ingredients) {
+    for (const i of pizza.customFlavor.ingredients) {
       for (const i2 of item2.customFlavor.ingredients) {
         if (i.name === i2.name) {
           if (i.amount === i2.amount) {
@@ -124,7 +111,15 @@ export class CartService {
       }
     }
 
-    if (amountOfIngredientsEqual === amountOfIngredients) {
+    let isEqual = true;
+
+    isEqual = pizza.size === item2.size;
+
+    isEqual = pizza.dough === item2.dough;
+
+    isEqual = pizza.pizzaEdge === item2.pizzaEdge;
+
+    if (amountOfIngredientsEqual === amountOfIngredients && isEqual) {
       return false;
     }
     return true;
@@ -132,7 +127,7 @@ export class CartService {
 
   remove(item: Pizza) {
     const cart: [] = JSON.parse(localStorage.getItem('cart'));
-    const aux = cart.findIndex((i: Pizza) => !this.isDifferent(item.customFlavor, i));
+    const aux = cart.findIndex((i: Pizza) => !this.isDifferent(item, i));
     cart.splice(aux, 1);
     this.updateCart(cart);
   }
