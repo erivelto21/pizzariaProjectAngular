@@ -1,5 +1,6 @@
 import { CustomIngredient } from './custom-ingredient';
 import { Flavor } from '../interfaces/flavor';
+import { Type } from '../enums/type.enum';
 
 export class CustomFlavor implements Flavor {
 
@@ -8,6 +9,6 @@ export class CustomFlavor implements Flavor {
     ingredients: CustomIngredient[];
     price: number;
     image: string;
-    type: string;
+    type: Type;
     additionalsValue: number;
 }
