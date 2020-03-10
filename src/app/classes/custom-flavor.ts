@@ -10,5 +10,4 @@ export class CustomFlavor implements Flavor {
     price: number;
     image: string;
     type: Type;
-    additionalsValue: number;
 }

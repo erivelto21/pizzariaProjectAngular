@@ -2,7 +2,7 @@ import { Component, OnInit, Output, EventEmitter, ChangeDetectorRef, AfterViewCh
 import { CartService } from '../services/cart.service';
 import { Pizza } from '../interfaces/pizza';
 import { AuthenticationService } from '../services/authentication.service';
-import { CustomFlavorService } from '../services/custom-flavor.service';
+import { PizzaService } from '../services/pizza.service';
 
 @Component({
   selector: 'app-navbar',
@@ -19,7 +19,7 @@ export class NavbarComponent implements OnInit, OnDestroy, AfterViewChecked {
   constructor(private cartService: CartService,
               private cdRef: ChangeDetectorRef,
               private authenticationService: AuthenticationService,
-              private customFlavorService: CustomFlavorService) { }
+              private pizzaService: PizzaService) { }
 
   ngOnInit() {
     this.cartService.get().subscribe((_) => this.amoutTotal(_));
@@ -48,7 +48,7 @@ export class NavbarComponent implements OnInit, OnDestroy, AfterViewChecked {
     this.priceTotal = 0;
 
     for (const item of list) {
-      this.priceTotal += this.customFlavorService.totalValue(item.customFlavor) * item.amount;
+      this.priceTotal += this.pizzaService.totalValue(item) * item.amount;
     }
   }
 

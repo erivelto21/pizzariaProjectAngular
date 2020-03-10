@@ -7,6 +7,7 @@ export interface Pizza {
 
     id: number;
     customFlavor: CustomFlavor;
+    additionalsValue: number;
     size: Size;
     dough: Dough;
     pizzaEdge: PizzaEdge;

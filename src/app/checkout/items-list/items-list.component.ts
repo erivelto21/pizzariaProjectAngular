@@ -3,7 +3,7 @@ import { CartService } from 'src/app/services/cart.service';
 import { Pizza } from 'src/app/interfaces/pizza';
 import { Router } from '@angular/router';
 import { EditPizzaService } from 'src/app/services/edit-pizza.service';
-import { CustomFlavorService } from 'src/app/services/custom-flavor.service';
+import { PizzaService } from 'src/app/services/pizza.service';
 
 @Component({
   selector: 'app-items-list',
@@ -18,7 +18,7 @@ export class ItemsListComponent implements OnInit, OnDestroy {
     private cartService: CartService,
     private router: Router,
     private editPizzaService: EditPizzaService,
-    private customFlavorService: CustomFlavorService) { }
+    private pizzaService: PizzaService) { }
 
   ngOnInit() {
     this.cartService.get().subscribe((_: Pizza[]) => this.items = _ );
@@ -40,14 +40,14 @@ export class ItemsListComponent implements OnInit, OnDestroy {
   }
 
   totalEachItem(orderedPizza: Pizza) {
-    return this.customFlavorService.totalValue(orderedPizza.customFlavor) * orderedPizza.amount;
+    return this.pizzaService.totalValue(orderedPizza) * orderedPizza.amount;
   }
 
   amoutTotal() {
     let total = 0;
 
     for (const item of this.items) {
-      total += this.customFlavorService.totalValue(item.customFlavor) * item.amount;
+      total += this.pizzaService.totalValue(item) * item.amount;
     }
 
     return total;

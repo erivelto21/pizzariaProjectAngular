@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Pizza } from 'src/app/interfaces/pizza';
-import { CustomFlavorService } from 'src/app/services/custom-flavor.service';
+import { PizzaService } from 'src/app/services/pizza.service';
 
 @Component({
   selector: 'app-details-modal',
@@ -12,11 +12,11 @@ export class DetailsModalComponent implements OnInit {
   @Input() pizzas: Pizza[];
   @Input() idOrder: number;
 
-  constructor(private customFlavorService: CustomFlavorService) { }
+  constructor(private pizzaService: PizzaService) { }
 
   ngOnInit() {}
 
   total(orderedPizza: Pizza) {
-    return this.customFlavorService.totalValue(orderedPizza.customFlavor) * orderedPizza.amount;
+    return this.pizzaService.totalValue(orderedPizza) * orderedPizza.amount;
   }
 }

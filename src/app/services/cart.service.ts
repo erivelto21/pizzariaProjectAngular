@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { Pizza } from '../interfaces/pizza';
 import { EditPizzaService } from './edit-pizza.service';
-import { FlavorService } from './flavor.service';
 import { AlertService } from './alert.service';
+import { PizzaService } from './pizza.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,7 @@ export class CartService {
   private cartSubject = new Subject<Pizza[]>();
 
   constructor(private editPizzaService: EditPizzaService,
-              private flavorService: FlavorService,
+              private pizzaService: PizzaService,
               private alertService: AlertService) { }
 
   get(): Observable<Pizza[]> {
@@ -71,7 +71,7 @@ export class CartService {
 
   private updateCartItem(cart: Pizza[], position: number, pizza: Pizza) {
     cart[position] = pizza;
-    cart[position].customFlavor.additionalsValue = this.flavorService.calculateAdditionals(pizza.customFlavor.ingredients);
+    cart[position].additionalsValue = this.pizzaService.calculateAdditionals(pizza);
 
     this.editPizzaService.clearOrderedPizza();
 

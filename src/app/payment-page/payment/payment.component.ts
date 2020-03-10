@@ -7,7 +7,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { CustomizedTransactionResponse } from 'src/app/interfaces/customized-transaction-response';
 import { Router } from '@angular/router';
 import { CartService } from 'src/app/services/cart.service';
-import { CustomFlavorService } from 'src/app/services/custom-flavor.service';
+import { PizzaService } from 'src/app/services/pizza.service';
 
 @Component({
   selector: 'app-payment',
@@ -31,7 +31,7 @@ export class PaymentComponent implements OnInit {
               private alertService: AlertService,
               private paymentService: PaymentService,
               private cartService: CartService,
-              private customFlavorService: CustomFlavorService,
+              private pizzaService: PizzaService,
               private router: Router) { }
 
   ngOnInit() {
@@ -88,7 +88,7 @@ export class PaymentComponent implements OnInit {
     let priceTotal = 0;
 
     for (const item of this.cart) {
-      priceTotal += this.customFlavorService.totalValue(item.customFlavor) * item.amount;
+      priceTotal += this.pizzaService.totalValue(item) * item.amount;
     }
 
     return priceTotal;

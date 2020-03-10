@@ -4,7 +4,6 @@ import { AlertService } from '../services/alert.service';
 import { EditPizzaService } from '../services/edit-pizza.service';
 import { Ingredient } from '../interfaces/ingredient';
 import { Router } from '@angular/router';
-import { FlavorService } from '../services/flavor.service';
 import { Flavor } from '../interfaces/flavor';
 import { CustomFlavor } from '../classes/custom-flavor';
 import { CustomIngredient } from '../classes/custom-ingredient';
@@ -12,6 +11,7 @@ import { Pizza } from '../interfaces/pizza';
 import { Dough } from '../enums/dough.enum';
 import { Size } from '../enums/size.enum';
 import { PizzaEdge } from '../enums/pizza-edge.enum';
+import { PizzaService } from '../services/pizza.service';
 
 @Component({
   selector: 'app-edit-pizza',
@@ -28,7 +28,7 @@ export class EditPizzaComponent implements OnInit {
   constructor(private editPizzaService: EditPizzaService,
               private cartService: CartService,
               private alertService: AlertService,
-              private flavorService: FlavorService,
+              private pizzaService: PizzaService,
               private router: Router) { }
 
   ngOnInit() {
@@ -47,7 +47,11 @@ export class EditPizzaComponent implements OnInit {
   }
 
   Additionals() {
-    return this.flavorService.calculateAdditionals(this.pizza.customFlavor.ingredients);
+    return this.pizzaService.calculateAdditionals(this.pizza);
+  }
+
+  total() {
+    return this.pizzaService.totalValue(this.pizza);
   }
 
   checked(ingredient: Ingredient, value: number) {
@@ -67,7 +71,7 @@ export class EditPizzaComponent implements OnInit {
   }
 
   addCart() {
-    this.pizza.customFlavor.additionalsValue = this.flavorService.calculateAdditionals(this.pizza.customFlavor.ingredients);
+    this.pizza.additionalsValue = this.pizzaService.calculateAdditionals(this.pizza);
 
     if (this.editPizzaService.getValueOrderedPizza() !== null) {
       this.cartService.updateItem(this.pizza);
@@ -96,6 +100,7 @@ export class EditPizzaComponent implements OnInit {
 
   private pizzaBuild() {
     this.pizza = {id: 0, customFlavor: this.customerFlavorBuild(this.editPizzaService.getValueFlavor()),
+      additionalsValue : 0,
       dough: Dough.TRADICIONAL, size: Size.MEDIA,
       pizzaEdge: PizzaEdge.SEMRECHEIO, amount: 1};
   }
@@ -109,7 +114,6 @@ export class EditPizzaComponent implements OnInit {
     customFlavor.name = flavor.name;
     customFlavor.price = flavor.price;
     customFlavor.type = flavor.type;
-    customFlavor.additionalsValue = this.flavorService.calculateAdditionals(flavor.ingredients);
 
     return customFlavor;
   }

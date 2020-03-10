@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CartService } from 'src/app/services/cart.service';
 import { Pizza } from 'src/app/interfaces/pizza';
-import { CustomFlavorService } from 'src/app/services/custom-flavor.service';
+import { PizzaService } from 'src/app/services/pizza.service';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -13,7 +13,7 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
   items: Pizza[] = [];
 
   constructor(private cartService: CartService,
-              private customFlavorService: CustomFlavorService) { }
+              private pizzaService: PizzaService) { }
 
   ngOnInit() {
     this.cartService.get().subscribe((_: Pizza[]) => this.items = _ );
@@ -30,7 +30,7 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
   }
 
   getTotalValue(orderedPizza: Pizza) {
-    return this.customFlavorService.totalValue(orderedPizza.customFlavor);
+    return this.pizzaService.totalValue(orderedPizza);
   }
 
   removeItem(item: Pizza) {
