@@ -9,5 +9,6 @@ export interface Order {
     date: string;
     paymentWay: string;
     user: User;
+    deliveryFee: number;
     pizzas: Pizza[];
 }
