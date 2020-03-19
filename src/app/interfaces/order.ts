@@ -1,4 +1,4 @@
-import { User } from './user';
+import { SystemUser } from './system-user';
 import { Pizza } from './pizza';
 
 export interface Order {
@@ -8,7 +8,7 @@ export interface Order {
     total: number;
     date: string;
     paymentWay: string;
-    user: User;
+    user: SystemUser;
     deliveryFee: number;
     pizzas: Pizza[];
 }

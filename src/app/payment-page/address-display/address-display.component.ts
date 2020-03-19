@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/interfaces/user';
+import { SystemUser } from 'src/app/interfaces/system-user';
 
 @Component({
   selector: 'app-address-display',
@@ -8,7 +8,7 @@ import { User } from 'src/app/interfaces/user';
 })
 export class AddressDisplayComponent implements OnInit {
 
-  user: User;
+  user: SystemUser;
 
   constructor() { }
 

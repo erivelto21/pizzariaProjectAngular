@@ -5,7 +5,7 @@ import { CepAux } from 'src/app/interfaces/cep-aux';
 import { UserService } from 'src/app/services/user.service';
 import { AlertService } from 'src/app/services/alert.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { User } from 'src/app/interfaces/user';
+import { SystemUser } from 'src/app/interfaces/system-user';
 import { locationValidator } from 'src/app/util/locationValidator';
 import { Router } from '@angular/router';
 
@@ -21,7 +21,7 @@ export class AddressRegisterComponent implements OnInit {
   readonly = false;
   cepMask = [/\d/, /\d/, /\d/, /\d/ , /\d/, '-', /\d/, /\d/, /\d/];
   phoneMask = ['(', /[1-9]/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
-  private user: User;
+  private user: SystemUser;
 
   constructor(private formBuilder: FormBuilder,
               private userService: UserService,

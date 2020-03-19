@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { take } from 'rxjs/operators';
-import { User } from '../interfaces/user';
+import { SystemUser } from '../interfaces/system-user';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -13,10 +13,10 @@ export class AuthenticationService {
   constructor(private http: HttpClient) {}
 
   login(email, password) {
-    return this.http.post<User>(this.url,  { email, password }, {observe: 'response'}).pipe(take(1))
+    return this.http.post<SystemUser>(this.url,  { email, password }, {observe: 'response'}).pipe(take(1))
     .pipe( (userObservable) => {
       userObservable.subscribe((response) => {
-        let user: User;
+        let user: SystemUser;
 
         user = {
           id: response.body.id,

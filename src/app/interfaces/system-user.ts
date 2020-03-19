@@ -1,8 +1,7 @@
 import { Role } from './role';
 import { Address } from './address';
 
-export interface User {
-
+export interface SystemUser {
     id: number;
     lastName: string;
     email: string;
