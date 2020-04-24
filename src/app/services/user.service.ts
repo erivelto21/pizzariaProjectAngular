@@ -16,10 +16,12 @@ export class UserService {
   }
 
   phone(user) {
-    return this.http.put(this.url + '/phone', user, { headers: new HttpHeaders().set('Authorization', user.token), }).pipe(take(1));
+    return this.http.patch(this.url + '/' + user.id + '/phone', user.phone,
+          { headers: new HttpHeaders().set('Authorization', user.token).set('Content-Type', 'application/json'), }).pipe(take(1));
   }
 
   address(user) {
-    return this.http.put(this.url + '/address', user, { headers: new HttpHeaders().set('Authorization', user.token), }).pipe(take(1));
+    return this.http.patch(this.url + '/' + user.id + '/address', user.address,
+          { headers: new HttpHeaders().set('Authorization', user.token).set('Content-Type', 'application/json'), }).pipe(take(1));
   }
 }

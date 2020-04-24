@@ -29,6 +29,7 @@
                 <input type="number" name="number" formControlName="number" class="form-control" [ngClass]="{ 'is-invalid': submitted && addressForm.controls.number.errors }"/>
                 <div *ngIf="submitted && addressForm.controls.number.errors" class="invalid-feedback">
                     <div *ngIf="addressForm.controls.number.errors.required">Campo obrigatório</div>
+                    <div *ngIf="addressForm.controls.number.errors.max">Número muito grande</div>
                 </div>
             </div>
             <div class="form-group col-md-4 col-sm-4 col-6">

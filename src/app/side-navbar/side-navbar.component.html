@@ -9,14 +9,14 @@
         <li *ngIf = "userName" class="nav-item">
             <a class="nav-link" routerLink="/orders" routerLinkActive="active"> <i class="far fa-list-alt"></i> Pedidos</a>
         </li>
+        <li *ngIf = "userName" class="nav-item">
+            <a class="nav-link" routerLink="/favorites" routerLinkActive="active"> <i class="fas fa-heart"></i> Favoritos</a>
+        </li>
         <li class="nav-item">
             <a class="nav-link" href="" ><i class="fas fa-thumbs-up"></i> Ranking</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="" ><i class="fas fa-globe-americas"></i> Lojas</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="" ><i class="fas fa-envelope"></i> Contato</a>
         </li>
         <li *ngIf = "userName" class="nav-item">
             <a (click) = 'logout()' href="" role="button" class="nav-link"> <i class="fas fa-times"></i> Sair</a>

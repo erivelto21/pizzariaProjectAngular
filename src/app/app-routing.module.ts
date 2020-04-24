@@ -9,6 +9,7 @@ import { PaymentPageComponent } from './payment-page/payment-page.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { OrderListComponent } from './order-list/order-list.component';
 import { EditPizzaComponent } from './edit-pizza/edit-pizza.component';
+import { FavoriteListComponent } from './favorite-list/favorite-list.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent, canActivate: [AuthGuard]},
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'checkout', component: CheckoutComponent, canActivate: [AuthGuard]},
   { path: 'payment', component: PaymentPageComponent, canActivate: [AuthGuard]},
   { path: 'orders', component: OrderListComponent, canActivate: [AuthGuard]},
+  { path: 'favorites', component: FavoriteListComponent, canActivate: [AuthGuard]},
   { path: 'edit', component: EditPizzaComponent, canActivate: [AuthGuard]},
   { path: '**', component: NotFoundComponent, canActivate: [AuthGuard]},
 ];

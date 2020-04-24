@@ -8,6 +8,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { SystemUser } from 'src/app/interfaces/system-user';
 import { locationValidator } from 'src/app/util/locationValidator';
 import { Router } from '@angular/router';
+import { Account } from 'src/app/interfaces/account';
 
 @Component({
   selector: 'app-address-register',
@@ -30,7 +31,7 @@ export class AddressRegisterComponent implements OnInit {
               private alertService: AlertService) { }
 
   ngOnInit() {
-    this.user = JSON.parse(localStorage.getItem('currentUser'));
+    this.user = JSON.parse(localStorage.getItem('currentAccount')).systemUser;
 
     if (this.user.address !== null ) {
       this.setAddress();
@@ -40,7 +41,7 @@ export class AddressRegisterComponent implements OnInit {
     this.addressForm = this.formBuilder.group({
       id: [''],
       street: ['', Validators.required],
-      number: ['', Validators.required],
+      number: ['', [Validators.required, Validators.max(99999999)]],
       neighborhood: ['', Validators.required],
       complement: [''],
       city: ['Fortaleza', Validators.required],
@@ -54,7 +55,7 @@ export class AddressRegisterComponent implements OnInit {
     this.addressForm = this.formBuilder.group({
       id: [this.user.address.id],
       street: [this.user.address.street, Validators.required],
-      number: [this.user.address.number, Validators.required],
+      number: [this.user.address.number, [Validators.required, Validators.max(99999999)]],
       neighborhood: [this.user.address.neighborhood, Validators.required],
       complement: [this.user.address.complement],
       city: [this.user.address.city, Validators.required],
@@ -115,18 +116,23 @@ export class AddressRegisterComponent implements OnInit {
       return;
     }
 
-    localStorage.setItem('currentUser', JSON.stringify(this.user));
+    const account: Account = JSON.parse(localStorage.getItem('currentAccount'));
+    account.systemUser = this.user;
+
+    localStorage.setItem('currentAccount', JSON.stringify(account));
 
     this.userService.address(this.user).subscribe(
       data => {
-
+        this.phoneSubmit();
       },
       (error: HttpErrorResponse) => {
         this.submitted = false;
         this.alertService.error(error.error.message, false);
       }
     );
+  }
 
+  private phoneSubmit() {
     this.userService.phone(this.user).subscribe(
       data => {
         this.router.navigate(['/payment']);

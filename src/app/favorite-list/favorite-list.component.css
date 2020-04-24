@@ -1,0 +1,73 @@
+h3 {
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 40px;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 35px;
+    color: darkred;
+}
+
+.table-container {
+    padding: 0 3%;
+}
+
+table {
+    border-color: darkred;
+    border-radius: 2em;
+    overflow: hidden;
+}
+
+thead {
+    background-color: darkred;
+    color: white;
+}
+
+thead > tr > td, tbody > tr > td {
+    text-align: center;
+}
+
+tr > td > img {
+    height: 192px;
+    width: 263px;
+    margin-bottom: 5px;
+}
+
+.action-buttons {
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 20%;
+}
+
+button {
+    background-color: darkred;
+    color: white;
+    font-family: 'Bangers', cursive;
+    font-size: 17px;
+    border-style: none;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.notBreakPrice {
+    min-width: 89px;
+}
+
+h2 {
+    text-align: center;
+}
+
+@media only screen and (max-width: 687px) {
+    
+    tr > td > img{
+        height: 92px;
+        width: 163px;
+    }
+}
+
+@media only screen and (max-width: 388px) {
+    
+    table {
+        display: block;
+        overflow-x: scroll;
+    } 
+}

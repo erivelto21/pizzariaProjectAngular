@@ -36,6 +36,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { OrderListComponent } from './order-list/order-list.component';
 import { DetailsModalComponent } from './order-list/details-modal/details-modal.component';
 import { EditPizzaComponent } from './edit-pizza/edit-pizza.component';
+import { FavoriteListComponent } from './favorite-list/favorite-list.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { EditPizzaComponent } from './edit-pizza/edit-pizza.component';
     OrderListComponent,
     DetailsModalComponent,
     EditPizzaComponent,
+    FavoriteListComponent,
   ],
   imports: [
     BrowserModule,

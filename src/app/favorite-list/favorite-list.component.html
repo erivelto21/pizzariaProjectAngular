@@ -1,0 +1,30 @@
+<div *ngIf="favorites.length > 0">
+    <h3>Meus favoritos</h3>
+    <article class="table-container">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <td>Pizza</td>
+                    <td class="notBreakPrice">Preço</td>
+                    <td>Ações</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let favorite of favorites">
+                    <td>
+                        <img class="rounded mx-auto d-block" src={{favorite.image}}/>
+                        <p>{{favorite.name}}</p>
+                    </td>
+                    <td>R$ {{favorite.price.toFixed(2)}}</td>
+                    <td>
+                        <div class="action-buttons">
+                            <button (click)="order(favorite)">Pedir</button>
+                            <button (click)="remove(favorite)">remover</button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </article>
+</div>
+<h2 *ngIf="favorites.length === 0">Sem favoritos</h2>

@@ -55,6 +55,22 @@ img {
     width: 40%;
 }
 
+.favorite-icon {
+    position: absolute;
+    top: 15px;
+    left: 55%;
+}
+
+i {
+    font-size: 35px;
+    transition: linear 0.2s;
+}
+
+.favorite-on {
+    color: red;
+    font-size: 40px;
+}
+
 button {
     margin-bottom: 50px;
 }
@@ -117,6 +133,10 @@ button {
     #info {
         font-size: 10px;
     }
+
+    .favorite-icon {
+        left: 80%;
+    }
 }
 
 @media only screen and (max-width: 576px){
@@ -139,5 +159,13 @@ button {
 
     #info {
         font-size: 8px;
+    }
+
+    .favorite-icon {
+        left: 75%;
+    }
+
+    .favorite-icon > i {
+        font-size: 30px;
     }
 }

@@ -12,6 +12,9 @@ import { Dough } from '../enums/dough.enum';
 import { Size } from '../enums/size.enum';
 import { PizzaEdge } from '../enums/pizza-edge.enum';
 import { PizzaService } from '../services/pizza.service';
+import { FlavorService } from '../services/flavor.service';
+import { AccountService } from '../services/account.service';
+import { Account } from '../interfaces/account';
 
 @Component({
   selector: 'app-edit-pizza',
@@ -20,6 +23,7 @@ import { PizzaService } from '../services/pizza.service';
 })
 export class EditPizzaComponent implements OnInit {
   show = false;
+  favorite = false;
   pizza: Pizza;
   sizes: string[] = [];
   doughs: string[] = [];
@@ -29,6 +33,8 @@ export class EditPizzaComponent implements OnInit {
               private cartService: CartService,
               private alertService: AlertService,
               private pizzaService: PizzaService,
+              private flavorService: FlavorService,
+              private accountService: AccountService,
               private router: Router) { }
 
   ngOnInit() {
@@ -44,6 +50,8 @@ export class EditPizzaComponent implements OnInit {
     this.sizes = Object.values(Size);
     this.doughs = Object.values(Dough);
     this.pizzaEdges = Object.values(PizzaEdge);
+
+    this.isFavorite();
   }
 
   Additionals() {
@@ -96,6 +104,57 @@ export class EditPizzaComponent implements OnInit {
 
   isSelectedPizzaEdge(value) {
     return value === this.pizza.pizzaEdge;
+  }
+
+  favoriteModify() {
+    this.flavorService.flavorsList().subscribe(
+      (list) => {
+        const flavorId: number = list.find( flavor => flavor.name === this.pizza.customFlavor.name ).id;
+
+        if (!this.favorite) {
+          this.newFavorite(flavorId);
+        } else {
+          this.removeFavorit(flavorId);
+        }
+      }
+    );
+  }
+
+  getCurrentAccount() {
+    return JSON.parse(localStorage.getItem('currentAccount'));
+  }
+
+  private newFavorite(flavorId: number) {
+    this.accountService.addFavorite(flavorId).subscribe((account) => {
+      this.updateFavoriteList(account.favorites);
+    });
+  }
+
+  private removeFavorit(flavorId: number) {
+    this.accountService.removeFavorite(flavorId).subscribe((account) => {
+      this.updateFavoriteList(account.favorites);
+    });
+  }
+
+  private updateFavoriteList(favorites: Flavor[]) {
+    this.accountService.updateFavorites(favorites);
+    this.isFavorite();
+  }
+
+  private isFavorite() {
+    if (this.getCurrentAccount() === null) {
+      return;
+    }
+
+    const currentAccount: Account = this.getCurrentAccount();
+
+    const flavor: Flavor = currentAccount.favorites.find(f => f.name === this.pizza.customFlavor.name);
+
+    if (flavor === undefined) {
+      this.favorite = false;
+    } else {
+      this.favorite = true;
+    }
   }
 
   private pizzaBuild() {

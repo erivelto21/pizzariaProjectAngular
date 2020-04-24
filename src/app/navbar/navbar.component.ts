@@ -32,8 +32,8 @@ export class NavbarComponent implements OnInit, OnDestroy, AfterViewChecked {
       this.showTotalPrice = false;
     }
 
-    if (localStorage.getItem('currentUser') !== null) {
-      this.userName = JSON.parse(localStorage.getItem('currentUser')).firstName;
+    if (localStorage.getItem('currentAccount') !== null) {
+      this.userName = JSON.parse(localStorage.getItem('currentAccount')).systemUser.firstName;
     }
 
     this.cdRef.detectChanges();

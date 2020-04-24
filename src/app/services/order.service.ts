@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Order } from '../interfaces/order';
+import { Account } from '../interfaces/account';
 
 @Injectable({
   providedIn: 'root'
@@ -12,11 +13,11 @@ export class OrderService {
   constructor(private http: HttpClient) { }
 
   getByUser() {
-    const user = JSON.parse(localStorage.getItem('currentUser'));
+    const account: Account = JSON.parse(localStorage.getItem('currentAccount'));
 
-    return this.http.get<Order[]>(this.url + '/user/' + user.id,
+    return this.http.get<Order[]>(this.url + '/user/' + account.systemUser.id,
     {headers: new HttpHeaders()
-      .set('Authorization', user.token)
+      .set('Authorization', account.systemUser.token)
       .set('Content-Type', 'application/json')});
   }
 }

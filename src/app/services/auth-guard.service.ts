@@ -9,19 +9,19 @@ export class AuthGuard implements CanActivate {
                 private editPizzaService: EditPizzaService) { }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        const currentAccount = JSON.parse(localStorage.getItem('currentAccount'));
 
         if (route.routeConfig.path === '') {
             this.router.navigate(['home']);
             return false;
         }
 
-        if (currentUser && route.routeConfig.path === 'register') {
+        if (currentAccount && route.routeConfig.path === 'register') {
             this.router.navigate(['']);
             return false;
         }
 
-        if (!currentUser && route.routeConfig.path === 'checkout') {
+        if (!currentAccount && route.routeConfig.path === 'checkout') {
             this.router.navigate(['login']);
             return false;
         }
@@ -31,7 +31,7 @@ export class AuthGuard implements CanActivate {
             return false;
         }
 
-        if (!currentUser && route.routeConfig.path === 'payment') {
+        if (!currentAccount && route.routeConfig.path === 'payment') {
             this.router.navigate(['login']);
             return false;
         }
@@ -41,7 +41,12 @@ export class AuthGuard implements CanActivate {
             return false;
         }
 
-        if (!currentUser && route.routeConfig.path === 'orders') {
+        if (!currentAccount && route.routeConfig.path === 'orders') {
+            this.router.navigate(['']);
+            return false;
+        }
+
+        if (!currentAccount && route.routeConfig.path === 'favorites') {
             this.router.navigate(['']);
             return false;
         }
