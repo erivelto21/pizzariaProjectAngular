@@ -17,7 +17,7 @@ export class OrderService {
 
     return this.http.get<Order[]>(this.url + '/user/' + account.systemUser.id,
     {headers: new HttpHeaders()
-      .set('Authorization', account.systemUser.token)
+      .set('Authorization', 'Bearer ' + account.systemUser.token)
       .set('Content-Type', 'application/json')});
   }
 }

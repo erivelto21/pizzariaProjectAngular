@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { take } from 'rxjs/operators';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Account } from '../interfaces/account';
 
 @Injectable({
@@ -8,36 +8,34 @@ import { Account } from '../interfaces/account';
 })
 export class AuthenticationService {
 
-  private url = 'api/login';
+  private url = 'api/oauth/token';
+  private clientid = 'Y2xpZW50aWRfcGl6emFyaWE=';
+  private clientSecret =  'U2VjcmV0X2NsaWVudF9waXp6YXJpYQ==';
+
 
   constructor(private http: HttpClient) {}
 
-  login(email, password) {
-    return this.http.post<Account>(this.url,  { email, password }, {observe: 'response'}).pipe(take(1))
-    .pipe( (accountObservable) => {
-      accountObservable.subscribe((response) => {
-        let account: Account;
+  getToken(email, password) {
+    const headers = new HttpHeaders(
+      {Authorization: 'Basic ' + btoa(this.clientid + ':' + this.clientSecret), 'Content-type': 'application/x-www-form-urlencoded'});
 
-        account = {
-          id: response.body.id,
-          favorites: response.body.favorites,
-          systemUser: {
-            id: response.body.systemUser.id,
-            firstName: response.body.systemUser.firstName,
-            lastName: response.body.systemUser.lastName,
-            email: response.body.systemUser.email,
-            password: response.body.systemUser.password,
-            address: response.body.systemUser.address,
-            role: {id: response.body.systemUser.role.id, name: response.body.systemUser.role.name},
-            phone: response.body.systemUser.phone,
-            token: response.headers.get('Authorization').substring('Bearer'.length).trim()
-          }
-        };
+    const payload = new HttpParams()
+      .set('username', email)
+      .set('password', password)
+      .set('grant_type', 'password');
 
-        localStorage.setItem('currentAccount', JSON.stringify(account));
-      });
-      return accountObservable;
-    });
+    return this.http.post<any>(this.url, payload.toString(), { headers }).pipe(take(1));
+  }
+
+  getAccountByUserEmail(email: string, token: string) {
+    const headers = new HttpHeaders( {Authorization: 'Bearer ' + token,
+                                      'Content-type': 'application/json'});
+    return this.http.get<Account>('api/account/' + email, { headers });
+  }
+
+  login(account: Account, token: string) {
+    account.systemUser.token = token;
+    localStorage.setItem('currentAccount', JSON.stringify(account));
   }
 
   logout() {

@@ -28,7 +28,7 @@ export class AccountService {
     this.getData();
 
     return this.http.get<Flavor[]>(this.url + '/favorite/' + this.idAccount,
-      {headers: new HttpHeaders().set('Authorization', this.authorizationToken).set('Content-Type', 'application/json')})
+      {headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.authorizationToken).set('Content-Type', 'application/json')})
       .pipe(take(1));
   }
 
@@ -36,14 +36,14 @@ export class AccountService {
     this.getData();
 
     return this.http.patch<Account>(this.url + '/favorite/add/' + this.idAccount + '/flavor/' + idFlavor, null,
-      {headers: new HttpHeaders().set('Authorization', this.authorizationToken).set('Content-Type', 'application/json')})
+      {headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.authorizationToken).set('Content-Type', 'application/json')})
       .pipe(take(1));
   }
 
   removeFavorite(idFlavor: number) {
     this.getData();
     return this.http.patch<Account>(this.url + '/favorite/remove/' + this.idAccount + '/flavor/' + idFlavor, null,
-      {headers: new HttpHeaders().set('Authorization', this.authorizationToken).set('Content-Type', 'application/json')})
+      {headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.authorizationToken).set('Content-Type', 'application/json')})
       .pipe(take(1));
   }
 

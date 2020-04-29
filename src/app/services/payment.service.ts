@@ -26,7 +26,7 @@ export class PaymentService {
     return this.http
     .post(
       this.url, {user, paymentWay, cart, creditCard},
-      {headers: new HttpHeaders().set('Authorization', user.token)} )
+      {headers: new HttpHeaders().set('Authorization', 'Bearer ' + user.token)} )
       .pipe(take(1));
   }
 }

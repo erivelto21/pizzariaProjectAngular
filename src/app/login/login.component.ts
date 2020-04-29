@@ -43,22 +43,35 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    this.authenticationService.login(this.loginForm.controls.email.value, this.loginForm.controls.password.value)
-    .subscribe((data) => {
-      this.router.navigate([this.returnUlr]);
+    const email: string = this.loginForm.controls.email.value;
+    const password: string = this.loginForm.controls.password.value;
+
+    this.authenticationService.getToken(email, password)
+    .subscribe(
+    (data) => {
+      this.findAccountByEmail(email, data.access_token);
     },
     (error: HttpErrorResponse) => {
       this.submitted = false;
 
-      if (error.status === 401) {
+      if (error.status === 400 && error.error.error_description === 'Bad credentials') {
         this.alertService.error('Email ou senha inválido', false);
       } else {
-        this.alertService.error(error.error.message, false);
+        this.alertService.error('Um error aconteceu', false);
       }
     });
   }
 
   change() {
     this.sideNavBarIsClose = !this.sideNavBarIsClose;
+  }
+
+  private findAccountByEmail(email: string, token: string) {
+    this.authenticationService.getAccountByUserEmail(email, token).subscribe(
+      (account) => {
+        this.authenticationService.login(account, token);
+        this.router.navigate([this.returnUlr]);
+      }
+    );
   }
 }
