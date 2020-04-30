@@ -10,6 +10,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { OrderListComponent } from './order-list/order-list.component';
 import { EditPizzaComponent } from './edit-pizza/edit-pizza.component';
 import { FavoriteListComponent } from './favorite-list/favorite-list.component';
+import { SystemUserDataComponent } from './system-user-data/system-user-data.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent, canActivate: [AuthGuard]},
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'orders', component: OrderListComponent, canActivate: [AuthGuard]},
   { path: 'favorites', component: FavoriteListComponent, canActivate: [AuthGuard]},
   { path: 'edit', component: EditPizzaComponent, canActivate: [AuthGuard]},
+  { path: 'mydata', component: SystemUserDataComponent, canActivate: [AuthGuard]},
   { path: '**', component: NotFoundComponent, canActivate: [AuthGuard]},
 ];
 

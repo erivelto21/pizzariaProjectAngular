@@ -15,6 +15,12 @@ export class UserService {
     return this.http.post(this.url, user).pipe(take(1));
   }
 
+  password(userId: number, token: string, password: string) {
+    return this.http.patch(this.url + '/' + userId + '/password', password,
+          { headers: new HttpHeaders()
+            .set('Authorization', 'Bearer ' + token).set('Content-Type', 'application/json'), }).pipe(take(1));
+  }
+
   phone(user) {
     return this.http.patch(this.url + '/' + user.id + '/phone', user.phone,
           { headers: new HttpHeaders()

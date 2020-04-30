@@ -1,0 +1,53 @@
+<section >
+    <h3>Dados pessoais</h3>
+    <section class="row main-rows">
+        <article class="row col-lg-10 col-md-10 col-sm-10 col-12">
+            <div class="form-group col-lg-4 col-md-4 col-sm-4 col-12">
+                <label>Email</label>
+                <input class="form-control" type="email" value="{{user.email}}" readonly/>
+            </div>
+        </article>
+        <article class="row col-lg-10 col-md-10 col-sm-10 col-12">
+            <div class="form-group col-lg-6 col-md-6 col-sm-6 col-12">
+                <label>Primeiro nome</label>
+                <input class="form-control" type="text" value="{{user.firstName}}" readonly/>
+            </div>
+            <div class="form-group col-lg-6 col-md-6 col-sm-6 col-12">
+                <label>Sobrenome</label>
+                <input class="form-control" type="text" value="{{user.lastName}}" readonly/>
+            </div>
+        </article>
+        <form [formGroup]="passwordForm" (ngSubmit)="onSubmit()" class="row col-lg-10 col-md-10 col-sm-10 col-12">
+            <div class="form-group col-lg-6 col-md-6 col-sm-6 col-12">
+                <label for="password">Nova senha</label>
+                <input type="password" name="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && passwordForm.controls.password.errors }"/>
+                <div *ngIf="submitted && passwordForm.controls.password.errors" class="invalid-feedback">
+                    <div *ngIf="passwordForm.controls.password.errors.required">Campo obrigatório</div>
+                    <div *ngIf="passwordForm.controls.password.errors.minlength">Minimo 8 caracteres</div>
+                    <div *ngIf="passwordForm.controls.password.errors.equalValue">Senhas diferentes</div>
+                </div>
+            </div>
+            <div class="form-group col-lg-6 col-md-6 col-sm-6 col-12">
+                <label for="password2">Confirme sua senha</label>
+                <input type="password" name="password2" formControlName="password2" class="form-control" [ngClass]="{ 'is-invalid': submitted && passwordForm.controls.password2.errors }"/>
+                <div *ngIf="submitted && passwordForm.controls.password2.errors" class="invalid-feedback">
+                    <div *ngIf="passwordForm.controls.password2.errors.required">Campo obrigatório</div>
+                    <div *ngIf="passwordForm.controls.password2.errors.minlength">Minimo 8 caracteres</div>
+                    <div *ngIf="passwordForm.controls.password2.errors.equalValue">Senhas diferentes</div>
+                </div>
+            </div>
+            <div class="form-group col-lg-12 col-md-12 col-sm-12 col-12">
+                <button class="btn">Atualizar</button>
+            </div>
+            <div class="alert">
+                <app-alert></app-alert>
+            </div>
+        </form>
+    </section>
+    <article class="row  main-rows">
+        <app-address-register></app-address-register>
+        <div class="form-group btn-address col-lg-10 col-md-10 col-sm-10 col-10">
+            <button class="btn" (click) = "onSubmitAddressRegisterForm()">Atualizar</button>
+        </div>
+    </article>
+</section>

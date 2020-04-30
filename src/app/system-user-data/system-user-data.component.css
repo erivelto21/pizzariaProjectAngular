@@ -1,0 +1,22 @@
+.main-rows {
+    flex-direction: row;
+    justify-content: center;
+}
+
+h3 {
+    text-align: center;
+    margin-top: 30px;
+    font-family: 'Open Sans Condensed', sans-serif;
+    color: darkred;
+}
+
+.btn-address {
+    padding-left: 44px;
+}
+
+.alert {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+}

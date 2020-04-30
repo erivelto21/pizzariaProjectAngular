@@ -37,6 +37,7 @@ import { OrderListComponent } from './order-list/order-list.component';
 import { DetailsModalComponent } from './order-list/details-modal/details-modal.component';
 import { EditPizzaComponent } from './edit-pizza/edit-pizza.component';
 import { FavoriteListComponent } from './favorite-list/favorite-list.component';
+import { SystemUserDataComponent } from './system-user-data/system-user-data.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { FavoriteListComponent } from './favorite-list/favorite-list.component';
     DetailsModalComponent,
     EditPizzaComponent,
     FavoriteListComponent,
+    SystemUserDataComponent,
   ],
   imports: [
     BrowserModule,

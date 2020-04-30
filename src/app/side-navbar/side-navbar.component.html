@@ -7,6 +7,9 @@
             <a class="nav-link"> Bem vindo {{userName}}</a>
         </li>
         <li *ngIf = "userName" class="nav-item">
+            <a class="nav-link" routerLink="/mydata" routerLinkActive="active"> <i class="fas fa-id-badge"></i> Meus dados</a>
+        </li>
+        <li *ngIf = "userName" class="nav-item">
             <a class="nav-link" routerLink="/orders" routerLinkActive="active"> <i class="far fa-list-alt"></i> Pedidos</a>
         </li>
         <li *ngIf = "userName" class="nav-item">

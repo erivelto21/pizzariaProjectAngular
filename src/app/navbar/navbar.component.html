@@ -20,6 +20,7 @@
             <li *ngIf = "userName" class="nav-item dropdown">
                 <a id="myAccountDropdown" href="#" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fas fa-user-circle"></i> Minha conta</a>
                 <div class="dropdown-menu" aria-labelledby="myAccountDropdown">
+                    <a class="nav-link" routerLink="/mydata" routerLinkActive="active"> <i class="fas fa-id-badge"></i> Meus dados</a>
                     <a class="nav-link" routerLink="/orders" routerLinkActive="active"> <i class="far fa-list-alt"></i> Pedidos</a>
                     <a class="nav-link" routerLink="/favorites" routerLinkActive="active"> <i class="fas fa-heart"></i> Favoritos</a>
                 </div>
