@@ -12,11 +12,11 @@ import { Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
 
 @Component({
-  selector: 'app-address-register',
-  templateUrl: './address-register.component.html',
-  styleUrls: ['./address-register.component.css']
+  selector: 'app-edit-delivery-data',
+  templateUrl: './edit-delivery-data.component.html',
+  styleUrls: ['./edit-delivery-data.component.css']
 })
-export class AddressRegisterComponent implements OnInit {
+export class EditDeliveryDataComponent implements OnInit {
 
   submitted = false;
   addressForm: FormGroup;
@@ -111,6 +111,7 @@ export class AddressRegisterComponent implements OnInit {
       data => {
         this.updateAccount();
         this.redirect(routeUrl);
+        this.submitted = false;
       },
       (error: HttpErrorResponse) => {
         this.submitted = false;
@@ -152,6 +153,7 @@ export class AddressRegisterComponent implements OnInit {
 
   private redirect(routeUrl: string) {
     if(routeUrl === '') {
+      this.alertService.success('Informações para a entrega atualizadas com sucesso', true);
       return;
     }
 

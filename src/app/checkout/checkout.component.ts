@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { AddressRegisterComponent } from './address-register/address-register.component';
+import { EditDeliveryDataComponent } from '../edit-delivery-data/edit-delivery-data.component';
 import { AlertService } from '../services/alert.service';
 
 @Component({
@@ -9,8 +9,8 @@ import { AlertService } from '../services/alert.service';
 })
 export class CheckoutComponent implements OnInit {
 
-  @ViewChild(AddressRegisterComponent)
-  private addressRegisterComponent: AddressRegisterComponent;
+  @ViewChild(EditDeliveryDataComponent)
+  private addressRegisterComponent: EditDeliveryDataComponent;
 
   constructor(private alertService: AlertService) { }
 

@@ -26,7 +26,7 @@ import { AuthenticationService } from './services/authentication.service';
 import { AuthGuard } from './services/auth-guard.service';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { ItemsListComponent } from './checkout/items-list/items-list.component';
-import { AddressRegisterComponent } from './checkout/address-register/address-register.component';
+import { EditDeliveryDataComponent } from './edit-delivery-data/edit-delivery-data.component';
 import { TextMaskModule } from 'angular2-text-mask';
 import { PaymentPageComponent } from './payment-page/payment-page.component';
 import { AddressDisplayComponent } from './payment-page/address-display/address-display.component';
@@ -56,7 +56,7 @@ import { SystemUserDataComponent } from './system-user-data/system-user-data.com
     UserRegisterComponent,
     CheckoutComponent,
     ItemsListComponent,
-    AddressRegisterComponent,
+    EditDeliveryDataComponent,
     PaymentPageComponent,
     AddressDisplayComponent,
     PaymentComponent,

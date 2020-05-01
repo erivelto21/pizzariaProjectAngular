@@ -5,7 +5,7 @@ import { equalFieldValueValidator } from '../util/equalFieldValueValidator';
 import { UserService } from '../services/user.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AlertService } from '../services/alert.service';
-import { AddressRegisterComponent } from '../checkout/address-register/address-register.component';
+import { EditDeliveryDataComponent } from '../edit-delivery-data/edit-delivery-data.component';
 
 @Component({
   selector: 'app-system-user-data',
@@ -14,8 +14,8 @@ import { AddressRegisterComponent } from '../checkout/address-register/address-r
 })
 export class SystemUserDataComponent implements OnInit {
 
-  @ViewChild(AddressRegisterComponent)
-  private addressRegisterComponent: AddressRegisterComponent;
+  @ViewChild(EditDeliveryDataComponent)
+  private addressRegisterComponent: EditDeliveryDataComponent;
 
   user: SystemUser;
   passwordForm: FormGroup;
