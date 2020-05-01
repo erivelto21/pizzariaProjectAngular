@@ -1,8 +1,8 @@
 <section class="row">
-    <h3>Endereço para a entrega</h3>
+    <h3>Informações para a entrega</h3>
     <article class="row col-md-12">
 
-        <form [formGroup]="addressForm" (ngSubmit)="onSubmit()" class="row col-md-10 col-sm-10 col-10">
+        <form [formGroup]="addressForm" class="row col-md-10 col-sm-10 col-10">
             <div class="form-group col-md-6 col-sm-6 col-6">
                 <h4>Pesquise pelo cep</h4>
                 <label for="cep">Cep</label>
@@ -63,12 +63,6 @@
                     <div *ngIf="addressForm.controls.state.errors.location">Localização inválida</div>
                 </div>
             </div>
-            <article class="form-group col-md-12">
-                <button class="btn">Finalizar pedido</button>
-            </article>
-            <article class="alert">
-                <app-alert></app-alert>
-            </article>
         </form>
     </article>
 </section>

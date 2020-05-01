@@ -4,11 +4,12 @@ import { CepService } from 'src/app/services/cep.service';
 import { CepAux } from 'src/app/interfaces/cep-aux';
 import { UserService } from 'src/app/services/user.service';
 import { AlertService } from 'src/app/services/alert.service';
-import { HttpErrorResponse } from '@angular/common/http';
 import { SystemUser } from 'src/app/interfaces/system-user';
 import { locationValidator } from 'src/app/util/locationValidator';
-import { Router } from '@angular/router';
 import { Account } from 'src/app/interfaces/account';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-address-register',
@@ -26,8 +27,8 @@ export class AddressRegisterComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
               private userService: UserService,
-              private router: Router,
               private cepService: CepService,
+              private router: Router,
               private alertService: AlertService) { }
 
   ngOnInit() {
@@ -97,33 +98,19 @@ export class AddressRegisterComponent implements OnInit {
     }
   }
 
-  onSubmit() {
+  onSubmit(routeUrl: string) {
     this.submitted = true;
 
-    if (this.addressForm.invalid) {
-      return;
-    }
-    const phone = 'phone';
-    this.user.phone = this.addressForm.controls[phone].value;
-
-    delete this.addressForm.value.phone;
-    this.user.address = this.addressForm.value;
-
-    const cart: [] = JSON.parse(localStorage.getItem('cart'));
-
-    if (cart.length === 0) {
-      this.alertService.error('carrinho vazio', false);
+    if(!this.isFormValid()) {
       return;
     }
 
-    const account: Account = JSON.parse(localStorage.getItem('currentAccount'));
-    account.systemUser = this.user;
+    this.setValidatedDataInUserObject();
 
-    localStorage.setItem('currentAccount', JSON.stringify(account));
-
-    this.userService.address(this.user).subscribe(
+    forkJoin([this.phoneSubmit(), this.addressSubmit()]).subscribe(
       data => {
-        this.phoneSubmit();
+        this.updateAccount();
+        this.redirect(routeUrl);
       },
       (error: HttpErrorResponse) => {
         this.submitted = false;
@@ -132,15 +119,42 @@ export class AddressRegisterComponent implements OnInit {
     );
   }
 
+  private updateAccount() {
+    const account: Account = JSON.parse(localStorage.getItem('currentAccount'));
+    account.systemUser = this.user;
+
+    localStorage.setItem('currentAccount', JSON.stringify(account));
+  }
+
+  private addressSubmit() {
+    return this.userService.address(this.user);
+  }
+
   private phoneSubmit() {
-    this.userService.phone(this.user).subscribe(
-      data => {
-        this.router.navigate(['/payment']);
-      },
-      (error: HttpErrorResponse) => {
-        this.submitted = false;
-        this.alertService.error(error.error.message, false);
-      }
-    );
+    return this.userService.phone(this.user);
+  }
+
+  private isFormValid() {
+    if (this.addressForm.invalid) {
+      return false;
+    }
+
+    return true;
+  }
+
+  private setValidatedDataInUserObject() {
+    const phone = 'phone';
+    this.user.phone = this.addressForm.controls[phone].value;
+
+    delete this.addressForm.value.phone;
+    this.user.address = this.addressForm.value;
+  }
+
+  private redirect(routeUrl: string) {
+    if(routeUrl === '') {
+      return;
+    }
+
+    this.router.navigate([routeUrl]);
   }
 }

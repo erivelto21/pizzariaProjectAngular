@@ -57,6 +57,6 @@ export class SystemUserDataComponent implements OnInit {
   }
 
   onSubmitAddressRegisterForm() {
-    this.addressRegisterComponent.onSubmit();
+    this.addressRegisterComponent.onSubmit('');
   }
 }
