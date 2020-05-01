@@ -5,7 +5,7 @@ export function equalFieldValueValidator(field1Name: string, field2Name: string)
         const firstField = formGroup.controls[field1Name];
         const secondField = formGroup.controls[field2Name];
 
-        if (firstField.touched && secondField.touched) {
+        if (firstField.touched || secondField.touched) {
             const isMatch = firstField.value === secondField.value;
 
             if (!isMatch && firstField.valid && secondField.valid) {
@@ -16,7 +16,7 @@ export function equalFieldValueValidator(field1Name: string, field2Name: string)
 
                 return {equalValue: message};
             }
-            if (isMatch && secondField.hasError('equalValue')) {
+            if (isMatch && (firstField.hasError('equalValue') || secondField.hasError('equalValue'))) {
                 firstField.setErrors(null);
                 secondField.setErrors(null);
             }
