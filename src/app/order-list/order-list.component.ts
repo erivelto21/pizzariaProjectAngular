@@ -9,7 +9,7 @@ import { AlertService } from '../services/alert.service';
   templateUrl: './order-list.component.html',
   styleUrls: ['./order-list.component.css']
 })
-export class OrderListComponent implements OnInit, OnDestroy {
+export class OrderListComponent implements OnInit {
 
   orders: Order[] = [];
   pizzas: string;
@@ -57,9 +57,5 @@ export class OrderListComponent implements OnInit, OnDestroy {
         pizzas[i].customFlavor.name += ', ';
       }
     }
-  }
-
-  ngOnDestroy() {
-    this.orderService.getByUser().subscribe().unsubscribe();
   }
 }

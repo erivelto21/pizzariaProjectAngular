@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Order } from '../interfaces/order';
 import { Account } from '../interfaces/account';
+import { take } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,6 @@ export class OrderService {
     return this.http.get<Order[]>(this.url + '/user/' + account.systemUser.id,
     {headers: new HttpHeaders()
       .set('Authorization', 'Bearer ' + account.systemUser.token)
-      .set('Content-Type', 'application/json')});
+      .set('Content-Type', 'application/json')}).pipe(take(1));;
   }
 }
