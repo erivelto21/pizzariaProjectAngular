@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
     this.authenticationService.getToken(email, password)
     .subscribe(
     (data) => {
-      this.findAccountByEmail(email, data.access_token);
+      this.findAccountByEmail(email, data.access_token, data.refresh_token);
     },
     (error: HttpErrorResponse) => {
       this.submitted = false;
@@ -66,10 +66,10 @@ export class LoginComponent implements OnInit {
     this.sideNavBarIsClose = !this.sideNavBarIsClose;
   }
 
-  private findAccountByEmail(email: string, token: string) {
+  private findAccountByEmail(email: string, token: string, refreshToken: string) {
     this.authenticationService.getAccountByUserEmail(email, token).subscribe(
       (account) => {
-        this.authenticationService.login(account, token);
+        this.authenticationService.login(account, token, refreshToken);
         this.router.navigate([this.returnUlr]);
       }
     );

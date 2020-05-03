@@ -9,6 +9,7 @@ export interface SystemUser {
     password: string;
     role: Role;
     token: string;
+    refreshToken: string;
     address?: Address;
     phone?: string;
 }
