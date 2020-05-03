@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { InterceptorModule } from './interceptors/interceptor.module';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -74,7 +75,8 @@ import { SystemUserDataComponent } from './system-user-data/system-user-data.com
     HttpClientModule,
     RouterModule,
     ReactiveFormsModule,
-    TextMaskModule
+    TextMaskModule,
+    InterceptorModule
   ],
   providers: [FlavorService, CartService, AlertService, UserService, AuthenticationService, AuthGuard],
   bootstrap: [AppComponent]
