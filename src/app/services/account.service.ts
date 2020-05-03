@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { take } from 'rxjs/operators';
 import { Account } from '../interfaces/account';
 import { Flavor } from '../interfaces/flavor';
@@ -11,7 +11,6 @@ export class AccountService {
 
   private url = 'api/account';
   private idAccount: number;
-  private authorizationToken: string;
 
   constructor(private http: HttpClient) { }
 
@@ -20,30 +19,26 @@ export class AccountService {
 
     if (account !== null) {
       this.idAccount = account.id;
-      this.authorizationToken = account.systemUser.token;
     }
   }
 
   getFavoriteList() {
     this.getData();
 
-    return this.http.get<Flavor[]>(this.url + '/favorite/' + this.idAccount,
-      {headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.authorizationToken).set('Content-Type', 'application/json')})
+    return this.http.get<Flavor[]>(this.url + '/favorite/' + this.idAccount)
       .pipe(take(1));
   }
 
   addFavorite(idFlavor: number) {
     this.getData();
 
-    return this.http.patch<Account>(this.url + '/favorite/add/' + this.idAccount + '/flavor/' + idFlavor, null,
-      {headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.authorizationToken).set('Content-Type', 'application/json')})
+    return this.http.patch<Account>(this.url + '/favorite/add/' + this.idAccount + '/flavor/' + idFlavor, null,)
       .pipe(take(1));
   }
 
   removeFavorite(idFlavor: number) {
     this.getData();
-    return this.http.patch<Account>(this.url + '/favorite/remove/' + this.idAccount + '/flavor/' + idFlavor, null,
-      {headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.authorizationToken).set('Content-Type', 'application/json')})
+    return this.http.patch<Account>(this.url + '/favorite/remove/' + this.idAccount + '/flavor/' + idFlavor, null)
       .pipe(take(1));
   }
 

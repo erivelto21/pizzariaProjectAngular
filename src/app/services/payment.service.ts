@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { take } from 'rxjs/operators';
 
 @Injectable({
@@ -25,8 +25,7 @@ export class PaymentService {
   private creditCardPayment(user, cart, paymentWay, creditCard) {
     return this.http
     .post(
-      this.url, {user, paymentWay, cart, creditCard},
-      {headers: new HttpHeaders().set('Authorization', 'Bearer ' + user.token)} )
+      this.url, {user, paymentWay, cart, creditCard})
       .pipe(take(1));
   }
 }
