@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import { take } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Account } from '../interfaces/account';
-import { Router } from '@angular/router';
-import { AlertService } from './alert.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +13,7 @@ export class AuthenticationService {
   private clientSecret =  'U2VjcmV0X2NsaWVudF9waXp6YXJpYQ==';
 
 
-  constructor(private http: HttpClient,
-              private router: Router) {}
+  constructor(private http: HttpClient) {}
 
   getToken(email, password) {
     const headers = new HttpHeaders(
@@ -46,7 +43,6 @@ export class AuthenticationService {
 
   logout() {
     localStorage.removeItem('currentAccount');
-    this.router.navigate(['/login']);
   }
 
   updateToken(refreshToken: string) {

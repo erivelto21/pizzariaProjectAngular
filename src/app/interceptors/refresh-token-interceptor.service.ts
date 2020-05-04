@@ -6,6 +6,7 @@ import { AuthenticationService } from '../services/authentication.service';
 
 import { Account } from '../interfaces/account';
 import { AlertService } from '../services/alert.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,8 @@ import { AlertService } from '../services/alert.service';
 export class RefreshTokenInterceptorService implements HttpInterceptor{
 
   constructor(private authenticationService: AuthenticationService,
-              private alertService: AlertService) { }
+              private alertService: AlertService,
+              private router: Router) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(request).pipe(
@@ -26,6 +28,7 @@ export class RefreshTokenInterceptorService implements HttpInterceptor{
 
           return next.handle(request).pipe(
             finalize(()=> {
+              this.router.navigate(['/login']);
               this.alertService.error('Sua sessão expirou', true);
             })
           );
