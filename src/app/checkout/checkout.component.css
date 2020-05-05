@@ -4,3 +4,11 @@
     justify-content: center;
     width: 100%;
 }
+
+.btn-div {
+    text-align: center;
+}
+
+.btn {
+    min-width: 30%;
+}
