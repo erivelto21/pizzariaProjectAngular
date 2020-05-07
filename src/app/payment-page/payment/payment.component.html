@@ -2,7 +2,7 @@
     <article class="row col-12">
         <p class="col-6">Valor da compra: </p>
         <p class="col-1"></p>
-        <p class="col-4" style="text-align: left">R$ {{amoutTotal().toFixed(2)}}</p>
+        <p class="col-4" style="text-align: left">R$ {{total.toFixed(2)}}</p>
     </article>
     <article class="row col-12 plus-sign">
         <p class="col-6">Taxa de entrega: </p>
@@ -12,7 +12,7 @@
     <article class="row col-12">
         <p class="col-6">Total a pagar: </p>
         <p class="col-1"></p>
-        <p class="col-4">R$ {{(amoutTotal() + 10).toFixed(2)}}</p>
+        <p class="col-4">R$ {{(total + 10).toFixed(2)}}</p>
     </article>
 
     <form [formGroup]="paymentForm" (ngSubmit)="onSubmit()" class="row col-12">

@@ -17,16 +17,7 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.cartService.get().subscribe((_: Pizza[]) => this.items = _ );
-    this.loadCart();
-  }
-
-  loadCart() {
-    if (localStorage.getItem('cart') == null) {
-      const cart = [];
-      localStorage.setItem('cart', JSON.stringify(cart));
-    } else {
-      this.items = JSON.parse(localStorage.getItem('cart'));
-    }
+    this.items = this.cartService.getCart();
   }
 
   getTotalValue(orderedPizza: Pizza) {

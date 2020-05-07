@@ -39,6 +39,7 @@ import { DetailsModalComponent } from './order-list/details-modal/details-modal.
 import { EditPizzaComponent } from './edit-pizza/edit-pizza.component';
 import { FavoriteListComponent } from './favorite-list/favorite-list.component';
 import { SystemUserDataComponent } from './system-user-data/system-user-data.component';
+import { DiscountCouponComponent } from './discount-coupon/discount-coupon.component';
 
 @NgModule({
   declarations: [
@@ -68,6 +69,7 @@ import { SystemUserDataComponent } from './system-user-data/system-user-data.com
     EditPizzaComponent,
     FavoriteListComponent,
     SystemUserDataComponent,
+    DiscountCouponComponent,
   ],
   imports: [
     BrowserModule,

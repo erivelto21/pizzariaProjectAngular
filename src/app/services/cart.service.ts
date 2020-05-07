@@ -1,9 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, combineLatest, BehaviorSubject } from 'rxjs';
 import { Pizza } from '../interfaces/pizza';
 import { EditPizzaService } from './edit-pizza.service';
 import { AlertService } from './alert.service';
 import { PizzaService } from './pizza.service';
+import { DiscountCouponKeepService } from './discount-coupon-keep.service';
+import { DiscountCoupon } from '../interfaces/discount-coupon';
+import { ThrowStmt } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root'
@@ -11,10 +14,12 @@ import { PizzaService } from './pizza.service';
 export class CartService {
 
   private cartSubject = new Subject<Pizza[]>();
+  private totalBehaviorSubject = new BehaviorSubject<number>(0);
 
   constructor(private editPizzaService: EditPizzaService,
               private pizzaService: PizzaService,
-              private alertService: AlertService) { }
+              private alertService: AlertService,
+              private discountCouponKeepService: DiscountCouponKeepService) { }
 
   get(): Observable<Pizza[]> {
     if (localStorage.getItem('cart') === null) {
@@ -27,10 +32,15 @@ export class CartService {
     return this.cartSubject.asObservable();
   }
 
+  getCart(): Pizza[] {
+    return JSON.parse(localStorage.getItem('cart'));
+  }
+
   newCart() {
     const cart: Pizza[] = [];
     localStorage.setItem('cart', JSON.stringify(cart));
     this.cartSubject.next(cart);
+    this.discountCouponKeepService.clear();
   }
 
   add(pizza: Pizza) {
@@ -55,10 +65,64 @@ export class CartService {
     this.findCartItemForUpdate(cart, pizza);
   }
 
+  remove(item: Pizza) {
+    const cart: [] = JSON.parse(localStorage.getItem('cart'));
+    const aux = cart.findIndex((i: Pizza) => !this.isDifferent(item, i));
+    cart.splice(aux, 1);
+    this.updateCart(cart);
+  }
+
+  getTotal(): Observable<number> {
+    const $items =  this.cartSubject.asObservable();
+    const $discount = this.discountCouponKeepService.getValueObservable();
+
+    combineLatest([$items, $discount]).subscribe(
+      ([items, discountCoupon]) => {
+        this.totalBehaviorSubject.next(this.calculateTotalValue(items, discountCoupon));
+      }
+    );
+
+    return this.totalBehaviorSubject.asObservable();
+  }
+
+  calculateTotalValue(items: Pizza[], discountCoupon: DiscountCoupon): number {
+    let total = this.calculateTotalItemsValue(items);
+
+    if(discountCoupon === null) {
+      discountCoupon = this.discountCouponKeepService.getValue();
+    }
+
+    if(discountCoupon === null) {
+      return total;
+    }
+
+    const discountValue = this.calculateDiscountValue(total, discountCoupon.percentageDiscount);
+    total = this.applyDiscount(total, discountValue);
+
+    return total;
+  }
+
+  private calculateTotalItemsValue(items: Pizza[]): number {
+    let total = 0;
+
+    for (const item of items) {
+      total += this.pizzaService.totalValue(item) * item.amount;
+    }
+
+    return total;
+  }
+
+  private calculateDiscountValue(total: number, discountValue: number) {
+    return (total * discountValue) /100;
+  }
+
+  private applyDiscount(total: number, discountValue: number) {
+    return total - discountValue;
+  }
+
   private findCartItemForUpdate(cart: Pizza[], pizza: Pizza) {
     const orderedPizza = this.editPizzaService.getValueOrderedPizza();
 
-    // tslint:disable-next-line: prefer-for-of
     for (let i = 0; i < cart.length; i ++) {
       if (!this.isDifferent(orderedPizza, cart[i])) {
 
@@ -123,12 +187,5 @@ export class CartService {
       return false;
     }
     return true;
-  }
-
-  remove(item: Pizza) {
-    const cart: [] = JSON.parse(localStorage.getItem('cart'));
-    const aux = cart.findIndex((i: Pizza) => !this.isDifferent(item, i));
-    cart.splice(aux, 1);
-    this.updateCart(cart);
   }
 }

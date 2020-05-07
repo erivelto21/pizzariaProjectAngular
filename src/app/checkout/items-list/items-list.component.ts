@@ -13,6 +13,7 @@ import { PizzaService } from 'src/app/services/pizza.service';
 export class ItemsListComponent implements OnInit, OnDestroy {
 
   items: Pizza[] = [];
+  total = 0;
 
   constructor(
     private cartService: CartService,
@@ -21,12 +22,9 @@ export class ItemsListComponent implements OnInit, OnDestroy {
     private pizzaService: PizzaService) { }
 
   ngOnInit() {
+    this.cartService.getTotal().subscribe((total) => this.total = total);
     this.cartService.get().subscribe((_: Pizza[]) => this.items = _ );
-    this.loadCart();
-  }
-
-  loadCart() {
-    this.items = JSON.parse(localStorage.getItem('cart'));
+    this.items = this.cartService.getCart();
   }
 
   totalItems() {
@@ -41,16 +39,6 @@ export class ItemsListComponent implements OnInit, OnDestroy {
 
   totalEachItem(orderedPizza: Pizza) {
     return this.pizzaService.totalValue(orderedPizza) * orderedPizza.amount;
-  }
-
-  amoutTotal() {
-    let total = 0;
-
-    for (const item of this.items) {
-      total += this.pizzaService.totalValue(item) * item.amount;
-    }
-
-    return total;
   }
 
   goEdit(orderedPizza: Pizza) {

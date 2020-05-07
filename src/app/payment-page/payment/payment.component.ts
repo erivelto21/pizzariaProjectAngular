@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { Pizza } from 'src/app/interfaces/pizza';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AlertService } from 'src/app/services/alert.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { PaymentService } from 'src/app/services/payment.service';
@@ -7,19 +6,18 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { CustomizedTransactionResponse } from 'src/app/interfaces/customized-transaction-response';
 import { Router } from '@angular/router';
 import { CartService } from 'src/app/services/cart.service';
-import { PizzaService } from 'src/app/services/pizza.service';
 
 @Component({
   selector: 'app-payment',
   templateUrl: './payment.component.html',
   styleUrls: ['./payment.component.css']
 })
-export class PaymentComponent implements OnInit {
+export class PaymentComponent implements OnInit, OnDestroy {
 
+  total = 0;
   readonly = false;
   submitted = false;
   paymentForm: FormGroup;
-  cart: Pizza[];
   deliveryFee = 10.00;
   cardNumberMask = [/\d/, /\d/, /\d/, /\d/, ' ', /\d/, /\d/, /\d/, /\d/, ' ', /\d/, /\d/, /\d/, /\d/, ' ', /\d/, /\d/, /\d/, /\d/];
   expirationDateMask = [/\d/, /\d/, '/', /\d/, /\d/];
@@ -31,11 +29,10 @@ export class PaymentComponent implements OnInit {
               private alertService: AlertService,
               private paymentService: PaymentService,
               private cartService: CartService,
-              private pizzaService: PizzaService,
               private router: Router) { }
 
   ngOnInit() {
-    this.cart = JSON.parse(localStorage.getItem('cart'));
+    this.cartService.getTotal().subscribe((total) => this.total = total)
 
     this.paymentForm = this.formBuilder.group({
       paymentWay: ['', [Validators.required]],
@@ -44,13 +41,6 @@ export class PaymentComponent implements OnInit {
       expirationDate: ['0922'],
       securityCode: ['123']
     });
-  }
-
-  private updateControls() {
-    this.paymentForm.controls.cardName.updateValueAndValidity();
-    this.paymentForm.controls.cardNumber.updateValueAndValidity();
-    this.paymentForm.controls.expirationDate.updateValueAndValidity();
-    this.paymentForm.controls.securityCode.updateValueAndValidity();
   }
 
   creditCardSelect() {
@@ -77,43 +67,6 @@ export class PaymentComponent implements OnInit {
     this.paymentForm.controls.securityCode.setValidators(null);
 
     this.updateControls();
-  }
-
-  public amoutTotal() {
-
-    if (this.cart === undefined) {
-      return;
-    }
-
-    let priceTotal = 0;
-
-    for (const item of this.cart) {
-      priceTotal += this.pizzaService.totalValue(item) * item.amount;
-    }
-
-    return priceTotal;
-  }
-
-  private cardBuilder() {
-    let numberValue: string = '' + this.paymentForm.controls.cardNumber.value;
-    numberValue = numberValue.replace(/\s/g, '').toLowerCase();
-
-    let expirationDateValue: string = '' + this.paymentForm.controls.expirationDate.value;
-    expirationDateValue = expirationDateValue.replace('/', '');
-
-    const card = {
-      cardNumber: numberValue,
-      cardCvv: this.paymentForm.controls.securityCode.value,
-      cardExpirationDate: expirationDateValue,
-      cardHolderName: this.paymentForm.controls.cardName.value
-    };
-
-    return card;
-  }
-
-  private cancelPayment() {
-    this.submitted = false;
-    this.firstTransaction = true;
   }
 
   onSubmit() {
@@ -191,5 +144,38 @@ export class PaymentComponent implements OnInit {
         this.alertService.error(error.error.message, false);
       }
     );
+  }
+
+  private updateControls() {
+    this.paymentForm.controls.cardName.updateValueAndValidity();
+    this.paymentForm.controls.cardNumber.updateValueAndValidity();
+    this.paymentForm.controls.expirationDate.updateValueAndValidity();
+    this.paymentForm.controls.securityCode.updateValueAndValidity();
+  }
+
+  private cardBuilder() {
+    let numberValue: string = '' + this.paymentForm.controls.cardNumber.value;
+    numberValue = numberValue.replace(/\s/g, '').toLowerCase();
+
+    let expirationDateValue: string = '' + this.paymentForm.controls.expirationDate.value;
+    expirationDateValue = expirationDateValue.replace('/', '');
+
+    const card = {
+      cardNumber: numberValue,
+      cardCvv: this.paymentForm.controls.securityCode.value,
+      cardExpirationDate: expirationDateValue,
+      cardHolderName: this.paymentForm.controls.cardName.value
+    };
+
+    return card;
+  }
+
+  private cancelPayment() {
+    this.submitted = false;
+    this.firstTransaction = true;
+  }
+
+  ngOnDestroy() {
+    this.cartService.get().subscribe().unsubscribe();
   }
 }

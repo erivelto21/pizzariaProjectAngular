@@ -1,0 +1,38 @@
+form {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 10px;
+}
+
+p, .span-clear {
+    font-family: 'Open Sans Condensed', sans-serif;
+}
+
+.form-group {
+    justify-content: center;
+}
+
+p:first-of-type {
+    font-size: 20px;
+}
+
+p:last-of-type {
+    font-size: 15px;
+}
+
+.error {
+    color: red;
+}
+
+.success {
+    color: green;
+}
+
+.span-clear {
+    margin-left: 2px;
+    margin-top: 5px;
+    color: darkred;
+    font-size: 17px;
+}
