@@ -6,7 +6,6 @@ import { AlertService } from './alert.service';
 import { PizzaService } from './pizza.service';
 import { DiscountCouponKeepService } from './discount-coupon-keep.service';
 import { DiscountCoupon } from '../interfaces/discount-coupon';
-import { ThrowStmt } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root'
