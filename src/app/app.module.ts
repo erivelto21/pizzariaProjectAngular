@@ -40,6 +40,7 @@ import { EditPizzaComponent } from './edit-pizza/edit-pizza.component';
 import { FavoriteListComponent } from './favorite-list/favorite-list.component';
 import { SystemUserDataComponent } from './system-user-data/system-user-data.component';
 import { DiscountCouponComponent } from './discount-coupon/discount-coupon.component';
+import { PaymentFormComponent } from './payment-page/payment/payment-form/payment-form.component';
 
 @NgModule({
   declarations: [
@@ -70,6 +71,7 @@ import { DiscountCouponComponent } from './discount-coupon/discount-coupon.compo
     FavoriteListComponent,
     SystemUserDataComponent,
     DiscountCouponComponent,
+    PaymentFormComponent,
   ],
   imports: [
     BrowserModule,
