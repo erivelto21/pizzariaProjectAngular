@@ -3,13 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { take } from 'rxjs/operators';
 import { DiscountCoupon } from '../interfaces/discount-coupon';
 import { DiscountCouponKeepService } from './discount-coupon-keep.service';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PaymentService {
 
-  private url = 'api/payment/creditcard';
+  private url = environment.apiUrl + '/payment/creditcard';
 
   constructor(private http: HttpClient, private discountCouponKeepService: DiscountCouponKeepService) { }
 

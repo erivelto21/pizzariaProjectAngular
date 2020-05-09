@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { DiscountCoupon } from '../interfaces/discount-coupon';
 import { HttpClient } from '@angular/common/http';
 import { take } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DiscountCouponService {
-  private url = 'api/discountcoupon';
+  private url = environment.apiUrl + '/discountcoupon';
 
   constructor(private http: HttpClient) { }
 

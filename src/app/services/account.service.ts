@@ -3,13 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { take } from 'rxjs/operators';
 import { Account } from '../interfaces/account';
 import { Flavor } from '../interfaces/flavor';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountService {
 
-  private url = 'api/account';
+  private url = environment.apiUrl + '/account';
   private idAccount: number;
 
   constructor(private http: HttpClient) { }

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 import { Account } from '../interfaces/account';
 
@@ -26,12 +27,12 @@ export class HttpHeadersInterceptorService implements HttpInterceptor {
   }
 
   private isTokenNotNecessary(request: HttpRequest<any>) {
-    return request.url === 'api/oauth/token' || request.url === 'api/flavor' ||
-    (request.url === 'api/user' && request.method === 'POST') || request.url.includes('https://viacep.com.br/ws/');
+    return request.url === environment.apiUrl + '/oauth/token' || request.url === environment.apiUrl + '/flavor' ||
+    (request.url === environment.apiUrl + '/user' && request.method === 'POST') || request.url.includes('https://viacep.com.br/ws/');
   }
 
   private isContentTypeNotNecessary(request: HttpRequest<any>) {
-    return request.url === 'api/oauth/token' || request.url.includes('https://viacep.com.br/ws/');
+    return request.url === environment.apiUrl + '/oauth/token' || request.url.includes('https://viacep.com.br/ws/');
   }
 
   private setTokenInRequest(request: HttpRequest<any>, account: Account): HttpRequest<any> {

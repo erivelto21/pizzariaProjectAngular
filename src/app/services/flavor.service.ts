@@ -3,12 +3,13 @@ import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { Flavor } from '../interfaces/flavor';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FlavorService {
-  private url = 'api/flavor';
+  private url = environment.apiUrl + '/flavor';
 
   constructor(private http: HttpClient) { }
 

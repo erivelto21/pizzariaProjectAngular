@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { take } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Account } from '../interfaces/account';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
 
-  private url = 'api/oauth/token';
+  private url = environment.apiUrl + '/oauth/token';
   private clientid = 'Y2xpZW50aWRfcGl6emFyaWE=';
   private clientSecret =  'U2VjcmV0X2NsaWVudF9waXp6YXJpYQ==';
 
@@ -31,7 +32,7 @@ export class AuthenticationService {
     const headers = new HttpHeaders( {Authorization: 'Bearer ' + token,
                                       'Content-type': 'application/json'});
 
-    return this.http.get<Account>('api/account/' + email, { headers });
+    return this.http.get<Account>(environment.apiUrl + '/account/' + email, { headers });
   }
 
   login(account: Account, token: string, refreshToken: string) {

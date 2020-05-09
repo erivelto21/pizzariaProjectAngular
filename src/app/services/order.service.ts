@@ -3,13 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { Order } from '../interfaces/order';
 import { Account } from '../interfaces/account';
 import { take } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrderService {
 
-  private url = 'api/order';
+  private url = environment.apiUrl + '/order';
 
   constructor(private http: HttpClient) { }
 
