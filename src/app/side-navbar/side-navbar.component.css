@@ -17,3 +17,7 @@
 .navbar-nav > li > .nav-link:hover, .dropdown-menu > a:hover {
     opacity: 0.7;
 }
+
+a {
+    font-family: Arial,sans-serif;
+}

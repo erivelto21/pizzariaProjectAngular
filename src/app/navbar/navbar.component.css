@@ -10,6 +10,10 @@
     color: white;
 }
 
+a, .nav-item > a {
+    font-family: Arial,sans-serif;
+}
+
 .button-toggler > button {
     padding: 0;
 }
@@ -28,7 +32,6 @@
 }
 
 #navbar-header > a{
-    font-family: 'Noto Serif', serif;
     color: white;
     text-decoration: none;
 }
