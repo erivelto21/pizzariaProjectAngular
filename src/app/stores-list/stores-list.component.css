@@ -1,0 +1,53 @@
+h2 {
+    background-color: #236e7a;
+    color: white;
+    font-family: 'Bangers', cursive;
+    font-size: 35px;
+    height: 60px;
+    text-align: center;
+    padding-top: 11px;
+    margin-bottom: 40px;
+}
+
+h3 {
+    font-weight: bold;
+    font-family: 'Nunito', sans-serif;
+    margin-left: 3%;
+}
+
+.line {
+    display: block;
+    border: 1px solid black;
+    width: 94%;
+    margin-bottom: 20px;
+    margin-left: 3%;
+}
+
+.stores {
+    padding: 0 3% 0 3%;
+}
+
+.store > a > img {
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+h5 {
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 26px;
+}
+
+.store-information {
+    margin-bottom: 50px;
+}
+
+.store-information > h5 {
+    font-weight: 700;
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 19px;
+}

@@ -41,6 +41,7 @@ import { FavoriteListComponent } from './favorite-list/favorite-list.component';
 import { SystemUserDataComponent } from './system-user-data/system-user-data.component';
 import { DiscountCouponComponent } from './discount-coupon/discount-coupon.component';
 import { PaymentFormComponent } from './payment-page/payment/payment-form/payment-form.component';
+import { StoresListComponent } from './stores-list/stores-list.component';
 
 @NgModule({
   declarations: [
@@ -72,6 +73,7 @@ import { PaymentFormComponent } from './payment-page/payment/payment-form/paymen
     SystemUserDataComponent,
     DiscountCouponComponent,
     PaymentFormComponent,
+    StoresListComponent,
   ],
   imports: [
     BrowserModule,
