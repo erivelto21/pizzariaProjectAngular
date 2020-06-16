@@ -1,0 +1,59 @@
+h3 {
+    font-family: 'Bangers', cursive;
+    font-size: 35px;
+    height: 60px;
+    text-align: center;
+    padding-top: 11px;
+    margin-bottom: 50px;
+    background-color: #16c49b;
+    color: white;
+}
+
+section > article {
+    text-align: center;
+}
+
+article {
+    margin-bottom: 20px;
+}
+
+img {
+    height: 192px;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+img:hover {
+    cursor: pointer;
+}
+
+.first-place > img {
+    width: 303px;
+}
+
+.first-place > a > p {
+    padding-bottom: 5px;
+}
+
+.first-place > p > i {
+    color: #daa520;
+    font-size: 26px;
+}
+
+.second-place > img {
+    width: 253px;
+}
+
+.second-place > p > i  {
+    color:darkgray;
+    font-size: 21px;
+}
+
+.third-place > img {
+    width: 203px;
+}
+
+.third-place > p > i  {
+    color: #cd7f32;
+    font-size: 16px;
+}

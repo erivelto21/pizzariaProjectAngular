@@ -1,0 +1,7 @@
+<section id="ranking" class="row">
+    <h3 class="col-lg-12 col-md-12 col-sm-12 col-12">Ranking / Mais pedidas</h3>
+    <article *ngFor="let item of itens"  class={{getCssClass(item.description)}}>
+        <img (click) = "buy(item.name)" class="rounded mx-auto d-block" src={{item.image}}/>
+        <p><i class="fa fa-trophy" aria-hidden="true"></i>     {{item.description}}</p>
+    </article>
+</section>
