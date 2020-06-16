@@ -66,6 +66,10 @@ export class EditPizzaComponent implements OnInit {
     return ingredient.amount === value;
   }
 
+  x0(ingredient: Ingredient) {
+    ingredient.amount = 0;
+  }
+
   x1(ingredient: Ingredient) {
     ingredient.amount = 1;
   }

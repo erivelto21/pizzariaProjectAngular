@@ -39,7 +39,7 @@
     </div>
 
     <h3 class="col-12">Adicionais</h3>
-    <p id="info" class="col-10">1x - Quantidade padrão do ingrediente, 2x - Duas vezes mais ingrediente, 3x - Três vezes mais ingrediente (Obs: Para 2x ou 3x será cobrado um adicional)</p>
+    <p id="info" class="col-10">0x - Remove o ingrediente, 1x - Quantidade padrão do ingrediente, 2x - Duas vezes mais ingrediente, 3x - Três vezes mais ingrediente (Obs: Para 2x ou 3x será cobrado um adicional)</p>
     <table class="table col-10">
         <thead class="table-dark">
             <tr class="row">
@@ -51,15 +51,19 @@
             <tr class="row" *ngFor="let i of pizza.customFlavor.ingredients">
                 <td class="col-4">{{i.name}}</td>
                 <td class="row col-8">
-                    <div class="col-4">
+                    <div class="col-3">
+                        <p>0x</p>
+                        <input type="radio" name="adicional{{i.name}}" [checked] = "checked(i, 0)" value="0" (click) = "x0(i)"/>
+                    </div>
+                    <div class="col-3">
                         <p>1x</p>
                         <input type="radio" name="adicional{{i.name}}" [checked] = "checked(i, 1)" value="1" (click) = "x1(i)"/>
                     </div>
-                    <div class="col-4">
+                    <div class="col-3">
                         <p>2x</p>
                         <input type="radio" name="adicional{{i.name}}" [checked] = "checked(i, 2)" value="2" (click) = "x2(i)"/>
                     </div>
-                    <div class="col-4">
+                    <div class="col-3">
                         <p>3x</p>
                         <input type="radio" name="adicional{{i.name}}" [checked] = "checked(i, 3)" value="3" (click) = "x3(i)"/>
                     </div>

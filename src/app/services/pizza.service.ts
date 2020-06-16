@@ -50,7 +50,8 @@ export class PizzaService {
   private calculateAdditionalsOfIngredients(ingredients: Ingredient[]) {
     let total = 0;
     for (const i of ingredients) {
-      total += (i.amount - 1) * 1;
+      if(i.amount > 0)
+        total += (i.amount - 1) * 1;
     }
 
     return total;
