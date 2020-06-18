@@ -16,3 +16,13 @@ aside > span {
 .hidden{
     display: none;
 }
+
+.alert-success {
+    color: white;
+    background-color: #1e8536;
+}
+
+.alert-danger {
+    color: white;
+    background-color: #721c24;
+}
