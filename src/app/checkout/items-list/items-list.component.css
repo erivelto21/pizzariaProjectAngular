@@ -13,7 +13,7 @@
 }
 
 .list > table > thead {
-    background-color: darkred;
+    background-color: #8c1f1f;
     color: white;
 }
 
@@ -51,7 +51,7 @@
 
 p {
     text-align: center;
-    color: darkred;
+    color: #8c1f1f;
     font-size: 14px;
 }
 

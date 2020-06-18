@@ -10,6 +10,8 @@
 h2 {
     margin-bottom: 25px;
     text-align: center;
+    font-family: 'Open Sans Condensed', sans-serif;
+    color: #8c1f1f;
 }
 
 form > .row {
@@ -26,6 +28,6 @@ form > .row {
 
 .btn, .form-group > a {
     color: white;
-    background-color: #b01010;
+    background-color: #343a40;
     margin-right: 20px;
 }

@@ -1,6 +1,6 @@
 .modal-title {
     font-family: 'Open Sans Condensed', sans-serif;
-    color: darkred;
+    color: #8c1f1f;
 }
 
 table {
@@ -8,15 +8,11 @@ table {
 }
 
 table > thead {
-    background-color: darkred;
+    background-color: #8c1f1f;
     color: white;
     width: 100%;
 }
 
 .price {
     min-width: 110px;
-}
-
-.btn {
-    color: darkred;
 }

@@ -38,8 +38,8 @@ img {
 }
 
 .btnBuy{
-    background-color: red;
     color: white;
+    background-color: #343a40;
     font-family: 'Bangers', cursive;
     font-size: 17px;
     border-style: none;

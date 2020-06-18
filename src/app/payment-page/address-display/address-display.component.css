@@ -2,7 +2,7 @@ h2 {
     margin-top: 20px;
     text-align: center;
     font-family: 'Open Sans Condensed', sans-serif;
-    color: darkred;
+    color: #8c1f1f;
 }
 
 .row {
@@ -15,7 +15,7 @@ h2 {
     text-align: center;
     padding: 0;
     margin-top: 30px;
-    border: 2px solid darkred;
+    border: 2px solid #8c1f1f;
     border-top: 0px;
     border-radius: 15px;
 }
@@ -38,7 +38,7 @@ h2 {
 h6 {
     padding-top: 3px;
     border-radius: 12px;
-    background-color: darkred;
+    background-color: #8c1f1f;
     color: white;
     font-size: 17px;
     height: 40%;

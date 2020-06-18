@@ -11,6 +11,11 @@
     padding: 0;
 }
 
+h2 {
+    color: #343a40;
+    font-family: Arial,sans-serif;
+}
+
 .login {
     min-width: 235px;
     margin-top: 50px;
@@ -26,12 +31,12 @@
 }
 
 button {
-    background-color: #b01010;
+    background-color: #343a40;
     color: white;
 }
 
 .btn-link {
-    color: #b01010 !important;
+    color: #343a40;
     float: right;
 }
 

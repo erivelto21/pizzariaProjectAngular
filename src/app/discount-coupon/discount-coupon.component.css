@@ -36,3 +36,8 @@ p:last-of-type {
     color: darkred;
     font-size: 17px;
 }
+
+button {
+    color: white;
+    background-color: #343a40;
+}
