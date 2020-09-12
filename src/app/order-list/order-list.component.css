@@ -11,7 +11,11 @@ h1 {
     color: #8c1f1f;
 }
 
-.row > table > thead {
+table {
+    overflow-x: scroll;
+}
+
+.row > div > table > thead {
     background-color: #8c1f1f;
     color: white;
 }
@@ -34,7 +38,7 @@ h2 {
 
 @media only screen and (max-width: 831px) {
     
-    .row > table {
+    .row > div > table {
         display: block;
         overflow-x: scroll;
     } 
