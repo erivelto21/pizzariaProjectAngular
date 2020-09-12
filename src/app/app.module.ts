@@ -43,7 +43,8 @@ import { DiscountCouponComponent } from './discount-coupon/discount-coupon.compo
 import { PaymentFormComponent } from './payment-page/payment/payment-form/payment-form.component';
 import { StoresListComponent } from './stores-list/stores-list.component';
 import { PizzaRankingComponent } from './pizza-ranking/pizza-ranking.component';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
@@ -86,7 +87,8 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     ReactiveFormsModule,
     TextMaskModule,
     InterceptorModule,
-    NoopAnimationsModule
+    BrowserAnimationsModule,
+    MatSidenavModule
   ],
   providers: [FlavorService, CartService, AlertService, UserService, AuthenticationService, AuthGuard],
   bootstrap: [AppComponent]

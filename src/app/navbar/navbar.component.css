@@ -19,9 +19,9 @@ a, .nav-item > a {
 }
 
 #navbar-header{
-	text-align: center;
     font-size: x-large;
     min-width: 133px;
+    display: flex;
 }
 
 #navbar-header > a > img {
@@ -34,6 +34,7 @@ a, .nav-item > a {
 #navbar-header > a{
     color: white;
     text-decoration: none;
+    align-self: center;
 }
 
 .navbar-nav > li > .nav-link:hover, .dropdown-menu > a:hover, #navbar-header > a:hover {

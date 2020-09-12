@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewChecked, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, AfterViewChecked, ChangeDetectorRef, Output, EventEmitter } from '@angular/core';
 import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
@@ -8,6 +8,7 @@ import { AuthenticationService } from '../services/authentication.service';
 })
 export class SideNavbarComponent implements OnInit, AfterViewChecked {
   userName: string;
+  @Output() event = new EventEmitter();
 
   constructor(private authenticationService: AuthenticationService, private cdRef: ChangeDetectorRef) { }
 
@@ -23,5 +24,9 @@ export class SideNavbarComponent implements OnInit, AfterViewChecked {
 
   logout() {
     this.authenticationService.logout();
+  }
+
+  closeSideNav() {
+    this.event.emit();
   }
 }

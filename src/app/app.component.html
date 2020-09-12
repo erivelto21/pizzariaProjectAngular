@@ -1,10 +1,11 @@
-<section class="row">
-    <div class="side-navbar col-lg-3 col-md-3 col-sm-3 col-3" [class.hidden] = "sideNavBarIsClose">
-        <app-side-navbar></app-side-navbar>
-    </div>
-    <section id="container" class="col-md-12 col-sm-12 col-12 row">
+<mat-drawer-container class="row" autosize>
+    <mat-drawer #drawer class="side-navbar col-lg-3 col-md-3 col-sm-3 col-3" mode="over">
+        <app-side-navbar (event)="drawer.toggle()"></app-side-navbar>
+    </mat-drawer>
+  
+    <div id="container" class="row col-md-12 col-sm-12 col-12">
         <header class="col-12">
-            <app-navbar (event) = "change()"></app-navbar>
+            <app-navbar (event)="drawer.toggle()"></app-navbar>
         </header>
         <div id="content" class="col-12">
             <router-outlet></router-outlet>
@@ -12,5 +13,5 @@
         <footer class="col-12">
             <app-footer></app-footer>
         </footer>
-    </section>
-</section>
+    </div>  
+</mat-drawer-container>  

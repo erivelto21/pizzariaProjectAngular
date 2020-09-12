@@ -1,8 +1,8 @@
 .row{
     margin: 0;
-    flex-wrap: nowrap;
     flex-direction: row;
     height: 100%;
+    padding: 0;
 }
 
 .side-navbar{

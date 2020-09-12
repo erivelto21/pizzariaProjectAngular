@@ -5,11 +5,11 @@
     min-width: 114px;
 }
 
-.side-nav-bar > ul > li > a{
+.nav-item > a {
     color: white;
 }
 
-.side-nav-bar > ul > li {
+.nav-item{
     margin-top: 10px;
     margin-left: 15px;
 }
